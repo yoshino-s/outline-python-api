@@ -1,0 +1,50 @@
+name: Build and Commit
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
+          fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
+
+      - name: Build code
+        run: |
+          curl -X 'POST' \
+          'https://generator3.swagger.io/api/generate' \
+          -H 'accept: application/octet-stream' \
+          -H 'Content-Type: application/json' \
+          -d '{
+            "lang": "python",
+            "specURL": "https://github.com/outline/openapi/raw/main/spec3.json"
+          }' > client.zip
+
+      - name: Unzip client.zip
+        run: |
+          rm -rf client
+          mkdir client
+          unzip client.zip -d client
+          rm client.zip
+
+      - name: Commit files
+        run: |
+          TS=$(date +'%Y%m%d%H%M%S')
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add -A
+          git commit -a -m "Update client" && git tag -a "v$TS" -m "Update client at $(date)" || echo "No changes to commit"        
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
