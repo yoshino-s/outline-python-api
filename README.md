@@ -1,6 +1,6 @@
 # Outline Python API library
 
-[![PyPI version](https://img.shields.io/pypi/v/outline.svg)](https://pypi.org/project/outline/)
+[![PyPI version](https://img.shields.io/pypi/v/outline-python-api.svg)](https://pypi.org/project/outline-python-api/)
 
 The Outline Python library provides convenient access to the Outline REST API from any Python 3.7+
 application. The library includes type definitions for all request params and response fields,
@@ -15,12 +15,9 @@ The REST API documentation can be found [on www.getoutline.com](https://www.geto
 ## Installation
 
 ```sh
-# install from the production repo
-pip install git+ssh://git@github.com/Yoshino-s/outline-python-api.git
+# install from PyPI
+pip install --pre outline-python-api
 ```
-
-> [!NOTE]
-> Once this package is [published to PyPI](https://app.stainlessapi.com/docs/guides/publish), this will become: `pip install --pre outline`
 
 ## Usage
 
