@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha (2024-06-02)
+
+Full Changelog: [v0.0.1-alpha...v0.1.0-alpha](https://github.com/Yoshino-s/outline-python-api/compare/v0.0.1-alpha...v0.1.0-alpha)
+
+### Features
+
+* **api:** OpenAPI spec update via Stainless API ([#5](https://github.com/Yoshino-s/outline-python-api/issues/5)) ([b2a597f](https://github.com/Yoshino-s/outline-python-api/commit/b2a597fe7f119183cbb7fe09efb0b83e1e8c1077))
+
 ## 0.0.1-alpha (2024-05-09)
 
 Full Changelog: [v0.0.1-alpha.0...v0.0.1-alpha](https://github.com/Yoshino-s/outline-python-api/compare/v0.0.1-alpha.0...v0.0.1-alpha)
