@@ -97,7 +97,7 @@ class TestDocuments:
             done=True,
             publish=True,
             text="…",
-            title="string",
+            title="title",
         )
         assert_matches_type(DocumentUpdateResponse, document, path=["response"])
 
@@ -135,7 +135,7 @@ class TestDocuments:
         document = client.documents.list(
             backlink_document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             collection_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            direction="DESC",
+            direction="ASC",
             limit=25,
             offset=0,
             parent_document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -244,8 +244,8 @@ class TestDocuments:
     def test_method_drafts_with_all_params(self, client: Outline) -> None:
         document = client.documents.drafts(
             collection_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            date_filter="month",
-            direction="DESC",
+            date_filter="day",
+            direction="ASC",
             limit=25,
             offset=0,
             sort="updatedAt",
@@ -280,7 +280,7 @@ class TestDocuments:
     @parametrize
     def test_method_export_with_all_params(self, client: Outline) -> None:
         document = client.documents.export(
-            id="string",
+            id="id",
         )
         assert_matches_type(DocumentExportResponse, document, path=["response"])
 
@@ -348,7 +348,7 @@ class TestDocuments:
     @parametrize
     def test_method_info_with_all_params(self, client: Outline) -> None:
         document = client.documents.info(
-            id="string",
+            id="id",
             share_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(DocumentInfoResponse, document, path=["response"])
@@ -461,12 +461,12 @@ class TestDocuments:
     def test_method_search_with_all_params(self, client: Outline) -> None:
         document = client.documents.search(
             collection_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            date_filter="month",
+            date_filter="day",
             document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             limit=25,
             offset=0,
             query="hiring",
-            status_filter="published",
+            status_filter="draft",
             user_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(DocumentSearchResponse, document, path=["response"])
@@ -623,7 +623,7 @@ class TestDocuments:
     @parametrize
     def test_method_viewed_with_all_params(self, client: Outline) -> None:
         document = client.documents.viewed(
-            direction="DESC",
+            direction="ASC",
             limit=25,
             offset=0,
             sort="updatedAt",
@@ -716,7 +716,7 @@ class TestAsyncDocuments:
             done=True,
             publish=True,
             text="…",
-            title="string",
+            title="title",
         )
         assert_matches_type(DocumentUpdateResponse, document, path=["response"])
 
@@ -754,7 +754,7 @@ class TestAsyncDocuments:
         document = await async_client.documents.list(
             backlink_document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             collection_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            direction="DESC",
+            direction="ASC",
             limit=25,
             offset=0,
             parent_document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -863,8 +863,8 @@ class TestAsyncDocuments:
     async def test_method_drafts_with_all_params(self, async_client: AsyncOutline) -> None:
         document = await async_client.documents.drafts(
             collection_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            date_filter="month",
-            direction="DESC",
+            date_filter="day",
+            direction="ASC",
             limit=25,
             offset=0,
             sort="updatedAt",
@@ -899,7 +899,7 @@ class TestAsyncDocuments:
     @parametrize
     async def test_method_export_with_all_params(self, async_client: AsyncOutline) -> None:
         document = await async_client.documents.export(
-            id="string",
+            id="id",
         )
         assert_matches_type(DocumentExportResponse, document, path=["response"])
 
@@ -967,7 +967,7 @@ class TestAsyncDocuments:
     @parametrize
     async def test_method_info_with_all_params(self, async_client: AsyncOutline) -> None:
         document = await async_client.documents.info(
-            id="string",
+            id="id",
             share_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(DocumentInfoResponse, document, path=["response"])
@@ -1080,12 +1080,12 @@ class TestAsyncDocuments:
     async def test_method_search_with_all_params(self, async_client: AsyncOutline) -> None:
         document = await async_client.documents.search(
             collection_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            date_filter="month",
+            date_filter="day",
             document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             limit=25,
             offset=0,
             query="hiring",
-            status_filter="published",
+            status_filter="draft",
             user_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(DocumentSearchResponse, document, path=["response"])
@@ -1242,7 +1242,7 @@ class TestAsyncDocuments:
     @parametrize
     async def test_method_viewed_with_all_params(self, async_client: AsyncOutline) -> None:
         document = await async_client.documents.viewed(
-            direction="DESC",
+            direction="ASC",
             limit=25,
             offset=0,
             sort="updatedAt",

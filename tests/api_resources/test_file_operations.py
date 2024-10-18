@@ -40,7 +40,7 @@ class TestFileOperations:
     def test_method_list_with_all_params(self, client: Outline) -> None:
         file_operation = client.file_operations.list(
             type="export",
-            direction="DESC",
+            direction="ASC",
             limit=25,
             offset=0,
             sort="updatedAt",
@@ -190,7 +190,7 @@ class TestAsyncFileOperations:
     async def test_method_list_with_all_params(self, async_client: AsyncOutline) -> None:
         file_operation = await async_client.file_operations.list(
             type="export",
-            direction="DESC",
+            direction="ASC",
             limit=25,
             offset=0,
             sort="updatedAt",
