@@ -13,9 +13,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import (
-    make_request_options,
-)
+from .._base_client import make_request_options
 from ..types.auth_info_response import AuthInfoResponse
 from ..types.auth_config_response import AuthConfigResponse
 
@@ -25,10 +23,21 @@ __all__ = ["AuthResource", "AsyncAuthResource"]
 class AuthResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AuthResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/Yoshino-s/outline-python-api#accessing-raw-response-data-eg-headers
+        """
         return AuthResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AuthResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/Yoshino-s/outline-python-api#with_streaming_response
+        """
         return AuthResourceWithStreamingResponse(self)
 
     def config(
@@ -73,10 +82,21 @@ class AuthResource(SyncAPIResource):
 class AsyncAuthResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncAuthResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/Yoshino-s/outline-python-api#accessing-raw-response-data-eg-headers
+        """
         return AsyncAuthResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncAuthResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/Yoshino-s/outline-python-api#with_streaming_response
+        """
         return AsyncAuthResourceWithStreamingResponse(self)
 
     async def config(
