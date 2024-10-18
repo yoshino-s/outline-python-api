@@ -33,9 +33,7 @@ from .._response import (
     async_to_custom_raw_response_wrapper,
     async_to_custom_streamed_response_wrapper,
 )
-from .._base_client import (
-    make_request_options,
-)
+from .._base_client import make_request_options
 from ..types.file_operation_info_response import FileOperationInfoResponse
 from ..types.file_operation_list_response import FileOperationListResponse
 from ..types.file_operation_delete_response import FileOperationDeleteResponse
@@ -46,10 +44,21 @@ __all__ = ["FileOperationsResource", "AsyncFileOperationsResource"]
 class FileOperationsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> FileOperationsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/Yoshino-s/outline-python-api#accessing-raw-response-data-eg-headers
+        """
         return FileOperationsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> FileOperationsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/Yoshino-s/outline-python-api#with_streaming_response
+        """
         return FileOperationsResourceWithStreamingResponse(self)
 
     def list(
@@ -208,10 +217,21 @@ class FileOperationsResource(SyncAPIResource):
 class AsyncFileOperationsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncFileOperationsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/Yoshino-s/outline-python-api#accessing-raw-response-data-eg-headers
+        """
         return AsyncFileOperationsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncFileOperationsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/Yoshino-s/outline-python-api#with_streaming_response
+        """
         return AsyncFileOperationsResourceWithStreamingResponse(self)
 
     async def list(

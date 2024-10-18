@@ -380,6 +380,8 @@ def is_basemodel(type_: type) -> bool:
 
 def is_basemodel_type(type_: type) -> TypeGuard[type[BaseModel] | type[GenericModel]]:
     origin = get_origin(type_) or type_
+    if not inspect.isclass(origin):
+        return False
     return issubclass(origin, BaseModel) or issubclass(origin, GenericModel)
 
 
@@ -404,6 +406,15 @@ def build(
         )
 
     return cast(_BaseModelT, construct_type(type_=base_model_cls, value=kwargs))
+
+
+def construct_type_unchecked(*, value: object, type_: type[_T]) -> _T:
+    """Loose coercion to the expected type with construction of nested values.
+
+    Note: the returned value from this function is not guaranteed to match the
+    given type.
+    """
+    return cast(_T, construct_type(value=value, type_=type_))
 
 
 def construct_type(*, value: object, type_: object) -> object:
@@ -641,6 +652,14 @@ def validate_type(*, type_: type[_T], value: object) -> _T:
         return cast(_T, parse_obj(type_, value))
 
     return cast(_T, _validate_non_model_type(type_=type_, value=value))
+
+
+def set_pydantic_config(typ: Any, config: pydantic.ConfigDict) -> None:
+    """Add a pydantic config for the given type.
+
+    Note: this is a no-op on Pydantic v1.
+    """
+    setattr(typ, "__pydantic_config__", config)  # noqa: B010
 
 
 # our use of subclasssing here causes weirdness for type checkers,
