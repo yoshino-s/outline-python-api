@@ -20,9 +20,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import (
-    make_request_options,
-)
+from .._base_client import make_request_options
 from ..types.event_create_response import EventCreateResponse
 
 __all__ = ["EventsResource", "AsyncEventsResource"]
@@ -31,10 +29,21 @@ __all__ = ["EventsResource", "AsyncEventsResource"]
 class EventsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> EventsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/Yoshino-s/outline-python-api#accessing-raw-response-data-eg-headers
+        """
         return EventsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> EventsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/Yoshino-s/outline-python-api#with_streaming_response
+        """
         return EventsResourceWithStreamingResponse(self)
 
     def create(
@@ -106,10 +115,21 @@ class EventsResource(SyncAPIResource):
 class AsyncEventsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncEventsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/Yoshino-s/outline-python-api#accessing-raw-response-data-eg-headers
+        """
         return AsyncEventsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncEventsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/Yoshino-s/outline-python-api#with_streaming_response
+        """
         return AsyncEventsResourceWithStreamingResponse(self)
 
     async def create(

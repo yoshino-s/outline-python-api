@@ -19,9 +19,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import (
-    make_request_options,
-)
+from ..._base_client import make_request_options
 from ...types.collections import group_membership_list_params
 from ...types.collections.group_membership_list_response import GroupMembershipListResponse
 
@@ -31,10 +29,21 @@ __all__ = ["GroupMembershipsResource", "AsyncGroupMembershipsResource"]
 class GroupMembershipsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> GroupMembershipsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/Yoshino-s/outline-python-api#accessing-raw-response-data-eg-headers
+        """
         return GroupMembershipsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> GroupMembershipsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/Yoshino-s/outline-python-api#with_streaming_response
+        """
         return GroupMembershipsResourceWithStreamingResponse(self)
 
     def list(
@@ -92,10 +101,21 @@ class GroupMembershipsResource(SyncAPIResource):
 class AsyncGroupMembershipsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncGroupMembershipsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/Yoshino-s/outline-python-api#accessing-raw-response-data-eg-headers
+        """
         return AsyncGroupMembershipsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncGroupMembershipsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/Yoshino-s/outline-python-api#with_streaming_response
+        """
         return AsyncGroupMembershipsResourceWithStreamingResponse(self)
 
     async def list(

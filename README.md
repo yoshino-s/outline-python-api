@@ -10,7 +10,7 @@ It is generated with [Stainless](https://www.stainlessapi.com/).
 
 ## Documentation
 
-The REST API documentation can be found [on www.getoutline.com](https://www.getoutline.com/developers). The full API of this library can be found in [api.md](api.md).
+The REST API documentation can be found on [www.getoutline.com](https://www.getoutline.com/developers). The full API of this library can be found in [api.md](api.md).
 
 ## Installation
 
@@ -32,8 +32,8 @@ client = Outline(
     bearer_token=os.environ.get("OUTLINE_BEARER_TOKEN"),
 )
 
-auth_info_response = client.auth.info()
-print(auth_info_response.data)
+response = client.auth.info()
+print(response.data)
 ```
 
 While you can provide a `bearer_token` keyword argument,
@@ -57,8 +57,8 @@ client = AsyncOutline(
 
 
 async def main() -> None:
-    auth_info_response = await client.auth.info()
-    print(auth_info_response.data)
+    response = await client.auth.info()
+    print(response.data)
 
 
 asyncio.run(main())
@@ -279,6 +279,12 @@ client = Outline(
 )
 ```
 
+You can also customize the client on a per-request basis by using `with_options()`:
+
+```python
+client.with_options(http_client=DefaultHttpxClient(...))
+```
+
 ### Managing HTTP resources
 
 By default the library closes underlying HTTP connections whenever the client is [garbage collected](https://docs.python.org/3/reference/datamodel.html#object.__del__). You can manually close the client using the `.close()` method if desired, or with a context manager that closes when exiting.
@@ -295,6 +301,21 @@ We take backwards-compatibility seriously and work hard to ensure you can rely o
 
 We are keen for your feedback; please open an [issue](https://www.github.com/Yoshino-s/outline-python-api/issues) with questions, bugs, or suggestions.
 
+### Determining the installed version
+
+If you've upgraded to the latest version but aren't seeing any new features you were expecting then your python environment is likely still using an older version.
+
+You can determine the version that is being used at runtime with:
+
+```py
+import outline
+print(outline.__version__)
+```
+
 ## Requirements
 
 Python 3.7 or higher.
+
+## Contributing
+
+See [the contributing documentation](./CONTRIBUTING.md).
