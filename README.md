@@ -2,7 +2,7 @@
 
 [![PyPI version](https://img.shields.io/pypi/v/outline-python-api.svg)](https://pypi.org/project/outline-python-api/)
 
-The Outline Python library provides convenient access to the Outline REST API from any Python 3.7+
+The Outline Python library provides convenient access to the Outline REST API from any Python 3.8+
 application. The library includes type definitions for all request params and response fields,
 and offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).
 
@@ -314,7 +314,7 @@ print(outline.__version__)
 
 ## Requirements
 
-Python 3.7 or higher.
+Python 3.8 or higher.
 
 ## Contributing
 
