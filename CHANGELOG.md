@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.4.1-alpha (2024-11-19)
+
+Full Changelog: [v0.4.0-alpha...v0.4.1-alpha](https://github.com/yoshino-s/outline-python-api/compare/v0.4.0-alpha...v0.4.1-alpha)
+
+### Chores
+
+* rebuild project due to codegen change ([#16](https://github.com/yoshino-s/outline-python-api/issues/16)) ([3062b38](https://github.com/yoshino-s/outline-python-api/commit/3062b381c007482d0db9c98a2dce3974fcdc2942))
+* rebuild project due to codegen change ([#18](https://github.com/yoshino-s/outline-python-api/issues/18)) ([9c5b9ab](https://github.com/yoshino-s/outline-python-api/commit/9c5b9ab3f841b7b9044e599cb923bd835de12a0a))
+* rebuild project due to codegen change ([#19](https://github.com/yoshino-s/outline-python-api/issues/19)) ([6152476](https://github.com/yoshino-s/outline-python-api/commit/61524769ab0aadca1f8d58884f19b66e9ef8b44b))
+
 ## 0.4.0-alpha (2024-10-21)
 
 Full Changelog: [v0.3.0-alpha...v0.4.0-alpha](https://github.com/yoshino-s/outline-python-api/compare/v0.3.0-alpha...v0.4.0-alpha)

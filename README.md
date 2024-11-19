@@ -28,8 +28,7 @@ import os
 from outline import Outline
 
 client = Outline(
-    # This is the default and can be omitted
-    bearer_token=os.environ.get("OUTLINE_BEARER_TOKEN"),
+    bearer_token=os.environ.get("OUTLINE_BEARER_TOKEN"),  # This is the default and can be omitted
 )
 
 response = client.auth.info()
@@ -51,8 +50,7 @@ import asyncio
 from outline import AsyncOutline
 
 client = AsyncOutline(
-    # This is the default and can be omitted
-    bearer_token=os.environ.get("OUTLINE_BEARER_TOKEN"),
+    bearer_token=os.environ.get("OUTLINE_BEARER_TOKEN"),  # This is the default and can be omitted
 )
 
 
