@@ -4,8 +4,8 @@ from typing import List, Optional
 
 from pydantic import Field as FieldInfo
 
+from .comment import Comment
 from .._models import BaseModel
-from .document import Document
 from .shared.pagination import Pagination
 
 __all__ = ["CommentListResponse", "Policy", "PolicyAbilities"]
@@ -51,7 +51,7 @@ class Policy(BaseModel):
 
 
 class CommentListResponse(BaseModel):
-    data: Optional[List[Document]] = None
+    data: Optional[List[Comment]] = None
 
     pagination: Optional[Pagination] = None
 
