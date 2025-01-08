@@ -18,6 +18,9 @@ class CommentListParams(TypedDict, total=False):
     document_id: Annotated[str, PropertyInfo(alias="documentId")]
     """Filter to a specific document"""
 
+    include_anchor_text: Annotated[bool, PropertyInfo(alias="includeAnchorText")]
+    """Include the document text that the comment is anchored to, if any"""
+
     limit: float
 
     offset: float

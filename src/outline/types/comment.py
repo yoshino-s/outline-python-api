@@ -89,6 +89,12 @@ class Comment(BaseModel):
     id: Optional[str] = None
     """Unique identifier for the object."""
 
+    anchor_text: Optional[str] = FieldInfo(alias="anchorText", default=None)
+    """
+    The document text that the comment is anchored to, only included if
+    includeAnchorText=true.
+    """
+
     created_at: Optional[datetime] = FieldInfo(alias="createdAt", default=None)
     """The date and time that this object was created"""
 
