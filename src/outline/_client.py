@@ -8,7 +8,7 @@ from typing_extensions import Self, override
 
 import httpx
 
-from . import resources, _exceptions
+from . import _exceptions
 from ._qs import Querystring
 from ._types import (
     NOT_GIVEN,
@@ -24,6 +24,7 @@ from ._utils import (
     get_async_library,
 )
 from ._version import __version__
+from .resources import auth, events, groups, comments, documents, attachments, file_operations
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import OutlineError, APIStatusError
 from ._base_client import (
@@ -31,29 +32,20 @@ from ._base_client import (
     SyncAPIClient,
     AsyncAPIClient,
 )
+from .resources.collections import collections
 
-__all__ = [
-    "Timeout",
-    "Transport",
-    "ProxiesTypes",
-    "RequestOptions",
-    "resources",
-    "Outline",
-    "AsyncOutline",
-    "Client",
-    "AsyncClient",
-]
+__all__ = ["Timeout", "Transport", "ProxiesTypes", "RequestOptions", "Outline", "AsyncOutline", "Client", "AsyncClient"]
 
 
 class Outline(SyncAPIClient):
-    attachments: resources.AttachmentsResource
-    auth: resources.AuthResource
-    collections: resources.CollectionsResource
-    comments: resources.CommentsResource
-    documents: resources.DocumentsResource
-    events: resources.EventsResource
-    file_operations: resources.FileOperationsResource
-    groups: resources.GroupsResource
+    attachments: attachments.AttachmentsResource
+    auth: auth.AuthResource
+    collections: collections.CollectionsResource
+    comments: comments.CommentsResource
+    documents: documents.DocumentsResource
+    events: events.EventsResource
+    file_operations: file_operations.FileOperationsResource
+    groups: groups.GroupsResource
     with_raw_response: OutlineWithRawResponse
     with_streaming_response: OutlineWithStreamedResponse
 
@@ -111,14 +103,14 @@ class Outline(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.attachments = resources.AttachmentsResource(self)
-        self.auth = resources.AuthResource(self)
-        self.collections = resources.CollectionsResource(self)
-        self.comments = resources.CommentsResource(self)
-        self.documents = resources.DocumentsResource(self)
-        self.events = resources.EventsResource(self)
-        self.file_operations = resources.FileOperationsResource(self)
-        self.groups = resources.GroupsResource(self)
+        self.attachments = attachments.AttachmentsResource(self)
+        self.auth = auth.AuthResource(self)
+        self.collections = collections.CollectionsResource(self)
+        self.comments = comments.CommentsResource(self)
+        self.documents = documents.DocumentsResource(self)
+        self.events = events.EventsResource(self)
+        self.file_operations = file_operations.FileOperationsResource(self)
+        self.groups = groups.GroupsResource(self)
         self.with_raw_response = OutlineWithRawResponse(self)
         self.with_streaming_response = OutlineWithStreamedResponse(self)
 
@@ -228,14 +220,14 @@ class Outline(SyncAPIClient):
 
 
 class AsyncOutline(AsyncAPIClient):
-    attachments: resources.AsyncAttachmentsResource
-    auth: resources.AsyncAuthResource
-    collections: resources.AsyncCollectionsResource
-    comments: resources.AsyncCommentsResource
-    documents: resources.AsyncDocumentsResource
-    events: resources.AsyncEventsResource
-    file_operations: resources.AsyncFileOperationsResource
-    groups: resources.AsyncGroupsResource
+    attachments: attachments.AsyncAttachmentsResource
+    auth: auth.AsyncAuthResource
+    collections: collections.AsyncCollectionsResource
+    comments: comments.AsyncCommentsResource
+    documents: documents.AsyncDocumentsResource
+    events: events.AsyncEventsResource
+    file_operations: file_operations.AsyncFileOperationsResource
+    groups: groups.AsyncGroupsResource
     with_raw_response: AsyncOutlineWithRawResponse
     with_streaming_response: AsyncOutlineWithStreamedResponse
 
@@ -293,14 +285,14 @@ class AsyncOutline(AsyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.attachments = resources.AsyncAttachmentsResource(self)
-        self.auth = resources.AsyncAuthResource(self)
-        self.collections = resources.AsyncCollectionsResource(self)
-        self.comments = resources.AsyncCommentsResource(self)
-        self.documents = resources.AsyncDocumentsResource(self)
-        self.events = resources.AsyncEventsResource(self)
-        self.file_operations = resources.AsyncFileOperationsResource(self)
-        self.groups = resources.AsyncGroupsResource(self)
+        self.attachments = attachments.AsyncAttachmentsResource(self)
+        self.auth = auth.AsyncAuthResource(self)
+        self.collections = collections.AsyncCollectionsResource(self)
+        self.comments = comments.AsyncCommentsResource(self)
+        self.documents = documents.AsyncDocumentsResource(self)
+        self.events = events.AsyncEventsResource(self)
+        self.file_operations = file_operations.AsyncFileOperationsResource(self)
+        self.groups = groups.AsyncGroupsResource(self)
         self.with_raw_response = AsyncOutlineWithRawResponse(self)
         self.with_streaming_response = AsyncOutlineWithStreamedResponse(self)
 
@@ -411,50 +403,50 @@ class AsyncOutline(AsyncAPIClient):
 
 class OutlineWithRawResponse:
     def __init__(self, client: Outline) -> None:
-        self.attachments = resources.AttachmentsResourceWithRawResponse(client.attachments)
-        self.auth = resources.AuthResourceWithRawResponse(client.auth)
-        self.collections = resources.CollectionsResourceWithRawResponse(client.collections)
-        self.comments = resources.CommentsResourceWithRawResponse(client.comments)
-        self.documents = resources.DocumentsResourceWithRawResponse(client.documents)
-        self.events = resources.EventsResourceWithRawResponse(client.events)
-        self.file_operations = resources.FileOperationsResourceWithRawResponse(client.file_operations)
-        self.groups = resources.GroupsResourceWithRawResponse(client.groups)
+        self.attachments = attachments.AttachmentsResourceWithRawResponse(client.attachments)
+        self.auth = auth.AuthResourceWithRawResponse(client.auth)
+        self.collections = collections.CollectionsResourceWithRawResponse(client.collections)
+        self.comments = comments.CommentsResourceWithRawResponse(client.comments)
+        self.documents = documents.DocumentsResourceWithRawResponse(client.documents)
+        self.events = events.EventsResourceWithRawResponse(client.events)
+        self.file_operations = file_operations.FileOperationsResourceWithRawResponse(client.file_operations)
+        self.groups = groups.GroupsResourceWithRawResponse(client.groups)
 
 
 class AsyncOutlineWithRawResponse:
     def __init__(self, client: AsyncOutline) -> None:
-        self.attachments = resources.AsyncAttachmentsResourceWithRawResponse(client.attachments)
-        self.auth = resources.AsyncAuthResourceWithRawResponse(client.auth)
-        self.collections = resources.AsyncCollectionsResourceWithRawResponse(client.collections)
-        self.comments = resources.AsyncCommentsResourceWithRawResponse(client.comments)
-        self.documents = resources.AsyncDocumentsResourceWithRawResponse(client.documents)
-        self.events = resources.AsyncEventsResourceWithRawResponse(client.events)
-        self.file_operations = resources.AsyncFileOperationsResourceWithRawResponse(client.file_operations)
-        self.groups = resources.AsyncGroupsResourceWithRawResponse(client.groups)
+        self.attachments = attachments.AsyncAttachmentsResourceWithRawResponse(client.attachments)
+        self.auth = auth.AsyncAuthResourceWithRawResponse(client.auth)
+        self.collections = collections.AsyncCollectionsResourceWithRawResponse(client.collections)
+        self.comments = comments.AsyncCommentsResourceWithRawResponse(client.comments)
+        self.documents = documents.AsyncDocumentsResourceWithRawResponse(client.documents)
+        self.events = events.AsyncEventsResourceWithRawResponse(client.events)
+        self.file_operations = file_operations.AsyncFileOperationsResourceWithRawResponse(client.file_operations)
+        self.groups = groups.AsyncGroupsResourceWithRawResponse(client.groups)
 
 
 class OutlineWithStreamedResponse:
     def __init__(self, client: Outline) -> None:
-        self.attachments = resources.AttachmentsResourceWithStreamingResponse(client.attachments)
-        self.auth = resources.AuthResourceWithStreamingResponse(client.auth)
-        self.collections = resources.CollectionsResourceWithStreamingResponse(client.collections)
-        self.comments = resources.CommentsResourceWithStreamingResponse(client.comments)
-        self.documents = resources.DocumentsResourceWithStreamingResponse(client.documents)
-        self.events = resources.EventsResourceWithStreamingResponse(client.events)
-        self.file_operations = resources.FileOperationsResourceWithStreamingResponse(client.file_operations)
-        self.groups = resources.GroupsResourceWithStreamingResponse(client.groups)
+        self.attachments = attachments.AttachmentsResourceWithStreamingResponse(client.attachments)
+        self.auth = auth.AuthResourceWithStreamingResponse(client.auth)
+        self.collections = collections.CollectionsResourceWithStreamingResponse(client.collections)
+        self.comments = comments.CommentsResourceWithStreamingResponse(client.comments)
+        self.documents = documents.DocumentsResourceWithStreamingResponse(client.documents)
+        self.events = events.EventsResourceWithStreamingResponse(client.events)
+        self.file_operations = file_operations.FileOperationsResourceWithStreamingResponse(client.file_operations)
+        self.groups = groups.GroupsResourceWithStreamingResponse(client.groups)
 
 
 class AsyncOutlineWithStreamedResponse:
     def __init__(self, client: AsyncOutline) -> None:
-        self.attachments = resources.AsyncAttachmentsResourceWithStreamingResponse(client.attachments)
-        self.auth = resources.AsyncAuthResourceWithStreamingResponse(client.auth)
-        self.collections = resources.AsyncCollectionsResourceWithStreamingResponse(client.collections)
-        self.comments = resources.AsyncCommentsResourceWithStreamingResponse(client.comments)
-        self.documents = resources.AsyncDocumentsResourceWithStreamingResponse(client.documents)
-        self.events = resources.AsyncEventsResourceWithStreamingResponse(client.events)
-        self.file_operations = resources.AsyncFileOperationsResourceWithStreamingResponse(client.file_operations)
-        self.groups = resources.AsyncGroupsResourceWithStreamingResponse(client.groups)
+        self.attachments = attachments.AsyncAttachmentsResourceWithStreamingResponse(client.attachments)
+        self.auth = auth.AsyncAuthResourceWithStreamingResponse(client.auth)
+        self.collections = collections.AsyncCollectionsResourceWithStreamingResponse(client.collections)
+        self.comments = comments.AsyncCommentsResourceWithStreamingResponse(client.comments)
+        self.documents = documents.AsyncDocumentsResourceWithStreamingResponse(client.documents)
+        self.events = events.AsyncEventsResourceWithStreamingResponse(client.events)
+        self.file_operations = file_operations.AsyncFileOperationsResourceWithStreamingResponse(client.file_operations)
+        self.groups = groups.AsyncGroupsResourceWithStreamingResponse(client.groups)
 
 
 Client = Outline

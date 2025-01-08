@@ -142,6 +142,7 @@ class CommentsResource(SyncAPIResource):
         collection_id: str | NotGiven = NOT_GIVEN,
         direction: Literal["ASC", "DESC"] | NotGiven = NOT_GIVEN,
         document_id: str | NotGiven = NOT_GIVEN,
+        include_anchor_text: bool | NotGiven = NOT_GIVEN,
         limit: float | NotGiven = NOT_GIVEN,
         offset: float | NotGiven = NOT_GIVEN,
         sort: str | NotGiven = NOT_GIVEN,
@@ -160,6 +161,8 @@ class CommentsResource(SyncAPIResource):
 
           document_id: Filter to a specific document
 
+          include_anchor_text: Include the document text that the comment is anchored to, if any
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -175,6 +178,7 @@ class CommentsResource(SyncAPIResource):
                     "collection_id": collection_id,
                     "direction": direction,
                     "document_id": document_id,
+                    "include_anchor_text": include_anchor_text,
                     "limit": limit,
                     "offset": offset,
                     "sort": sort,
@@ -328,6 +332,7 @@ class AsyncCommentsResource(AsyncAPIResource):
         collection_id: str | NotGiven = NOT_GIVEN,
         direction: Literal["ASC", "DESC"] | NotGiven = NOT_GIVEN,
         document_id: str | NotGiven = NOT_GIVEN,
+        include_anchor_text: bool | NotGiven = NOT_GIVEN,
         limit: float | NotGiven = NOT_GIVEN,
         offset: float | NotGiven = NOT_GIVEN,
         sort: str | NotGiven = NOT_GIVEN,
@@ -346,6 +351,8 @@ class AsyncCommentsResource(AsyncAPIResource):
 
           document_id: Filter to a specific document
 
+          include_anchor_text: Include the document text that the comment is anchored to, if any
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -361,6 +368,7 @@ class AsyncCommentsResource(AsyncAPIResource):
                     "collection_id": collection_id,
                     "direction": direction,
                     "document_id": document_id,
+                    "include_anchor_text": include_anchor_text,
                     "limit": limit,
                     "offset": offset,
                     "sort": sort,
