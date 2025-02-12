@@ -13,14 +13,12 @@ from outline.types import (
     DocumentInfoResponse,
     DocumentListResponse,
     DocumentMoveResponse,
-    DocumentStarResponse,
     DocumentCreateResponse,
     DocumentDeleteResponse,
     DocumentDraftsResponse,
     DocumentExportResponse,
     DocumentImportResponse,
     DocumentSearchResponse,
-    DocumentUnstarResponse,
     DocumentUpdateResponse,
     DocumentViewedResponse,
     DocumentArchiveResponse,
@@ -492,37 +490,6 @@ class TestDocuments:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_method_star(self, client: Outline) -> None:
-        document = client.documents.star(
-            id="hDYep1TPAM",
-        )
-        assert_matches_type(DocumentStarResponse, document, path=["response"])
-
-    @parametrize
-    def test_raw_response_star(self, client: Outline) -> None:
-        response = client.documents.with_raw_response.star(
-            id="hDYep1TPAM",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        document = response.parse()
-        assert_matches_type(DocumentStarResponse, document, path=["response"])
-
-    @parametrize
-    def test_streaming_response_star(self, client: Outline) -> None:
-        with client.documents.with_streaming_response.star(
-            id="hDYep1TPAM",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            document = response.parse()
-            assert_matches_type(DocumentStarResponse, document, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
     def test_method_templatize(self, client: Outline) -> None:
         document = client.documents.templatize(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -581,37 +548,6 @@ class TestDocuments:
 
             document = response.parse()
             assert_matches_type(DocumentUnpublishResponse, document, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    def test_method_unstar(self, client: Outline) -> None:
-        document = client.documents.unstar(
-            id="hDYep1TPAM",
-        )
-        assert_matches_type(DocumentUnstarResponse, document, path=["response"])
-
-    @parametrize
-    def test_raw_response_unstar(self, client: Outline) -> None:
-        response = client.documents.with_raw_response.unstar(
-            id="hDYep1TPAM",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        document = response.parse()
-        assert_matches_type(DocumentUnstarResponse, document, path=["response"])
-
-    @parametrize
-    def test_streaming_response_unstar(self, client: Outline) -> None:
-        with client.documents.with_streaming_response.unstar(
-            id="hDYep1TPAM",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            document = response.parse()
-            assert_matches_type(DocumentUnstarResponse, document, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1111,37 +1047,6 @@ class TestAsyncDocuments:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_method_star(self, async_client: AsyncOutline) -> None:
-        document = await async_client.documents.star(
-            id="hDYep1TPAM",
-        )
-        assert_matches_type(DocumentStarResponse, document, path=["response"])
-
-    @parametrize
-    async def test_raw_response_star(self, async_client: AsyncOutline) -> None:
-        response = await async_client.documents.with_raw_response.star(
-            id="hDYep1TPAM",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        document = await response.parse()
-        assert_matches_type(DocumentStarResponse, document, path=["response"])
-
-    @parametrize
-    async def test_streaming_response_star(self, async_client: AsyncOutline) -> None:
-        async with async_client.documents.with_streaming_response.star(
-            id="hDYep1TPAM",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            document = await response.parse()
-            assert_matches_type(DocumentStarResponse, document, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
     async def test_method_templatize(self, async_client: AsyncOutline) -> None:
         document = await async_client.documents.templatize(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -1200,37 +1105,6 @@ class TestAsyncDocuments:
 
             document = await response.parse()
             assert_matches_type(DocumentUnpublishResponse, document, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    async def test_method_unstar(self, async_client: AsyncOutline) -> None:
-        document = await async_client.documents.unstar(
-            id="hDYep1TPAM",
-        )
-        assert_matches_type(DocumentUnstarResponse, document, path=["response"])
-
-    @parametrize
-    async def test_raw_response_unstar(self, async_client: AsyncOutline) -> None:
-        response = await async_client.documents.with_raw_response.unstar(
-            id="hDYep1TPAM",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        document = await response.parse()
-        assert_matches_type(DocumentUnstarResponse, document, path=["response"])
-
-    @parametrize
-    async def test_streaming_response_unstar(self, async_client: AsyncOutline) -> None:
-        async with async_client.documents.with_streaming_response.unstar(
-            id="hDYep1TPAM",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            document = await response.parse()
-            assert_matches_type(DocumentUnstarResponse, document, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
