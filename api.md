@@ -132,10 +132,8 @@ from outline.types import (
     DocumentMoveResponse,
     DocumentRestoreResponse,
     DocumentSearchResponse,
-    DocumentStarResponse,
     DocumentTemplatizeResponse,
     DocumentUnpublishResponse,
-    DocumentUnstarResponse,
     DocumentViewedResponse,
 )
 ```
@@ -154,10 +152,8 @@ Methods:
 - <code title="post /documents.move">client.documents.<a href="./src/outline/resources/documents.py">move</a>(\*\*<a href="src/outline/types/document_move_params.py">params</a>) -> <a href="./src/outline/types/document_move_response.py">DocumentMoveResponse</a></code>
 - <code title="post /documents.restore">client.documents.<a href="./src/outline/resources/documents.py">restore</a>(\*\*<a href="src/outline/types/document_restore_params.py">params</a>) -> <a href="./src/outline/types/document_restore_response.py">DocumentRestoreResponse</a></code>
 - <code title="post /documents.search">client.documents.<a href="./src/outline/resources/documents.py">search</a>(\*\*<a href="src/outline/types/document_search_params.py">params</a>) -> <a href="./src/outline/types/document_search_response.py">DocumentSearchResponse</a></code>
-- <code title="post /documents.star">client.documents.<a href="./src/outline/resources/documents.py">star</a>(\*\*<a href="src/outline/types/document_star_params.py">params</a>) -> <a href="./src/outline/types/document_star_response.py">DocumentStarResponse</a></code>
 - <code title="post /documents.templatize">client.documents.<a href="./src/outline/resources/documents.py">templatize</a>(\*\*<a href="src/outline/types/document_templatize_params.py">params</a>) -> <a href="./src/outline/types/document_templatize_response.py">DocumentTemplatizeResponse</a></code>
 - <code title="post /documents.unpublish">client.documents.<a href="./src/outline/resources/documents.py">unpublish</a>(\*\*<a href="src/outline/types/document_unpublish_params.py">params</a>) -> <a href="./src/outline/types/document_unpublish_response.py">DocumentUnpublishResponse</a></code>
-- <code title="post /documents.unstar">client.documents.<a href="./src/outline/resources/documents.py">unstar</a>(\*\*<a href="src/outline/types/document_unstar_params.py">params</a>) -> <a href="./src/outline/types/document_unstar_response.py">DocumentUnstarResponse</a></code>
 - <code title="post /documents.viewed">client.documents.<a href="./src/outline/resources/documents.py">viewed</a>(\*\*<a href="src/outline/types/document_viewed_params.py">params</a>) -> <a href="./src/outline/types/document_viewed_response.py">DocumentViewedResponse</a></code>
 
 # Events

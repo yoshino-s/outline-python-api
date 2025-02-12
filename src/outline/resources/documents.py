@@ -10,14 +10,12 @@ from ..types import (
     document_info_params,
     document_list_params,
     document_move_params,
-    document_star_params,
     document_create_params,
     document_delete_params,
     document_drafts_params,
     document_export_params,
     document_import_params,
     document_search_params,
-    document_unstar_params,
     document_update_params,
     document_viewed_params,
     document_archive_params,
@@ -42,14 +40,12 @@ from .._base_client import make_request_options
 from ..types.document_info_response import DocumentInfoResponse
 from ..types.document_list_response import DocumentListResponse
 from ..types.document_move_response import DocumentMoveResponse
-from ..types.document_star_response import DocumentStarResponse
 from ..types.document_create_response import DocumentCreateResponse
 from ..types.document_delete_response import DocumentDeleteResponse
 from ..types.document_drafts_response import DocumentDraftsResponse
 from ..types.document_export_response import DocumentExportResponse
 from ..types.document_import_response import DocumentImportResponse
 from ..types.document_search_response import DocumentSearchResponse
-from ..types.document_unstar_response import DocumentUnstarResponse
 from ..types.document_update_response import DocumentUpdateResponse
 from ..types.document_viewed_response import DocumentViewedResponse
 from ..types.document_archive_response import DocumentArchiveResponse
@@ -683,41 +679,6 @@ class DocumentsResource(SyncAPIResource):
             cast_to=DocumentSearchResponse,
         )
 
-    def star(
-        self,
-        *,
-        id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DocumentStarResponse:
-        """
-        Starring a document gives it extra priority in the UI and makes it easier to
-        find important information later.
-
-        Args:
-          id: Unique identifier for the document. Either the UUID or the urlId is acceptable.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._post(
-            "/documents.star",
-            body=maybe_transform({"id": id}, document_star_params.DocumentStarParams),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=DocumentStarResponse,
-        )
-
     def templatize(
         self,
         *,
@@ -784,41 +745,6 @@ class DocumentsResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=DocumentUnpublishResponse,
-        )
-
-    def unstar(
-        self,
-        *,
-        id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DocumentUnstarResponse:
-        """
-        Starring a document gives it extra priority in the UI and makes it easier to
-        find important information later.
-
-        Args:
-          id: Unique identifier for the document. Either the UUID or the urlId is acceptable.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._post(
-            "/documents.unstar",
-            body=maybe_transform({"id": id}, document_unstar_params.DocumentUnstarParams),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=DocumentUnstarResponse,
         )
 
     def viewed(
@@ -1488,41 +1414,6 @@ class AsyncDocumentsResource(AsyncAPIResource):
             cast_to=DocumentSearchResponse,
         )
 
-    async def star(
-        self,
-        *,
-        id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DocumentStarResponse:
-        """
-        Starring a document gives it extra priority in the UI and makes it easier to
-        find important information later.
-
-        Args:
-          id: Unique identifier for the document. Either the UUID or the urlId is acceptable.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._post(
-            "/documents.star",
-            body=await async_maybe_transform({"id": id}, document_star_params.DocumentStarParams),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=DocumentStarResponse,
-        )
-
     async def templatize(
         self,
         *,
@@ -1589,41 +1480,6 @@ class AsyncDocumentsResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=DocumentUnpublishResponse,
-        )
-
-    async def unstar(
-        self,
-        *,
-        id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DocumentUnstarResponse:
-        """
-        Starring a document gives it extra priority in the UI and makes it easier to
-        find important information later.
-
-        Args:
-          id: Unique identifier for the document. Either the UUID or the urlId is acceptable.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._post(
-            "/documents.unstar",
-            body=await async_maybe_transform({"id": id}, document_unstar_params.DocumentUnstarParams),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=DocumentUnstarResponse,
         )
 
     async def viewed(
@@ -1710,17 +1566,11 @@ class DocumentsResourceWithRawResponse:
         self.search = to_raw_response_wrapper(
             documents.search,
         )
-        self.star = to_raw_response_wrapper(
-            documents.star,
-        )
         self.templatize = to_raw_response_wrapper(
             documents.templatize,
         )
         self.unpublish = to_raw_response_wrapper(
             documents.unpublish,
-        )
-        self.unstar = to_raw_response_wrapper(
-            documents.unstar,
         )
         self.viewed = to_raw_response_wrapper(
             documents.viewed,
@@ -1767,17 +1617,11 @@ class AsyncDocumentsResourceWithRawResponse:
         self.search = async_to_raw_response_wrapper(
             documents.search,
         )
-        self.star = async_to_raw_response_wrapper(
-            documents.star,
-        )
         self.templatize = async_to_raw_response_wrapper(
             documents.templatize,
         )
         self.unpublish = async_to_raw_response_wrapper(
             documents.unpublish,
-        )
-        self.unstar = async_to_raw_response_wrapper(
-            documents.unstar,
         )
         self.viewed = async_to_raw_response_wrapper(
             documents.viewed,
@@ -1824,17 +1668,11 @@ class DocumentsResourceWithStreamingResponse:
         self.search = to_streamed_response_wrapper(
             documents.search,
         )
-        self.star = to_streamed_response_wrapper(
-            documents.star,
-        )
         self.templatize = to_streamed_response_wrapper(
             documents.templatize,
         )
         self.unpublish = to_streamed_response_wrapper(
             documents.unpublish,
-        )
-        self.unstar = to_streamed_response_wrapper(
-            documents.unstar,
         )
         self.viewed = to_streamed_response_wrapper(
             documents.viewed,
@@ -1881,17 +1719,11 @@ class AsyncDocumentsResourceWithStreamingResponse:
         self.search = async_to_streamed_response_wrapper(
             documents.search,
         )
-        self.star = async_to_streamed_response_wrapper(
-            documents.star,
-        )
         self.templatize = async_to_streamed_response_wrapper(
             documents.templatize,
         )
         self.unpublish = async_to_streamed_response_wrapper(
             documents.unpublish,
-        )
-        self.unstar = async_to_streamed_response_wrapper(
-            documents.unstar,
         )
         self.viewed = async_to_streamed_response_wrapper(
             documents.viewed,

@@ -23,7 +23,6 @@ from .auth_config_response import AuthConfigResponse as AuthConfigResponse
 from .document_info_params import DocumentInfoParams as DocumentInfoParams
 from .document_list_params import DocumentListParams as DocumentListParams
 from .document_move_params import DocumentMoveParams as DocumentMoveParams
-from .document_star_params import DocumentStarParams as DocumentStarParams
 from .comment_create_params import CommentCreateParams as CommentCreateParams
 from .comment_delete_params import CommentDeleteParams as CommentDeleteParams
 from .comment_list_response import CommentListResponse as CommentListResponse
@@ -42,8 +41,6 @@ from .document_info_response import DocumentInfoResponse as DocumentInfoResponse
 from .document_list_response import DocumentListResponse as DocumentListResponse
 from .document_move_response import DocumentMoveResponse as DocumentMoveResponse
 from .document_search_params import DocumentSearchParams as DocumentSearchParams
-from .document_star_response import DocumentStarResponse as DocumentStarResponse
-from .document_unstar_params import DocumentUnstarParams as DocumentUnstarParams
 from .document_update_params import DocumentUpdateParams as DocumentUpdateParams
 from .document_viewed_params import DocumentViewedParams as DocumentViewedParams
 from .comment_create_response import CommentCreateResponse as CommentCreateResponse
@@ -64,7 +61,6 @@ from .document_drafts_response import DocumentDraftsResponse as DocumentDraftsRe
 from .document_export_response import DocumentExportResponse as DocumentExportResponse
 from .document_import_response import DocumentImportResponse as DocumentImportResponse
 from .document_search_response import DocumentSearchResponse as DocumentSearchResponse
-from .document_unstar_response import DocumentUnstarResponse as DocumentUnstarResponse
 from .document_update_response import DocumentUpdateResponse as DocumentUpdateResponse
 from .document_viewed_response import DocumentViewedResponse as DocumentViewedResponse
 from .document_archive_response import DocumentArchiveResponse as DocumentArchiveResponse
