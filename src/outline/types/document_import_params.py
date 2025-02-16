@@ -13,7 +13,7 @@ class DocumentImportParams(TypedDict, total=False):
     collection_id: Annotated[str, PropertyInfo(alias="collectionId")]
 
     file: object
-    """Only plain text, markdown, docx, and html format are supported."""
+    """Plain text, markdown, docx, csv, tsv, and html format are supported."""
 
     parent_document_id: Annotated[str, PropertyInfo(alias="parentDocumentId")]
 
