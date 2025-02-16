@@ -446,7 +446,7 @@ class DocumentsResource(SyncAPIResource):
         document.
 
         Args:
-          file: Only plain text, markdown, docx, and html format are supported.
+          file: Plain text, markdown, docx, csv, tsv, and html format are supported.
 
           extra_headers: Send extra headers
 
@@ -1181,7 +1181,7 @@ class AsyncDocumentsResource(AsyncAPIResource):
         document.
 
         Args:
-          file: Only plain text, markdown, docx, and html format are supported.
+          file: Plain text, markdown, docx, csv, tsv, and html format are supported.
 
           extra_headers: Send extra headers
 
