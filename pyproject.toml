@@ -129,6 +129,7 @@ testpaths = ["tests"]
 addopts = "--tb=short"
 xfail_strict = true
 asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "session"
 filterwarnings = [
   "error"
 ]
@@ -176,7 +177,7 @@ select = [
   "T201",
   "T203",
   # misuse of typing.TYPE_CHECKING
-  "TCH004",
+  "TC004",
   # import rules
   "TID251",
 ]
