@@ -28,4 +28,4 @@ class DocumentCreateParams(TypedDict, total=False):
     template_id: Annotated[str, PropertyInfo(alias="templateId")]
 
     text: str
-    """The body of the document, may contain markdown formatting."""
+    """The body of the document in markdown"""

@@ -57,10 +57,11 @@ class CommentsResource(SyncAPIResource):
     def create(
         self,
         *,
-        data: object,
         document_id: str,
         id: str | NotGiven = NOT_GIVEN,
+        data: object | NotGiven = NOT_GIVEN,
         parent_comment_id: str | NotGiven = NOT_GIVEN,
+        text: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -72,6 +73,10 @@ class CommentsResource(SyncAPIResource):
         Create a comment
 
         Args:
+          data: The body of the comment.
+
+          text: The body of the comment in markdown.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -84,10 +89,11 @@ class CommentsResource(SyncAPIResource):
             "/comments.create",
             body=maybe_transform(
                 {
-                    "data": data,
                     "document_id": document_id,
                     "id": id,
+                    "data": data,
                     "parent_comment_id": parent_comment_id,
+                    "text": text,
                 },
                 comment_create_params.CommentCreateParams,
             ),
@@ -247,10 +253,11 @@ class AsyncCommentsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        data: object,
         document_id: str,
         id: str | NotGiven = NOT_GIVEN,
+        data: object | NotGiven = NOT_GIVEN,
         parent_comment_id: str | NotGiven = NOT_GIVEN,
+        text: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -262,6 +269,10 @@ class AsyncCommentsResource(AsyncAPIResource):
         Create a comment
 
         Args:
+          data: The body of the comment.
+
+          text: The body of the comment in markdown.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -274,10 +285,11 @@ class AsyncCommentsResource(AsyncAPIResource):
             "/comments.create",
             body=await async_maybe_transform(
                 {
-                    "data": data,
                     "document_id": document_id,
                     "id": id,
+                    "data": data,
                     "parent_comment_id": parent_comment_id,
+                    "text": text,
                 },
                 comment_create_params.CommentCreateParams,
             ),

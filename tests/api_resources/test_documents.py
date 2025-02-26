@@ -50,7 +50,7 @@ class TestDocuments:
             publish=True,
             template=True,
             template_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            text="…",
+            text="text",
         )
         assert_matches_type(DocumentCreateResponse, document, path=["response"])
 
@@ -94,7 +94,7 @@ class TestDocuments:
             append=True,
             done=True,
             publish=True,
-            text="…",
+            text="text",
             title="title",
         )
         assert_matches_type(DocumentUpdateResponse, document, path=["response"])
@@ -607,7 +607,7 @@ class TestAsyncDocuments:
             publish=True,
             template=True,
             template_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            text="…",
+            text="text",
         )
         assert_matches_type(DocumentCreateResponse, document, path=["response"])
 
@@ -651,7 +651,7 @@ class TestAsyncDocuments:
             append=True,
             done=True,
             publish=True,
-            text="…",
+            text="text",
             title="title",
         )
         assert_matches_type(DocumentUpdateResponse, document, path=["response"])

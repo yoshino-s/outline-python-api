@@ -10,10 +10,14 @@ __all__ = ["CommentCreateParams"]
 
 
 class CommentCreateParams(TypedDict, total=False):
-    data: Required[object]
-
     document_id: Required[Annotated[str, PropertyInfo(alias="documentId")]]
 
     id: str
 
+    data: object
+    """The body of the comment."""
+
     parent_comment_id: Annotated[str, PropertyInfo(alias="parentCommentId")]
+
+    text: str
+    """The body of the comment in markdown."""
