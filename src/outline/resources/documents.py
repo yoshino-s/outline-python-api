@@ -105,7 +105,7 @@ class DocumentsResource(SyncAPIResource):
 
           template: Whether this document should be considered to be a template.
 
-          text: The body of the document, may contain markdown formatting.
+          text: The body of the document in markdown
 
           extra_headers: Send extra headers
 
@@ -167,7 +167,7 @@ class DocumentsResource(SyncAPIResource):
           publish: Whether this document should be published and made visible to other team
               members, if a draft
 
-          text: The body of the document, may contain markdown formatting.
+          text: The body of the document in markdown.
 
           title: The title of the document.
 
@@ -840,7 +840,7 @@ class AsyncDocumentsResource(AsyncAPIResource):
 
           template: Whether this document should be considered to be a template.
 
-          text: The body of the document, may contain markdown formatting.
+          text: The body of the document in markdown
 
           extra_headers: Send extra headers
 
@@ -902,7 +902,7 @@ class AsyncDocumentsResource(AsyncAPIResource):
           publish: Whether this document should be published and made visible to other team
               members, if a draft
 
-          text: The body of the document, may contain markdown formatting.
+          text: The body of the document in markdown.
 
           title: The title of the document.
 

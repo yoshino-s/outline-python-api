@@ -31,7 +31,7 @@ class DocumentUpdateParams(TypedDict, total=False):
     """
 
     text: str
-    """The body of the document, may contain markdown formatting."""
+    """The body of the document in markdown."""
 
     title: str
     """The title of the document."""
