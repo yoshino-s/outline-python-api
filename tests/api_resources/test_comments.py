@@ -25,7 +25,6 @@ class TestComments:
     @parametrize
     def test_method_create(self, client: Outline) -> None:
         comment = client.comments.create(
-            data={},
             document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(CommentCreateResponse, comment, path=["response"])
@@ -33,17 +32,17 @@ class TestComments:
     @parametrize
     def test_method_create_with_all_params(self, client: Outline) -> None:
         comment = client.comments.create(
-            data={},
             document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            data={},
             parent_comment_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            text="Sounds great",
         )
         assert_matches_type(CommentCreateResponse, comment, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Outline) -> None:
         response = client.comments.with_raw_response.create(
-            data={},
             document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
 
@@ -55,7 +54,6 @@ class TestComments:
     @parametrize
     def test_streaming_response_create(self, client: Outline) -> None:
         with client.comments.with_streaming_response.create(
-            data={},
             document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
             assert not response.is_closed
@@ -176,7 +174,6 @@ class TestAsyncComments:
     @parametrize
     async def test_method_create(self, async_client: AsyncOutline) -> None:
         comment = await async_client.comments.create(
-            data={},
             document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(CommentCreateResponse, comment, path=["response"])
@@ -184,17 +181,17 @@ class TestAsyncComments:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncOutline) -> None:
         comment = await async_client.comments.create(
-            data={},
             document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            data={},
             parent_comment_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            text="Sounds great",
         )
         assert_matches_type(CommentCreateResponse, comment, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncOutline) -> None:
         response = await async_client.comments.with_raw_response.create(
-            data={},
             document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
 
@@ -206,7 +203,6 @@ class TestAsyncComments:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncOutline) -> None:
         async with async_client.comments.with_streaming_response.create(
-            data={},
             document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
             assert not response.is_closed
