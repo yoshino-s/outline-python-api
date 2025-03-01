@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import List
 from typing_extensions import Literal
 
 import httpx
@@ -221,8 +222,12 @@ class CollectionsResource(SyncAPIResource):
     def list(
         self,
         *,
+        direction: Literal["ASC", "DESC"] | NotGiven = NOT_GIVEN,
         limit: float | NotGiven = NOT_GIVEN,
         offset: float | NotGiven = NOT_GIVEN,
+        query: str | NotGiven = NOT_GIVEN,
+        sort: str | NotGiven = NOT_GIVEN,
+        status_filter: List[Literal["archived"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -234,6 +239,10 @@ class CollectionsResource(SyncAPIResource):
         List all collections
 
         Args:
+          query: If set, will filter the results by collection name.
+
+          status_filter: An optional array of statuses to filter by.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -246,8 +255,12 @@ class CollectionsResource(SyncAPIResource):
             "/collections.list",
             body=maybe_transform(
                 {
+                    "direction": direction,
                     "limit": limit,
                     "offset": offset,
+                    "query": query,
+                    "sort": sort,
+                    "status_filter": status_filter,
                 },
                 collection_list_params.CollectionListParams,
             ),
@@ -724,8 +737,12 @@ class AsyncCollectionsResource(AsyncAPIResource):
     async def list(
         self,
         *,
+        direction: Literal["ASC", "DESC"] | NotGiven = NOT_GIVEN,
         limit: float | NotGiven = NOT_GIVEN,
         offset: float | NotGiven = NOT_GIVEN,
+        query: str | NotGiven = NOT_GIVEN,
+        sort: str | NotGiven = NOT_GIVEN,
+        status_filter: List[Literal["archived"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -737,6 +754,10 @@ class AsyncCollectionsResource(AsyncAPIResource):
         List all collections
 
         Args:
+          query: If set, will filter the results by collection name.
+
+          status_filter: An optional array of statuses to filter by.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -749,8 +770,12 @@ class AsyncCollectionsResource(AsyncAPIResource):
             "/collections.list",
             body=await async_maybe_transform(
                 {
+                    "direction": direction,
                     "limit": limit,
                     "offset": offset,
+                    "query": query,
+                    "sort": sort,
+                    "status_filter": status_filter,
                 },
                 collection_list_params.CollectionListParams,
             ),

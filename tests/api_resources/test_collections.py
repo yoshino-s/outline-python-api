@@ -153,8 +153,12 @@ class TestCollections:
     @parametrize
     def test_method_list_with_all_params(self, client: Outline) -> None:
         collection = client.collections.list(
+            direction="ASC",
             limit=25,
             offset=0,
+            query="query",
+            sort="updatedAt",
+            status_filter=["archived"],
         )
         assert_matches_type(CollectionListResponse, collection, path=["response"])
 
@@ -592,8 +596,12 @@ class TestAsyncCollections:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncOutline) -> None:
         collection = await async_client.collections.list(
+            direction="ASC",
             limit=25,
             offset=0,
+            query="query",
+            sort="updatedAt",
+            status_filter=["archived"],
         )
         assert_matches_type(CollectionListResponse, collection, path=["response"])
 
