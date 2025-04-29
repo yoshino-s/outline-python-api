@@ -131,9 +131,12 @@ class GroupsResource(SyncAPIResource):
         self,
         *,
         direction: Literal["ASC", "DESC"] | NotGiven = NOT_GIVEN,
+        external_id: str | NotGiven = NOT_GIVEN,
         limit: float | NotGiven = NOT_GIVEN,
         offset: float | NotGiven = NOT_GIVEN,
+        query: str | NotGiven = NOT_GIVEN,
         sort: str | NotGiven = NOT_GIVEN,
+        user_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -145,6 +148,12 @@ class GroupsResource(SyncAPIResource):
         List all groups
 
         Args:
+          external_id: Filter to groups matching an external ID
+
+          query: Filter to groups matching a search query
+
+          user_id: Filter to groups including a specific user
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -158,9 +167,12 @@ class GroupsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "direction": direction,
+                    "external_id": external_id,
                     "limit": limit,
                     "offset": offset,
+                    "query": query,
                     "sort": sort,
+                    "user_id": user_id,
                 },
                 group_list_params.GroupListParams,
             ),
@@ -334,9 +346,12 @@ class AsyncGroupsResource(AsyncAPIResource):
         self,
         *,
         direction: Literal["ASC", "DESC"] | NotGiven = NOT_GIVEN,
+        external_id: str | NotGiven = NOT_GIVEN,
         limit: float | NotGiven = NOT_GIVEN,
         offset: float | NotGiven = NOT_GIVEN,
+        query: str | NotGiven = NOT_GIVEN,
         sort: str | NotGiven = NOT_GIVEN,
+        user_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -348,6 +363,12 @@ class AsyncGroupsResource(AsyncAPIResource):
         List all groups
 
         Args:
+          external_id: Filter to groups matching an external ID
+
+          query: Filter to groups matching a search query
+
+          user_id: Filter to groups including a specific user
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -361,9 +382,12 @@ class AsyncGroupsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "direction": direction,
+                    "external_id": external_id,
                     "limit": limit,
                     "offset": offset,
+                    "query": query,
                     "sort": sort,
+                    "user_id": user_id,
                 },
                 group_list_params.GroupListParams,
             ),
