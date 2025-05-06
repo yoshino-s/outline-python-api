@@ -1637,7 +1637,7 @@ class TestAsyncOutline:
         import threading
 
         from outline._utils import asyncify
-        from outline._base_client import get_platform 
+        from outline._base_client import get_platform
 
         async def test_main() -> None:
             result = await asyncify(get_platform)()

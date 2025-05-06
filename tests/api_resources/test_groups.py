@@ -96,7 +96,7 @@ class TestGroups:
     @parametrize
     def test_method_list_with_all_params(self, client: Outline) -> None:
         group = client.groups.list(
-            direction="ASC",
+            direction="DESC",
             external_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             limit=25,
             offset=0,
@@ -265,7 +265,7 @@ class TestAsyncGroups:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncOutline) -> None:
         group = await async_client.groups.list(
-            direction="ASC",
+            direction="DESC",
             external_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             limit=25,
             offset=0,
