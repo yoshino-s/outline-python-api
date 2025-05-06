@@ -19,10 +19,7 @@ from ._types import (
     ProxiesTypes,
     RequestOptions,
 )
-from ._utils import (
-    is_given,
-    get_async_library,
-)
+from ._utils import is_given, get_async_library
 from ._version import __version__
 from .resources import auth, events, groups, comments, documents, attachments, file_operations
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
@@ -75,7 +72,7 @@ class Outline(SyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
     ) -> None:
-        """Construct a new synchronous outline client instance.
+        """Construct a new synchronous Outline client instance.
 
         This automatically infers the `bearer_token` argument from the `OUTLINE_BEARER_TOKEN` environment variable if it is not provided.
         """
@@ -257,7 +254,7 @@ class AsyncOutline(AsyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
     ) -> None:
-        """Construct a new async outline client instance.
+        """Construct a new async AsyncOutline client instance.
 
         This automatically infers the `bearer_token` argument from the `OUTLINE_BEARER_TOKEN` environment variable if it is not provided.
         """

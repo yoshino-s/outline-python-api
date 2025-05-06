@@ -133,7 +133,7 @@ class TestDocuments:
         document = client.documents.list(
             backlink_document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             collection_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            direction="ASC",
+            direction="DESC",
             limit=25,
             offset=0,
             parent_document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -242,8 +242,8 @@ class TestDocuments:
     def test_method_drafts_with_all_params(self, client: Outline) -> None:
         document = client.documents.drafts(
             collection_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            date_filter="day",
-            direction="ASC",
+            date_filter="month",
+            direction="DESC",
             limit=25,
             offset=0,
             sort="updatedAt",
@@ -459,12 +459,12 @@ class TestDocuments:
     def test_method_search_with_all_params(self, client: Outline) -> None:
         document = client.documents.search(
             collection_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            date_filter="day",
+            date_filter="month",
             document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             limit=25,
             offset=0,
             query="hiring",
-            status_filter="draft",
+            status_filter="published",
             user_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(DocumentSearchResponse, document, path=["response"])
@@ -559,7 +559,7 @@ class TestDocuments:
     @parametrize
     def test_method_viewed_with_all_params(self, client: Outline) -> None:
         document = client.documents.viewed(
-            direction="ASC",
+            direction="DESC",
             limit=25,
             offset=0,
             sort="updatedAt",
@@ -690,7 +690,7 @@ class TestAsyncDocuments:
         document = await async_client.documents.list(
             backlink_document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             collection_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            direction="ASC",
+            direction="DESC",
             limit=25,
             offset=0,
             parent_document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -799,8 +799,8 @@ class TestAsyncDocuments:
     async def test_method_drafts_with_all_params(self, async_client: AsyncOutline) -> None:
         document = await async_client.documents.drafts(
             collection_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            date_filter="day",
-            direction="ASC",
+            date_filter="month",
+            direction="DESC",
             limit=25,
             offset=0,
             sort="updatedAt",
@@ -1016,12 +1016,12 @@ class TestAsyncDocuments:
     async def test_method_search_with_all_params(self, async_client: AsyncOutline) -> None:
         document = await async_client.documents.search(
             collection_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            date_filter="day",
+            date_filter="month",
             document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             limit=25,
             offset=0,
             query="hiring",
-            status_filter="draft",
+            status_filter="published",
             user_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(DocumentSearchResponse, document, path=["response"])
@@ -1116,7 +1116,7 @@ class TestAsyncDocuments:
     @parametrize
     async def test_method_viewed_with_all_params(self, async_client: AsyncOutline) -> None:
         document = await async_client.documents.viewed(
-            direction="ASC",
+            direction="DESC",
             limit=25,
             offset=0,
             sort="updatedAt",
