@@ -79,7 +79,7 @@ class Collection(BaseModel):
     """A description of the collection, may contain markdown formatting"""
 
     icon: Optional[str] = None
-    """A string that represents an icon in the outline-icons package"""
+    """A string that represents an icon in the outline-icons package or an emoji"""
 
     index: Optional[str] = None
     """The position of the collection in the sidebar"""

@@ -304,14 +304,16 @@ class TestDocuments:
 
     @parametrize
     def test_method_import(self, client: Outline) -> None:
-        document = client.documents.import_()
+        document = client.documents.import_(
+            file={},
+        )
         assert_matches_type(DocumentImportResponse, document, path=["response"])
 
     @parametrize
     def test_method_import_with_all_params(self, client: Outline) -> None:
         document = client.documents.import_(
-            collection_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             file={},
+            collection_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             parent_document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             publish=True,
             template=True,
@@ -320,7 +322,9 @@ class TestDocuments:
 
     @parametrize
     def test_raw_response_import(self, client: Outline) -> None:
-        response = client.documents.with_raw_response.import_()
+        response = client.documents.with_raw_response.import_(
+            file={},
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -329,7 +333,9 @@ class TestDocuments:
 
     @parametrize
     def test_streaming_response_import(self, client: Outline) -> None:
-        with client.documents.with_streaming_response.import_() as response:
+        with client.documents.with_streaming_response.import_(
+            file={},
+        ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -861,14 +867,16 @@ class TestAsyncDocuments:
 
     @parametrize
     async def test_method_import(self, async_client: AsyncOutline) -> None:
-        document = await async_client.documents.import_()
+        document = await async_client.documents.import_(
+            file={},
+        )
         assert_matches_type(DocumentImportResponse, document, path=["response"])
 
     @parametrize
     async def test_method_import_with_all_params(self, async_client: AsyncOutline) -> None:
         document = await async_client.documents.import_(
-            collection_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             file={},
+            collection_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             parent_document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             publish=True,
             template=True,
@@ -877,7 +885,9 @@ class TestAsyncDocuments:
 
     @parametrize
     async def test_raw_response_import(self, async_client: AsyncOutline) -> None:
-        response = await async_client.documents.with_raw_response.import_()
+        response = await async_client.documents.with_raw_response.import_(
+            file={},
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -886,7 +896,9 @@ class TestAsyncDocuments:
 
     @parametrize
     async def test_streaming_response_import(self, async_client: AsyncOutline) -> None:
-        async with async_client.documents.with_streaming_response.import_() as response:
+        async with async_client.documents.with_streaming_response.import_(
+            file={},
+        ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 

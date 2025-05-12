@@ -424,8 +424,8 @@ class DocumentsResource(SyncAPIResource):
     def import_(
         self,
         *,
+        file: object,
         collection_id: str | NotGiven = NOT_GIVEN,
-        file: object | NotGiven = NOT_GIVEN,
         parent_document_id: str | NotGiven = NOT_GIVEN,
         publish: bool | NotGiven = NOT_GIVEN,
         template: bool | NotGiven = NOT_GIVEN,
@@ -461,8 +461,8 @@ class DocumentsResource(SyncAPIResource):
             "/documents.import",
             body=maybe_transform(
                 {
-                    "collection_id": collection_id,
                     "file": file,
+                    "collection_id": collection_id,
                     "parent_document_id": parent_document_id,
                     "publish": publish,
                     "template": template,
@@ -487,12 +487,13 @@ class DocumentsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> DocumentInfoResponse:
-        """Retrieve a document
+        """Retrieve a document by its `UUID`, `urlId`, or `shareId`.
+
+        At least one of these
+        parameters must be provided.
 
         Args:
-          id: Unique identifier for the document.
-
-        Either the UUID or the urlId is acceptable.
+          id: Unique identifier for the document. Either the UUID or the urlId is acceptable.
 
           share_id: Unique identifier for a document share, a shareId may be used in place of a
               document UUID
@@ -1159,8 +1160,8 @@ class AsyncDocumentsResource(AsyncAPIResource):
     async def import_(
         self,
         *,
+        file: object,
         collection_id: str | NotGiven = NOT_GIVEN,
-        file: object | NotGiven = NOT_GIVEN,
         parent_document_id: str | NotGiven = NOT_GIVEN,
         publish: bool | NotGiven = NOT_GIVEN,
         template: bool | NotGiven = NOT_GIVEN,
@@ -1196,8 +1197,8 @@ class AsyncDocumentsResource(AsyncAPIResource):
             "/documents.import",
             body=await async_maybe_transform(
                 {
-                    "collection_id": collection_id,
                     "file": file,
+                    "collection_id": collection_id,
                     "parent_document_id": parent_document_id,
                     "publish": publish,
                     "template": template,
@@ -1222,12 +1223,13 @@ class AsyncDocumentsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> DocumentInfoResponse:
-        """Retrieve a document
+        """Retrieve a document by its `UUID`, `urlId`, or `shareId`.
+
+        At least one of these
+        parameters must be provided.
 
         Args:
-          id: Unique identifier for the document.
-
-        Either the UUID or the urlId is acceptable.
+          id: Unique identifier for the document. Either the UUID or the urlId is acceptable.
 
           share_id: Unique identifier for a document share, a shareId may be used in place of a
               document UUID

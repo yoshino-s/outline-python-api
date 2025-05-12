@@ -11,9 +11,15 @@ class CollectionCreateParams(TypedDict, total=False):
     name: Required[str]
 
     color: str
+    """A hex color code for the collection icon"""
 
     description: str
+    """A brief description of the collection, markdown supported."""
+
+    icon: str
+    """A string that represents an icon in the outline-icons package or an emoji"""
 
     permission: Literal["read", "read_write"]
 
-    private: bool
+    sharing: bool
+    """Whether public sharing of documents is allowed"""

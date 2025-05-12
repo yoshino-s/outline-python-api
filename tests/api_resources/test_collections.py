@@ -42,9 +42,10 @@ class TestCollections:
         collection = client.collections.create(
             name="Human Resources",
             color="#123123",
-            description="",
+            description="HR documentation is confidential and should be handled with care.",
+            icon="icon",
             permission="read",
-            private=False,
+            sharing=False,
         )
         assert_matches_type(CollectionCreateResponse, collection, path=["response"])
 
@@ -115,9 +116,11 @@ class TestCollections:
         collection = client.collections.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             color="#123123",
-            description="",
+            description="HR documentation is confidential and should be handled with care.",
+            icon="icon",
             name="Human Resources",
             permission="read",
+            sharing=False,
         )
         assert_matches_type(CollectionUpdateResponse, collection, path=["response"])
 
@@ -485,9 +488,10 @@ class TestAsyncCollections:
         collection = await async_client.collections.create(
             name="Human Resources",
             color="#123123",
-            description="",
+            description="HR documentation is confidential and should be handled with care.",
+            icon="icon",
             permission="read",
-            private=False,
+            sharing=False,
         )
         assert_matches_type(CollectionCreateResponse, collection, path=["response"])
 
@@ -558,9 +562,11 @@ class TestAsyncCollections:
         collection = await async_client.collections.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             color="#123123",
-            description="",
+            description="HR documentation is confidential and should be handled with care.",
+            icon="icon",
             name="Human Resources",
             permission="read",
+            sharing=False,
         )
         assert_matches_type(CollectionUpdateResponse, collection, path=["response"])
 
