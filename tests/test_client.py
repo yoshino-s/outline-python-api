@@ -25,7 +25,7 @@ from outline import Outline, AsyncOutline, APIResponseValidationError
 from outline._types import Omit
 from outline._models import BaseModel, FinalRequestOptions
 from outline._constants import RAW_RESPONSE_HEADER
-from outline._exceptions import OutlineError, APIStatusError, APITimeoutError, APIResponseValidationError
+from outline._exceptions import APIStatusError, APITimeoutError, APIResponseValidationError
 from outline._base_client import (
     DEFAULT_TIMEOUT,
     HTTPX_DEFAULT_TIMEOUT,
@@ -339,16 +339,6 @@ class TestOutline:
         request = client2._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("x-foo") == "stainless"
         assert request.headers.get("x-stainless-lang") == "my-overriding-header"
-
-    def test_validate_headers(self) -> None:
-        client = Outline(base_url=base_url, bearer_token=bearer_token, _strict_response_validation=True)
-        request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
-        assert request.headers.get("Authorization") == f"Bearer {bearer_token}"
-
-        with pytest.raises(OutlineError):
-            with update_env(**{"OUTLINE_BEARER_TOKEN": Omit()}):
-                client2 = Outline(base_url=base_url, bearer_token=None, _strict_response_validation=True)
-            _ = client2
 
     def test_default_query_option(self) -> None:
         client = Outline(
@@ -1119,16 +1109,6 @@ class TestAsyncOutline:
         request = client2._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("x-foo") == "stainless"
         assert request.headers.get("x-stainless-lang") == "my-overriding-header"
-
-    def test_validate_headers(self) -> None:
-        client = AsyncOutline(base_url=base_url, bearer_token=bearer_token, _strict_response_validation=True)
-        request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
-        assert request.headers.get("Authorization") == f"Bearer {bearer_token}"
-
-        with pytest.raises(OutlineError):
-            with update_env(**{"OUTLINE_BEARER_TOKEN": Omit()}):
-                client2 = AsyncOutline(base_url=base_url, bearer_token=None, _strict_response_validation=True)
-            _ = client2
 
     def test_default_query_option(self) -> None:
         client = AsyncOutline(

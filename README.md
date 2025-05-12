@@ -24,33 +24,26 @@ pip install --pre outline-python-api
 The full API of this library can be found in [api.md](api.md).
 
 ```python
-import os
 from outline import Outline
 
 client = Outline(
-    bearer_token=os.environ.get("OUTLINE_BEARER_TOKEN"),  # This is the default and can be omitted
+    bearer_token="My Bearer Token",
 )
 
 response = client.auth.info()
 print(response.data)
 ```
 
-While you can provide a `bearer_token` keyword argument,
-we recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)
-to add `OUTLINE_BEARER_TOKEN="My Bearer Token"` to your `.env` file
-so that your Bearer Token is not stored in source control.
-
 ## Async usage
 
 Simply import `AsyncOutline` instead of `Outline` and use `await` with each API call:
 
 ```python
-import os
 import asyncio
 from outline import AsyncOutline
 
 client = AsyncOutline(
-    bearer_token=os.environ.get("OUTLINE_BEARER_TOKEN"),  # This is the default and can be omitted
+    bearer_token="My Bearer Token",
 )
 
 
@@ -86,7 +79,9 @@ All errors inherit from `outline.APIError`.
 import outline
 from outline import Outline
 
-client = Outline()
+client = Outline(
+    bearer_token="My Bearer Token",
+)
 
 try:
     client.auth.info()
@@ -127,6 +122,7 @@ from outline import Outline
 
 # Configure the default for all requests:
 client = Outline(
+    bearer_token="My Bearer Token",
     # default is 2
     max_retries=0,
 )
@@ -145,12 +141,14 @@ from outline import Outline
 
 # Configure the default for all requests:
 client = Outline(
+    bearer_token="My Bearer Token",
     # 20 seconds (default is 1 minute)
     timeout=20.0,
 )
 
 # More granular control:
 client = Outline(
+    bearer_token="My Bearer Token",
     timeout=httpx.Timeout(60.0, read=5.0, write=10.0, connect=2.0),
 )
 
@@ -195,7 +193,9 @@ The "raw" Response object can be accessed by prefixing `.with_raw_response.` to 
 ```py
 from outline import Outline
 
-client = Outline()
+client = Outline(
+    bearer_token="My Bearer Token",
+)
 response = client.auth.with_raw_response.info()
 print(response.headers.get('X-My-Header'))
 
@@ -270,6 +270,7 @@ import httpx
 from outline import Outline, DefaultHttpxClient
 
 client = Outline(
+    bearer_token="My Bearer Token",
     # Or use the `OUTLINE_BASE_URL` env var
     base_url="http://my.test.server.example.com:8083",
     http_client=DefaultHttpxClient(
@@ -292,7 +293,9 @@ By default the library closes underlying HTTP connections whenever the client is
 ```py
 from outline import Outline
 
-with Outline() as client:
+with Outline(
+    bearer_token="My Bearer Token",
+) as client:
   # make requests here
   ...
 
