@@ -10,7 +10,7 @@ from .group import Group
 from .._models import BaseModel
 from .shared.pagination import Pagination
 
-__all__ = ["GroupListResponse", "Data", "DataGroupMembership", "DataGroupMembershipUser"]
+__all__ = ["GroupListResponse", "Data", "DataGroupMembership", "DataGroupMembershipUser", "Policy", "PolicyAbilities"]
 
 
 class DataGroupMembershipUser(BaseModel):
@@ -73,7 +73,48 @@ class Data(BaseModel):
     groups: Optional[List[Group]] = None
 
 
+class PolicyAbilities(BaseModel):
+    archive: Optional[bool] = None
+
+    create: Optional[bool] = None
+
+    create_child_document: Optional[bool] = FieldInfo(alias="createChildDocument", default=None)
+
+    delete: Optional[bool] = None
+
+    download: Optional[bool] = None
+
+    move: Optional[bool] = None
+
+    pin: Optional[bool] = None
+
+    read: Optional[bool] = None
+
+    restore: Optional[bool] = None
+
+    share: Optional[bool] = None
+
+    star: Optional[bool] = None
+
+    unarchive: Optional[bool] = None
+
+    unpin: Optional[bool] = None
+
+    unstar: Optional[bool] = None
+
+    update: Optional[bool] = None
+
+
+class Policy(BaseModel):
+    id: Optional[str] = None
+    """Unique identifier for the object this policy references."""
+
+    abilities: Optional[PolicyAbilities] = None
+
+
 class GroupListResponse(BaseModel):
     data: Optional[Data] = None
 
     pagination: Optional[Pagination] = None
+
+    policies: Optional[List[Policy]] = None

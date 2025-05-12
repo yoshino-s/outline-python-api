@@ -19,7 +19,10 @@ class CommentListParams(TypedDict, total=False):
     """Filter to a specific document"""
 
     include_anchor_text: Annotated[bool, PropertyInfo(alias="includeAnchorText")]
-    """Include the document text that the comment is anchored to, if any"""
+    """
+    Include the document text that the comment is anchored to, if any, in the
+    response.
+    """
 
     limit: float
 

@@ -62,7 +62,7 @@ class CommentsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CommentCreateResponse:
         """
-        Create a comment
+        Add a comment or reply to a document, either `data` or `text` is required.
 
         Args:
           data: The body of the comment.
@@ -159,7 +159,8 @@ class CommentsResource(SyncAPIResource):
 
           document_id: Filter to a specific document
 
-          include_anchor_text: Include the document text that the comment is anchored to, if any
+          include_anchor_text: Include the document text that the comment is anchored to, if any, in the
+              response.
 
           extra_headers: Send extra headers
 
@@ -200,8 +201,10 @@ class CommentsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CommentDeleteResponse:
-        """
-        Delete a comment
+        """Deletes a comment.
+
+        If the comment is a top-level comment, all its children will
+        be deleted as well.
 
         Args:
           extra_headers: Send extra headers
@@ -258,7 +261,7 @@ class AsyncCommentsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CommentCreateResponse:
         """
-        Create a comment
+        Add a comment or reply to a document, either `data` or `text` is required.
 
         Args:
           data: The body of the comment.
@@ -355,7 +358,8 @@ class AsyncCommentsResource(AsyncAPIResource):
 
           document_id: Filter to a specific document
 
-          include_anchor_text: Include the document text that the comment is anchored to, if any
+          include_anchor_text: Include the document text that the comment is anchored to, if any, in the
+              response.
 
           extra_headers: Send extra headers
 
@@ -396,8 +400,10 @@ class AsyncCommentsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CommentDeleteResponse:
-        """
-        Delete a comment
+        """Deletes a comment.
+
+        If the comment is a top-level comment, all its children will
+        be deleted as well.
 
         Args:
           extra_headers: Send extra headers

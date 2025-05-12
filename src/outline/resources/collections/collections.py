@@ -98,8 +98,9 @@ class CollectionsResource(SyncAPIResource):
         name: str,
         color: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
+        icon: str | NotGiven = NOT_GIVEN,
         permission: Literal["read", "read_write"] | NotGiven = NOT_GIVEN,
-        private: bool | NotGiven = NOT_GIVEN,
+        sharing: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -111,6 +112,14 @@ class CollectionsResource(SyncAPIResource):
         Create a collection
 
         Args:
+          color: A hex color code for the collection icon
+
+          description: A brief description of the collection, markdown supported.
+
+          icon: A string that represents an icon in the outline-icons package or an emoji
+
+          sharing: Whether public sharing of documents is allowed
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -126,8 +135,9 @@ class CollectionsResource(SyncAPIResource):
                     "name": name,
                     "color": color,
                     "description": description,
+                    "icon": icon,
                     "permission": permission,
-                    "private": private,
+                    "sharing": sharing,
                 },
                 collection_create_params.CollectionCreateParams,
             ),
@@ -177,8 +187,10 @@ class CollectionsResource(SyncAPIResource):
         id: str,
         color: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
+        icon: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         permission: Literal["read", "read_write"] | NotGiven = NOT_GIVEN,
+        sharing: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -190,6 +202,14 @@ class CollectionsResource(SyncAPIResource):
         Update a collection
 
         Args:
+          color: A hex color code for the collection icon
+
+          description: A brief description of the collection, markdown supported.
+
+          icon: A string that represents an icon in the outline-icons package or an emoji
+
+          sharing: Whether public sharing of documents is allowed
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -205,8 +225,10 @@ class CollectionsResource(SyncAPIResource):
                     "id": id,
                     "color": color,
                     "description": description,
+                    "icon": icon,
                     "name": name,
                     "permission": permission,
+                    "sharing": sharing,
                 },
                 collection_update_params.CollectionUpdateParams,
             ),
@@ -613,8 +635,9 @@ class AsyncCollectionsResource(AsyncAPIResource):
         name: str,
         color: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
+        icon: str | NotGiven = NOT_GIVEN,
         permission: Literal["read", "read_write"] | NotGiven = NOT_GIVEN,
-        private: bool | NotGiven = NOT_GIVEN,
+        sharing: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -626,6 +649,14 @@ class AsyncCollectionsResource(AsyncAPIResource):
         Create a collection
 
         Args:
+          color: A hex color code for the collection icon
+
+          description: A brief description of the collection, markdown supported.
+
+          icon: A string that represents an icon in the outline-icons package or an emoji
+
+          sharing: Whether public sharing of documents is allowed
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -641,8 +672,9 @@ class AsyncCollectionsResource(AsyncAPIResource):
                     "name": name,
                     "color": color,
                     "description": description,
+                    "icon": icon,
                     "permission": permission,
-                    "private": private,
+                    "sharing": sharing,
                 },
                 collection_create_params.CollectionCreateParams,
             ),
@@ -692,8 +724,10 @@ class AsyncCollectionsResource(AsyncAPIResource):
         id: str,
         color: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
+        icon: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         permission: Literal["read", "read_write"] | NotGiven = NOT_GIVEN,
+        sharing: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -705,6 +739,14 @@ class AsyncCollectionsResource(AsyncAPIResource):
         Update a collection
 
         Args:
+          color: A hex color code for the collection icon
+
+          description: A brief description of the collection, markdown supported.
+
+          icon: A string that represents an icon in the outline-icons package or an emoji
+
+          sharing: Whether public sharing of documents is allowed
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -720,8 +762,10 @@ class AsyncCollectionsResource(AsyncAPIResource):
                     "id": id,
                     "color": color,
                     "description": description,
+                    "icon": icon,
                     "name": name,
                     "permission": permission,
+                    "sharing": sharing,
                 },
                 collection_update_params.CollectionUpdateParams,
             ),
