@@ -272,11 +272,6 @@ class TestDocuments:
 
     @parametrize
     def test_method_export(self, client: Outline) -> None:
-        document = client.documents.export()
-        assert_matches_type(DocumentExportResponse, document, path=["response"])
-
-    @parametrize
-    def test_method_export_with_all_params(self, client: Outline) -> None:
         document = client.documents.export(
             id="id",
         )
@@ -284,7 +279,9 @@ class TestDocuments:
 
     @parametrize
     def test_raw_response_export(self, client: Outline) -> None:
-        response = client.documents.with_raw_response.export()
+        response = client.documents.with_raw_response.export(
+            id="id",
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -293,7 +290,9 @@ class TestDocuments:
 
     @parametrize
     def test_streaming_response_export(self, client: Outline) -> None:
-        with client.documents.with_streaming_response.export() as response:
+        with client.documents.with_streaming_response.export(
+            id="id",
+        ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -835,11 +834,6 @@ class TestAsyncDocuments:
 
     @parametrize
     async def test_method_export(self, async_client: AsyncOutline) -> None:
-        document = await async_client.documents.export()
-        assert_matches_type(DocumentExportResponse, document, path=["response"])
-
-    @parametrize
-    async def test_method_export_with_all_params(self, async_client: AsyncOutline) -> None:
         document = await async_client.documents.export(
             id="id",
         )
@@ -847,7 +841,9 @@ class TestAsyncDocuments:
 
     @parametrize
     async def test_raw_response_export(self, async_client: AsyncOutline) -> None:
-        response = await async_client.documents.with_raw_response.export()
+        response = await async_client.documents.with_raw_response.export(
+            id="id",
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -856,7 +852,9 @@ class TestAsyncDocuments:
 
     @parametrize
     async def test_streaming_response_export(self, async_client: AsyncOutline) -> None:
-        async with async_client.documents.with_streaming_response.export() as response:
+        async with async_client.documents.with_streaming_response.export(
+            id="id",
+        ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 

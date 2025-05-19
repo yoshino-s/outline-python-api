@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing_extensions import Required, TypedDict
 
 __all__ = ["DocumentExportParams"]
 
 
 class DocumentExportParams(TypedDict, total=False):
-    id: str
+    id: Required[str]
     """Unique identifier for the document. Either the UUID or the urlId is acceptable."""
