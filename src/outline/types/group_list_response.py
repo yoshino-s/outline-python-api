@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Dict, List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -10,7 +10,7 @@ from .group import Group
 from .._models import BaseModel
 from .shared.pagination import Pagination
 
-__all__ = ["GroupListResponse", "Data", "DataGroupMembership", "DataGroupMembershipUser", "Policy", "PolicyAbilities"]
+__all__ = ["GroupListResponse", "Data", "DataGroupMembership", "DataGroupMembershipUser", "Policy"]
 
 
 class DataGroupMembershipUser(BaseModel):
@@ -73,43 +73,15 @@ class Data(BaseModel):
     groups: Optional[List[Group]] = None
 
 
-class PolicyAbilities(BaseModel):
-    archive: Optional[bool] = None
-
-    create: Optional[bool] = None
-
-    create_child_document: Optional[bool] = FieldInfo(alias="createChildDocument", default=None)
-
-    delete: Optional[bool] = None
-
-    download: Optional[bool] = None
-
-    move: Optional[bool] = None
-
-    pin: Optional[bool] = None
-
-    read: Optional[bool] = None
-
-    restore: Optional[bool] = None
-
-    share: Optional[bool] = None
-
-    star: Optional[bool] = None
-
-    unarchive: Optional[bool] = None
-
-    unpin: Optional[bool] = None
-
-    unstar: Optional[bool] = None
-
-    update: Optional[bool] = None
-
-
 class Policy(BaseModel):
     id: Optional[str] = None
     """Unique identifier for the object this policy references."""
 
-    abilities: Optional[PolicyAbilities] = None
+    abilities: Optional[Dict[str, Union[List[str], bool]]] = None
+    """
+    The abilities that are allowed by this policy, if an array is returned then the
+    individual ID's in the array represent the memberships that grant the ability.
+    """
 
 
 class GroupListResponse(BaseModel):
