@@ -1,6 +1,7 @@
 # Outline Python API library
 
-[![PyPI version](https://img.shields.io/pypi/v/outline-python-api.svg)](https://pypi.org/project/outline-python-api/)
+<!-- prettier-ignore -->
+[![PyPI version](https://img.shields.io/pypi/v/outline-python-api.svg?label=pypi%20(stable))](https://pypi.org/project/outline-python-api/)
 
 The Outline Python library provides convenient access to the Outline REST API from any Python 3.8+
 application. The library includes type definitions for all request params and response fields,
@@ -56,6 +57,37 @@ asyncio.run(main())
 ```
 
 Functionality between the synchronous and asynchronous clients is otherwise identical.
+
+### With aiohttp
+
+By default, the async client uses `httpx` for HTTP requests. However, for improved concurrency performance you may also use `aiohttp` as the HTTP backend.
+
+You can enable this by installing `aiohttp`:
+
+```sh
+# install from PyPI
+pip install --pre outline-python-api[aiohttp]
+```
+
+Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
+
+```python
+import asyncio
+from outline import DefaultAioHttpClient
+from outline import AsyncOutline
+
+
+async def main() -> None:
+    async with AsyncOutline(
+        bearer_token="My Bearer Token",
+        http_client=DefaultAioHttpClient(),
+    ) as client:
+        response = await client.auth.info()
+        print(response.data)
+
+
+asyncio.run(main())
+```
 
 ## Using types
 
@@ -134,7 +166,7 @@ client.with_options(max_retries=5).auth.info()
 ### Timeouts
 
 By default requests time out after 1 minute. You can configure this with a `timeout` option,
-which accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/#fine-tuning-the-configuration) object:
+which accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/timeouts/#fine-tuning-the-configuration) object:
 
 ```python
 from outline import Outline
