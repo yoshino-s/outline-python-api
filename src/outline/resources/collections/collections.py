@@ -21,7 +21,7 @@ from ...types import (
     collection_remove_user_params,
     collection_remove_group_params,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -96,17 +96,17 @@ class CollectionsResource(SyncAPIResource):
         self,
         *,
         name: str,
-        color: str | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        icon: str | NotGiven = NOT_GIVEN,
-        permission: Literal["read", "read_write"] | NotGiven = NOT_GIVEN,
-        sharing: bool | NotGiven = NOT_GIVEN,
+        color: str | Omit = omit,
+        description: str | Omit = omit,
+        icon: str | Omit = omit,
+        permission: Literal["read", "read_write"] | Omit = omit,
+        sharing: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionCreateResponse:
         """
         Create a collection
@@ -156,7 +156,7 @@ class CollectionsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionRetrieveResponse:
         """
         Retrieve a collection
@@ -185,18 +185,18 @@ class CollectionsResource(SyncAPIResource):
         self,
         *,
         id: str,
-        color: str | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        icon: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        permission: Literal["read", "read_write"] | NotGiven = NOT_GIVEN,
-        sharing: bool | NotGiven = NOT_GIVEN,
+        color: str | Omit = omit,
+        description: str | Omit = omit,
+        icon: str | Omit = omit,
+        name: str | Omit = omit,
+        permission: Literal["read", "read_write"] | Omit = omit,
+        sharing: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionUpdateResponse:
         """
         Update a collection
@@ -241,18 +241,18 @@ class CollectionsResource(SyncAPIResource):
     def list(
         self,
         *,
-        direction: Literal["ASC", "DESC"] | NotGiven = NOT_GIVEN,
-        limit: float | NotGiven = NOT_GIVEN,
-        offset: float | NotGiven = NOT_GIVEN,
-        query: str | NotGiven = NOT_GIVEN,
-        sort: str | NotGiven = NOT_GIVEN,
-        status_filter: List[Literal["archived"]] | NotGiven = NOT_GIVEN,
+        direction: Literal["ASC", "DESC"] | Omit = omit,
+        limit: float | Omit = omit,
+        offset: float | Omit = omit,
+        query: str | Omit = omit,
+        sort: str | Omit = omit,
+        status_filter: List[Literal["archived"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionListResponse:
         """
         List all collections
@@ -298,7 +298,7 @@ class CollectionsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionDeleteResponse:
         """Delete a collection and all of its documents.
 
@@ -328,13 +328,13 @@ class CollectionsResource(SyncAPIResource):
         *,
         id: str,
         group_id: str,
-        permission: Literal["read", "read_write"] | NotGiven = NOT_GIVEN,
+        permission: Literal["read", "read_write"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionAddGroupResponse:
         """
         This method allows you to give all members in a group access to a collection.
@@ -369,13 +369,13 @@ class CollectionsResource(SyncAPIResource):
         *,
         id: str,
         user_id: str,
-        permission: Literal["read", "read_write"] | NotGiven = NOT_GIVEN,
+        permission: Literal["read", "read_write"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionAddUserResponse:
         """
         This method allows you to add a user membership to the specified collection.
@@ -414,7 +414,7 @@ class CollectionsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionDocumentsResponse:
         """
         Retrieve a collections document structure
@@ -443,13 +443,13 @@ class CollectionsResource(SyncAPIResource):
         self,
         *,
         id: str,
-        format: Literal["outline-markdown", "json", "html"] | NotGiven = NOT_GIVEN,
+        format: Literal["outline-markdown", "json", "html"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionExportResponse:
         """
         Triggers a bulk export of the collection in markdown format and their
@@ -484,13 +484,13 @@ class CollectionsResource(SyncAPIResource):
     def export_all(
         self,
         *,
-        format: Literal["outline-markdown", "json", "html"] | NotGiven = NOT_GIVEN,
+        format: Literal["outline-markdown", "json", "html"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionExportAllResponse:
         """Triggers a bulk export of all documents in and their attachments.
 
@@ -526,7 +526,7 @@ class CollectionsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionRemoveGroupResponse:
         """
         This method allows you to revoke all members in a group access to a collection.
@@ -569,7 +569,7 @@ class CollectionsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionRemoveUserResponse:
         """
         This method allows you to remove a user from the specified collection.
@@ -633,17 +633,17 @@ class AsyncCollectionsResource(AsyncAPIResource):
         self,
         *,
         name: str,
-        color: str | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        icon: str | NotGiven = NOT_GIVEN,
-        permission: Literal["read", "read_write"] | NotGiven = NOT_GIVEN,
-        sharing: bool | NotGiven = NOT_GIVEN,
+        color: str | Omit = omit,
+        description: str | Omit = omit,
+        icon: str | Omit = omit,
+        permission: Literal["read", "read_write"] | Omit = omit,
+        sharing: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionCreateResponse:
         """
         Create a collection
@@ -693,7 +693,7 @@ class AsyncCollectionsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionRetrieveResponse:
         """
         Retrieve a collection
@@ -722,18 +722,18 @@ class AsyncCollectionsResource(AsyncAPIResource):
         self,
         *,
         id: str,
-        color: str | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        icon: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        permission: Literal["read", "read_write"] | NotGiven = NOT_GIVEN,
-        sharing: bool | NotGiven = NOT_GIVEN,
+        color: str | Omit = omit,
+        description: str | Omit = omit,
+        icon: str | Omit = omit,
+        name: str | Omit = omit,
+        permission: Literal["read", "read_write"] | Omit = omit,
+        sharing: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionUpdateResponse:
         """
         Update a collection
@@ -778,18 +778,18 @@ class AsyncCollectionsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        direction: Literal["ASC", "DESC"] | NotGiven = NOT_GIVEN,
-        limit: float | NotGiven = NOT_GIVEN,
-        offset: float | NotGiven = NOT_GIVEN,
-        query: str | NotGiven = NOT_GIVEN,
-        sort: str | NotGiven = NOT_GIVEN,
-        status_filter: List[Literal["archived"]] | NotGiven = NOT_GIVEN,
+        direction: Literal["ASC", "DESC"] | Omit = omit,
+        limit: float | Omit = omit,
+        offset: float | Omit = omit,
+        query: str | Omit = omit,
+        sort: str | Omit = omit,
+        status_filter: List[Literal["archived"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionListResponse:
         """
         List all collections
@@ -835,7 +835,7 @@ class AsyncCollectionsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionDeleteResponse:
         """Delete a collection and all of its documents.
 
@@ -865,13 +865,13 @@ class AsyncCollectionsResource(AsyncAPIResource):
         *,
         id: str,
         group_id: str,
-        permission: Literal["read", "read_write"] | NotGiven = NOT_GIVEN,
+        permission: Literal["read", "read_write"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionAddGroupResponse:
         """
         This method allows you to give all members in a group access to a collection.
@@ -906,13 +906,13 @@ class AsyncCollectionsResource(AsyncAPIResource):
         *,
         id: str,
         user_id: str,
-        permission: Literal["read", "read_write"] | NotGiven = NOT_GIVEN,
+        permission: Literal["read", "read_write"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionAddUserResponse:
         """
         This method allows you to add a user membership to the specified collection.
@@ -951,7 +951,7 @@ class AsyncCollectionsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionDocumentsResponse:
         """
         Retrieve a collections document structure
@@ -980,13 +980,13 @@ class AsyncCollectionsResource(AsyncAPIResource):
         self,
         *,
         id: str,
-        format: Literal["outline-markdown", "json", "html"] | NotGiven = NOT_GIVEN,
+        format: Literal["outline-markdown", "json", "html"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionExportResponse:
         """
         Triggers a bulk export of the collection in markdown format and their
@@ -1021,13 +1021,13 @@ class AsyncCollectionsResource(AsyncAPIResource):
     async def export_all(
         self,
         *,
-        format: Literal["outline-markdown", "json", "html"] | NotGiven = NOT_GIVEN,
+        format: Literal["outline-markdown", "json", "html"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionExportAllResponse:
         """Triggers a bulk export of all documents in and their attachments.
 
@@ -1065,7 +1065,7 @@ class AsyncCollectionsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionRemoveGroupResponse:
         """
         This method allows you to revoke all members in a group access to a collection.
@@ -1108,7 +1108,7 @@ class AsyncCollectionsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionRemoveUserResponse:
         """
         This method allows you to remove a user from the specified collection.
