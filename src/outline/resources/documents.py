@@ -23,7 +23,7 @@ from ..types import (
     document_unpublish_params,
     document_templatize_params,
 )
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -78,17 +78,17 @@ class DocumentsResource(SyncAPIResource):
         *,
         collection_id: str,
         title: str,
-        parent_document_id: str | NotGiven = NOT_GIVEN,
-        publish: bool | NotGiven = NOT_GIVEN,
-        template: bool | NotGiven = NOT_GIVEN,
-        template_id: str | NotGiven = NOT_GIVEN,
-        text: str | NotGiven = NOT_GIVEN,
+        parent_document_id: str | Omit = omit,
+        publish: bool | Omit = omit,
+        template: bool | Omit = omit,
+        template_id: str | Omit = omit,
+        text: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentCreateResponse:
         """This method allows you to create or publish a new document.
 
@@ -136,17 +136,17 @@ class DocumentsResource(SyncAPIResource):
         self,
         *,
         id: str,
-        append: bool | NotGiven = NOT_GIVEN,
-        done: bool | NotGiven = NOT_GIVEN,
-        publish: bool | NotGiven = NOT_GIVEN,
-        text: str | NotGiven = NOT_GIVEN,
-        title: str | NotGiven = NOT_GIVEN,
+        append: bool | Omit = omit,
+        done: bool | Omit = omit,
+        publish: bool | Omit = omit,
+        text: str | Omit = omit,
+        title: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentUpdateResponse:
         """
         This method allows you to modify an already created document
@@ -198,21 +198,21 @@ class DocumentsResource(SyncAPIResource):
     def list(
         self,
         *,
-        backlink_document_id: str | NotGiven = NOT_GIVEN,
-        collection_id: str | NotGiven = NOT_GIVEN,
-        direction: Literal["ASC", "DESC"] | NotGiven = NOT_GIVEN,
-        limit: float | NotGiven = NOT_GIVEN,
-        offset: float | NotGiven = NOT_GIVEN,
-        parent_document_id: str | NotGiven = NOT_GIVEN,
-        sort: str | NotGiven = NOT_GIVEN,
-        template: bool | NotGiven = NOT_GIVEN,
-        user_id: str | NotGiven = NOT_GIVEN,
+        backlink_document_id: str | Omit = omit,
+        collection_id: str | Omit = omit,
+        direction: Literal["ASC", "DESC"] | Omit = omit,
+        limit: float | Omit = omit,
+        offset: float | Omit = omit,
+        parent_document_id: str | Omit = omit,
+        sort: str | Omit = omit,
+        template: bool | Omit = omit,
+        user_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentListResponse:
         """
         This method will list all published documents and draft documents belonging to
@@ -257,13 +257,13 @@ class DocumentsResource(SyncAPIResource):
         self,
         *,
         id: str,
-        permanent: bool | NotGiven = NOT_GIVEN,
+        permanent: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentDeleteResponse:
         """Deleting a document moves it to the trash.
 
@@ -308,7 +308,7 @@ class DocumentsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentArchiveResponse:
         """
         Archiving a document allows outdated information to be moved out of sight whilst
@@ -337,18 +337,18 @@ class DocumentsResource(SyncAPIResource):
     def drafts(
         self,
         *,
-        collection_id: str | NotGiven = NOT_GIVEN,
-        date_filter: Literal["day", "week", "month", "year"] | NotGiven = NOT_GIVEN,
-        direction: Literal["ASC", "DESC"] | NotGiven = NOT_GIVEN,
-        limit: float | NotGiven = NOT_GIVEN,
-        offset: float | NotGiven = NOT_GIVEN,
-        sort: str | NotGiven = NOT_GIVEN,
+        collection_id: str | Omit = omit,
+        date_filter: Literal["day", "week", "month", "year"] | Omit = omit,
+        direction: Literal["ASC", "DESC"] | Omit = omit,
+        limit: float | Omit = omit,
+        offset: float | Omit = omit,
+        sort: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentDraftsResponse:
         """
         This method will list all draft documents belonging to the current user.
@@ -395,7 +395,7 @@ class DocumentsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentExportResponse:
         """Export a document as markdown
 
@@ -425,16 +425,16 @@ class DocumentsResource(SyncAPIResource):
         self,
         *,
         file: object,
-        collection_id: str | NotGiven = NOT_GIVEN,
-        parent_document_id: str | NotGiven = NOT_GIVEN,
-        publish: bool | NotGiven = NOT_GIVEN,
-        template: bool | NotGiven = NOT_GIVEN,
+        collection_id: str | Omit = omit,
+        parent_document_id: str | Omit = omit,
+        publish: bool | Omit = omit,
+        template: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentImportResponse:
         """
         This method allows you to create a new document by importing an existing file.
@@ -478,14 +478,14 @@ class DocumentsResource(SyncAPIResource):
     def info(
         self,
         *,
-        id: str | NotGiven = NOT_GIVEN,
-        share_id: str | NotGiven = NOT_GIVEN,
+        id: str | Omit = omit,
+        share_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentInfoResponse:
         """Retrieve a document by its `UUID`, `urlId`, or `shareId`.
 
@@ -525,14 +525,14 @@ class DocumentsResource(SyncAPIResource):
         self,
         *,
         id: str,
-        collection_id: str | NotGiven = NOT_GIVEN,
-        parent_document_id: str | NotGiven = NOT_GIVEN,
+        collection_id: str | Omit = omit,
+        parent_document_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentMoveResponse:
         """Move a document to a new location or collection.
 
@@ -570,13 +570,13 @@ class DocumentsResource(SyncAPIResource):
         self,
         *,
         id: str,
-        revision_id: str | NotGiven = NOT_GIVEN,
+        revision_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentRestoreResponse:
         """If a document has been archived or deleted, it can be restored.
 
@@ -614,20 +614,20 @@ class DocumentsResource(SyncAPIResource):
     def search(
         self,
         *,
-        collection_id: str | NotGiven = NOT_GIVEN,
-        date_filter: Literal["day", "week", "month", "year"] | NotGiven = NOT_GIVEN,
-        document_id: str | NotGiven = NOT_GIVEN,
-        limit: float | NotGiven = NOT_GIVEN,
-        offset: float | NotGiven = NOT_GIVEN,
-        query: str | NotGiven = NOT_GIVEN,
-        status_filter: Literal["draft", "archived", "published"] | NotGiven = NOT_GIVEN,
-        user_id: str | NotGiven = NOT_GIVEN,
+        collection_id: str | Omit = omit,
+        date_filter: Literal["day", "week", "month", "year"] | Omit = omit,
+        document_id: str | Omit = omit,
+        limit: float | Omit = omit,
+        offset: float | Omit = omit,
+        query: str | Omit = omit,
+        status_filter: Literal["draft", "archived", "published"] | Omit = omit,
+        user_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentSearchResponse:
         """This methods allows you to search your teams documents with keywords.
 
@@ -686,7 +686,7 @@ class DocumentsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentTemplatizeResponse:
         """
         This method allows you to createa new template using an existing document as the
@@ -719,7 +719,7 @@ class DocumentsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentUnpublishResponse:
         """
         Unpublishing a document moves it back to a draft status and out of the
@@ -748,16 +748,16 @@ class DocumentsResource(SyncAPIResource):
     def viewed(
         self,
         *,
-        direction: Literal["ASC", "DESC"] | NotGiven = NOT_GIVEN,
-        limit: float | NotGiven = NOT_GIVEN,
-        offset: float | NotGiven = NOT_GIVEN,
-        sort: str | NotGiven = NOT_GIVEN,
+        direction: Literal["ASC", "DESC"] | Omit = omit,
+        limit: float | Omit = omit,
+        offset: float | Omit = omit,
+        sort: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentViewedResponse:
         """
         This method will list all documents recently viewed by the current user.
@@ -814,17 +814,17 @@ class AsyncDocumentsResource(AsyncAPIResource):
         *,
         collection_id: str,
         title: str,
-        parent_document_id: str | NotGiven = NOT_GIVEN,
-        publish: bool | NotGiven = NOT_GIVEN,
-        template: bool | NotGiven = NOT_GIVEN,
-        template_id: str | NotGiven = NOT_GIVEN,
-        text: str | NotGiven = NOT_GIVEN,
+        parent_document_id: str | Omit = omit,
+        publish: bool | Omit = omit,
+        template: bool | Omit = omit,
+        template_id: str | Omit = omit,
+        text: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentCreateResponse:
         """This method allows you to create or publish a new document.
 
@@ -872,17 +872,17 @@ class AsyncDocumentsResource(AsyncAPIResource):
         self,
         *,
         id: str,
-        append: bool | NotGiven = NOT_GIVEN,
-        done: bool | NotGiven = NOT_GIVEN,
-        publish: bool | NotGiven = NOT_GIVEN,
-        text: str | NotGiven = NOT_GIVEN,
-        title: str | NotGiven = NOT_GIVEN,
+        append: bool | Omit = omit,
+        done: bool | Omit = omit,
+        publish: bool | Omit = omit,
+        text: str | Omit = omit,
+        title: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentUpdateResponse:
         """
         This method allows you to modify an already created document
@@ -934,21 +934,21 @@ class AsyncDocumentsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        backlink_document_id: str | NotGiven = NOT_GIVEN,
-        collection_id: str | NotGiven = NOT_GIVEN,
-        direction: Literal["ASC", "DESC"] | NotGiven = NOT_GIVEN,
-        limit: float | NotGiven = NOT_GIVEN,
-        offset: float | NotGiven = NOT_GIVEN,
-        parent_document_id: str | NotGiven = NOT_GIVEN,
-        sort: str | NotGiven = NOT_GIVEN,
-        template: bool | NotGiven = NOT_GIVEN,
-        user_id: str | NotGiven = NOT_GIVEN,
+        backlink_document_id: str | Omit = omit,
+        collection_id: str | Omit = omit,
+        direction: Literal["ASC", "DESC"] | Omit = omit,
+        limit: float | Omit = omit,
+        offset: float | Omit = omit,
+        parent_document_id: str | Omit = omit,
+        sort: str | Omit = omit,
+        template: bool | Omit = omit,
+        user_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentListResponse:
         """
         This method will list all published documents and draft documents belonging to
@@ -993,13 +993,13 @@ class AsyncDocumentsResource(AsyncAPIResource):
         self,
         *,
         id: str,
-        permanent: bool | NotGiven = NOT_GIVEN,
+        permanent: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentDeleteResponse:
         """Deleting a document moves it to the trash.
 
@@ -1044,7 +1044,7 @@ class AsyncDocumentsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentArchiveResponse:
         """
         Archiving a document allows outdated information to be moved out of sight whilst
@@ -1073,18 +1073,18 @@ class AsyncDocumentsResource(AsyncAPIResource):
     async def drafts(
         self,
         *,
-        collection_id: str | NotGiven = NOT_GIVEN,
-        date_filter: Literal["day", "week", "month", "year"] | NotGiven = NOT_GIVEN,
-        direction: Literal["ASC", "DESC"] | NotGiven = NOT_GIVEN,
-        limit: float | NotGiven = NOT_GIVEN,
-        offset: float | NotGiven = NOT_GIVEN,
-        sort: str | NotGiven = NOT_GIVEN,
+        collection_id: str | Omit = omit,
+        date_filter: Literal["day", "week", "month", "year"] | Omit = omit,
+        direction: Literal["ASC", "DESC"] | Omit = omit,
+        limit: float | Omit = omit,
+        offset: float | Omit = omit,
+        sort: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentDraftsResponse:
         """
         This method will list all draft documents belonging to the current user.
@@ -1131,7 +1131,7 @@ class AsyncDocumentsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentExportResponse:
         """Export a document as markdown
 
@@ -1161,16 +1161,16 @@ class AsyncDocumentsResource(AsyncAPIResource):
         self,
         *,
         file: object,
-        collection_id: str | NotGiven = NOT_GIVEN,
-        parent_document_id: str | NotGiven = NOT_GIVEN,
-        publish: bool | NotGiven = NOT_GIVEN,
-        template: bool | NotGiven = NOT_GIVEN,
+        collection_id: str | Omit = omit,
+        parent_document_id: str | Omit = omit,
+        publish: bool | Omit = omit,
+        template: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentImportResponse:
         """
         This method allows you to create a new document by importing an existing file.
@@ -1214,14 +1214,14 @@ class AsyncDocumentsResource(AsyncAPIResource):
     async def info(
         self,
         *,
-        id: str | NotGiven = NOT_GIVEN,
-        share_id: str | NotGiven = NOT_GIVEN,
+        id: str | Omit = omit,
+        share_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentInfoResponse:
         """Retrieve a document by its `UUID`, `urlId`, or `shareId`.
 
@@ -1261,14 +1261,14 @@ class AsyncDocumentsResource(AsyncAPIResource):
         self,
         *,
         id: str,
-        collection_id: str | NotGiven = NOT_GIVEN,
-        parent_document_id: str | NotGiven = NOT_GIVEN,
+        collection_id: str | Omit = omit,
+        parent_document_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentMoveResponse:
         """Move a document to a new location or collection.
 
@@ -1306,13 +1306,13 @@ class AsyncDocumentsResource(AsyncAPIResource):
         self,
         *,
         id: str,
-        revision_id: str | NotGiven = NOT_GIVEN,
+        revision_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentRestoreResponse:
         """If a document has been archived or deleted, it can be restored.
 
@@ -1350,20 +1350,20 @@ class AsyncDocumentsResource(AsyncAPIResource):
     async def search(
         self,
         *,
-        collection_id: str | NotGiven = NOT_GIVEN,
-        date_filter: Literal["day", "week", "month", "year"] | NotGiven = NOT_GIVEN,
-        document_id: str | NotGiven = NOT_GIVEN,
-        limit: float | NotGiven = NOT_GIVEN,
-        offset: float | NotGiven = NOT_GIVEN,
-        query: str | NotGiven = NOT_GIVEN,
-        status_filter: Literal["draft", "archived", "published"] | NotGiven = NOT_GIVEN,
-        user_id: str | NotGiven = NOT_GIVEN,
+        collection_id: str | Omit = omit,
+        date_filter: Literal["day", "week", "month", "year"] | Omit = omit,
+        document_id: str | Omit = omit,
+        limit: float | Omit = omit,
+        offset: float | Omit = omit,
+        query: str | Omit = omit,
+        status_filter: Literal["draft", "archived", "published"] | Omit = omit,
+        user_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentSearchResponse:
         """This methods allows you to search your teams documents with keywords.
 
@@ -1422,7 +1422,7 @@ class AsyncDocumentsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentTemplatizeResponse:
         """
         This method allows you to createa new template using an existing document as the
@@ -1455,7 +1455,7 @@ class AsyncDocumentsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentUnpublishResponse:
         """
         Unpublishing a document moves it back to a draft status and out of the
@@ -1484,16 +1484,16 @@ class AsyncDocumentsResource(AsyncAPIResource):
     async def viewed(
         self,
         *,
-        direction: Literal["ASC", "DESC"] | NotGiven = NOT_GIVEN,
-        limit: float | NotGiven = NOT_GIVEN,
-        offset: float | NotGiven = NOT_GIVEN,
-        sort: str | NotGiven = NOT_GIVEN,
+        direction: Literal["ASC", "DESC"] | Omit = omit,
+        limit: float | Omit = omit,
+        offset: float | Omit = omit,
+        sort: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentViewedResponse:
         """
         This method will list all documents recently viewed by the current user.

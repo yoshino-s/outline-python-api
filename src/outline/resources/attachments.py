@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..types import attachment_create_params, attachment_delete_params, attachment_redirect_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -48,13 +48,13 @@ class AttachmentsResource(SyncAPIResource):
         content_type: str,
         name: str,
         size: float,
-        document_id: str | NotGiven = NOT_GIVEN,
+        document_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AttachmentCreateResponse:
         """
         Creating an attachment object creates a database record and returns the inputs
@@ -100,7 +100,7 @@ class AttachmentsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AttachmentDeleteResponse:
         """Deleting an attachment is permanant.
 
@@ -136,7 +136,7 @@ class AttachmentsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """Load an attachment from where it is stored based on the id.
 
@@ -192,13 +192,13 @@ class AsyncAttachmentsResource(AsyncAPIResource):
         content_type: str,
         name: str,
         size: float,
-        document_id: str | NotGiven = NOT_GIVEN,
+        document_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AttachmentCreateResponse:
         """
         Creating an attachment object creates a database record and returns the inputs
@@ -244,7 +244,7 @@ class AsyncAttachmentsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AttachmentDeleteResponse:
         """Deleting an attachment is permanant.
 
@@ -280,7 +280,7 @@ class AsyncAttachmentsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """Load an attachment from where it is stored based on the id.
 

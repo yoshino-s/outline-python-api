@@ -7,7 +7,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..types import comment_list_params, comment_create_params, comment_delete_params, comment_update_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -50,16 +50,16 @@ class CommentsResource(SyncAPIResource):
         self,
         *,
         document_id: str,
-        id: str | NotGiven = NOT_GIVEN,
-        data: object | NotGiven = NOT_GIVEN,
-        parent_comment_id: str | NotGiven = NOT_GIVEN,
-        text: str | NotGiven = NOT_GIVEN,
+        id: str | Omit = omit,
+        data: object | Omit = omit,
+        parent_comment_id: str | Omit = omit,
+        text: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CommentCreateResponse:
         """
         Add a comment or reply to a document, either `data` or `text` is required.
@@ -105,7 +105,7 @@ class CommentsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CommentUpdateResponse:
         """
         Update a comment
@@ -137,19 +137,19 @@ class CommentsResource(SyncAPIResource):
     def list(
         self,
         *,
-        collection_id: str | NotGiven = NOT_GIVEN,
-        direction: Literal["ASC", "DESC"] | NotGiven = NOT_GIVEN,
-        document_id: str | NotGiven = NOT_GIVEN,
-        include_anchor_text: bool | NotGiven = NOT_GIVEN,
-        limit: float | NotGiven = NOT_GIVEN,
-        offset: float | NotGiven = NOT_GIVEN,
-        sort: str | NotGiven = NOT_GIVEN,
+        collection_id: str | Omit = omit,
+        direction: Literal["ASC", "DESC"] | Omit = omit,
+        document_id: str | Omit = omit,
+        include_anchor_text: bool | Omit = omit,
+        limit: float | Omit = omit,
+        offset: float | Omit = omit,
+        sort: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CommentListResponse:
         """
         This method will list all comments matching the given properties.
@@ -199,7 +199,7 @@ class CommentsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CommentDeleteResponse:
         """Deletes a comment.
 
@@ -249,16 +249,16 @@ class AsyncCommentsResource(AsyncAPIResource):
         self,
         *,
         document_id: str,
-        id: str | NotGiven = NOT_GIVEN,
-        data: object | NotGiven = NOT_GIVEN,
-        parent_comment_id: str | NotGiven = NOT_GIVEN,
-        text: str | NotGiven = NOT_GIVEN,
+        id: str | Omit = omit,
+        data: object | Omit = omit,
+        parent_comment_id: str | Omit = omit,
+        text: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CommentCreateResponse:
         """
         Add a comment or reply to a document, either `data` or `text` is required.
@@ -304,7 +304,7 @@ class AsyncCommentsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CommentUpdateResponse:
         """
         Update a comment
@@ -336,19 +336,19 @@ class AsyncCommentsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        collection_id: str | NotGiven = NOT_GIVEN,
-        direction: Literal["ASC", "DESC"] | NotGiven = NOT_GIVEN,
-        document_id: str | NotGiven = NOT_GIVEN,
-        include_anchor_text: bool | NotGiven = NOT_GIVEN,
-        limit: float | NotGiven = NOT_GIVEN,
-        offset: float | NotGiven = NOT_GIVEN,
-        sort: str | NotGiven = NOT_GIVEN,
+        collection_id: str | Omit = omit,
+        direction: Literal["ASC", "DESC"] | Omit = omit,
+        document_id: str | Omit = omit,
+        include_anchor_text: bool | Omit = omit,
+        limit: float | Omit = omit,
+        offset: float | Omit = omit,
+        sort: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CommentListResponse:
         """
         This method will list all comments matching the given properties.
@@ -398,7 +398,7 @@ class AsyncCommentsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CommentDeleteResponse:
         """Deletes a comment.
 
