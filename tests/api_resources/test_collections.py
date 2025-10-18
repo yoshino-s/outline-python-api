@@ -381,6 +381,8 @@ class TestCollections:
     def test_method_export_all_with_all_params(self, client: Outline) -> None:
         collection = client.collections.export_all(
             format="outline-markdown",
+            include_attachments=True,
+            include_private=True,
         )
         assert_matches_type(CollectionExportAllResponse, collection, path=["response"])
 
@@ -829,6 +831,8 @@ class TestAsyncCollections:
     async def test_method_export_all_with_all_params(self, async_client: AsyncOutline) -> None:
         collection = await async_client.collections.export_all(
             format="outline-markdown",
+            include_attachments=True,
+            include_private=True,
         )
         assert_matches_type(CollectionExportAllResponse, collection, path=["response"])
 

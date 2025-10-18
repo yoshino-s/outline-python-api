@@ -485,6 +485,8 @@ class CollectionsResource(SyncAPIResource):
         self,
         *,
         format: Literal["outline-markdown", "json", "html"] | Omit = omit,
+        include_attachments: bool | Omit = omit,
+        include_private: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -492,13 +494,17 @@ class CollectionsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionExportAllResponse:
-        """Triggers a bulk export of all documents in and their attachments.
+        """Triggers a bulk export of multiple collections and their documents.
 
         The endpoint
         returns a `FileOperation` that can be queried through the fileOperations
         endpoint to track the progress of the export and get the url for the final file.
 
         Args:
+          include_attachments: Whether to include attachments in the export.
+
+          include_private: Whether to include private collections in the export.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -509,7 +515,14 @@ class CollectionsResource(SyncAPIResource):
         """
         return self._post(
             "/collections.export_all",
-            body=maybe_transform({"format": format}, collection_export_all_params.CollectionExportAllParams),
+            body=maybe_transform(
+                {
+                    "format": format,
+                    "include_attachments": include_attachments,
+                    "include_private": include_private,
+                },
+                collection_export_all_params.CollectionExportAllParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1022,6 +1035,8 @@ class AsyncCollectionsResource(AsyncAPIResource):
         self,
         *,
         format: Literal["outline-markdown", "json", "html"] | Omit = omit,
+        include_attachments: bool | Omit = omit,
+        include_private: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1029,13 +1044,17 @@ class AsyncCollectionsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionExportAllResponse:
-        """Triggers a bulk export of all documents in and their attachments.
+        """Triggers a bulk export of multiple collections and their documents.
 
         The endpoint
         returns a `FileOperation` that can be queried through the fileOperations
         endpoint to track the progress of the export and get the url for the final file.
 
         Args:
+          include_attachments: Whether to include attachments in the export.
+
+          include_private: Whether to include private collections in the export.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1047,7 +1066,12 @@ class AsyncCollectionsResource(AsyncAPIResource):
         return await self._post(
             "/collections.export_all",
             body=await async_maybe_transform(
-                {"format": format}, collection_export_all_params.CollectionExportAllParams
+                {
+                    "format": format,
+                    "include_attachments": include_attachments,
+                    "include_private": include_private,
+                },
+                collection_export_all_params.CollectionExportAllParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
