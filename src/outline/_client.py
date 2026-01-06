@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Mapping
+from typing import TYPE_CHECKING, Any, Mapping
 from typing_extensions import Self, override
 
 import httpx
@@ -20,8 +20,8 @@ from ._types import (
     not_given,
 )
 from ._utils import is_given, get_async_library
+from ._compat import cached_property
 from ._version import __version__
-from .resources import auth, events, groups, comments, documents, attachments, file_operations
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import OutlineError, APIStatusError
 from ._base_client import (
@@ -29,23 +29,22 @@ from ._base_client import (
     SyncAPIClient,
     AsyncAPIClient,
 )
-from .resources.collections import collections
+
+if TYPE_CHECKING:
+    from .resources import auth, events, groups, comments, documents, attachments, collections, file_operations
+    from .resources.auth import AuthResource, AsyncAuthResource
+    from .resources.events import EventsResource, AsyncEventsResource
+    from .resources.groups import GroupsResource, AsyncGroupsResource
+    from .resources.comments import CommentsResource, AsyncCommentsResource
+    from .resources.documents import DocumentsResource, AsyncDocumentsResource
+    from .resources.attachments import AttachmentsResource, AsyncAttachmentsResource
+    from .resources.file_operations import FileOperationsResource, AsyncFileOperationsResource
+    from .resources.collections.collections import CollectionsResource, AsyncCollectionsResource
 
 __all__ = ["Timeout", "Transport", "ProxiesTypes", "RequestOptions", "Outline", "AsyncOutline", "Client", "AsyncClient"]
 
 
 class Outline(SyncAPIClient):
-    attachments: attachments.AttachmentsResource
-    auth: auth.AuthResource
-    collections: collections.CollectionsResource
-    comments: comments.CommentsResource
-    documents: documents.DocumentsResource
-    events: events.EventsResource
-    file_operations: file_operations.FileOperationsResource
-    groups: groups.GroupsResource
-    with_raw_response: OutlineWithRawResponse
-    with_streaming_response: OutlineWithStreamedResponse
-
     # client options
     bearer_token: str
 
@@ -100,16 +99,61 @@ class Outline(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.attachments = attachments.AttachmentsResource(self)
-        self.auth = auth.AuthResource(self)
-        self.collections = collections.CollectionsResource(self)
-        self.comments = comments.CommentsResource(self)
-        self.documents = documents.DocumentsResource(self)
-        self.events = events.EventsResource(self)
-        self.file_operations = file_operations.FileOperationsResource(self)
-        self.groups = groups.GroupsResource(self)
-        self.with_raw_response = OutlineWithRawResponse(self)
-        self.with_streaming_response = OutlineWithStreamedResponse(self)
+    @cached_property
+    def attachments(self) -> AttachmentsResource:
+        from .resources.attachments import AttachmentsResource
+
+        return AttachmentsResource(self)
+
+    @cached_property
+    def auth(self) -> AuthResource:
+        from .resources.auth import AuthResource
+
+        return AuthResource(self)
+
+    @cached_property
+    def collections(self) -> CollectionsResource:
+        from .resources.collections import CollectionsResource
+
+        return CollectionsResource(self)
+
+    @cached_property
+    def comments(self) -> CommentsResource:
+        from .resources.comments import CommentsResource
+
+        return CommentsResource(self)
+
+    @cached_property
+    def documents(self) -> DocumentsResource:
+        from .resources.documents import DocumentsResource
+
+        return DocumentsResource(self)
+
+    @cached_property
+    def events(self) -> EventsResource:
+        from .resources.events import EventsResource
+
+        return EventsResource(self)
+
+    @cached_property
+    def file_operations(self) -> FileOperationsResource:
+        from .resources.file_operations import FileOperationsResource
+
+        return FileOperationsResource(self)
+
+    @cached_property
+    def groups(self) -> GroupsResource:
+        from .resources.groups import GroupsResource
+
+        return GroupsResource(self)
+
+    @cached_property
+    def with_raw_response(self) -> OutlineWithRawResponse:
+        return OutlineWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> OutlineWithStreamedResponse:
+        return OutlineWithStreamedResponse(self)
 
     @property
     @override
@@ -211,17 +255,6 @@ class Outline(SyncAPIClient):
 
 
 class AsyncOutline(AsyncAPIClient):
-    attachments: attachments.AsyncAttachmentsResource
-    auth: auth.AsyncAuthResource
-    collections: collections.AsyncCollectionsResource
-    comments: comments.AsyncCommentsResource
-    documents: documents.AsyncDocumentsResource
-    events: events.AsyncEventsResource
-    file_operations: file_operations.AsyncFileOperationsResource
-    groups: groups.AsyncGroupsResource
-    with_raw_response: AsyncOutlineWithRawResponse
-    with_streaming_response: AsyncOutlineWithStreamedResponse
-
     # client options
     bearer_token: str
 
@@ -276,16 +309,61 @@ class AsyncOutline(AsyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.attachments = attachments.AsyncAttachmentsResource(self)
-        self.auth = auth.AsyncAuthResource(self)
-        self.collections = collections.AsyncCollectionsResource(self)
-        self.comments = comments.AsyncCommentsResource(self)
-        self.documents = documents.AsyncDocumentsResource(self)
-        self.events = events.AsyncEventsResource(self)
-        self.file_operations = file_operations.AsyncFileOperationsResource(self)
-        self.groups = groups.AsyncGroupsResource(self)
-        self.with_raw_response = AsyncOutlineWithRawResponse(self)
-        self.with_streaming_response = AsyncOutlineWithStreamedResponse(self)
+    @cached_property
+    def attachments(self) -> AsyncAttachmentsResource:
+        from .resources.attachments import AsyncAttachmentsResource
+
+        return AsyncAttachmentsResource(self)
+
+    @cached_property
+    def auth(self) -> AsyncAuthResource:
+        from .resources.auth import AsyncAuthResource
+
+        return AsyncAuthResource(self)
+
+    @cached_property
+    def collections(self) -> AsyncCollectionsResource:
+        from .resources.collections import AsyncCollectionsResource
+
+        return AsyncCollectionsResource(self)
+
+    @cached_property
+    def comments(self) -> AsyncCommentsResource:
+        from .resources.comments import AsyncCommentsResource
+
+        return AsyncCommentsResource(self)
+
+    @cached_property
+    def documents(self) -> AsyncDocumentsResource:
+        from .resources.documents import AsyncDocumentsResource
+
+        return AsyncDocumentsResource(self)
+
+    @cached_property
+    def events(self) -> AsyncEventsResource:
+        from .resources.events import AsyncEventsResource
+
+        return AsyncEventsResource(self)
+
+    @cached_property
+    def file_operations(self) -> AsyncFileOperationsResource:
+        from .resources.file_operations import AsyncFileOperationsResource
+
+        return AsyncFileOperationsResource(self)
+
+    @cached_property
+    def groups(self) -> AsyncGroupsResource:
+        from .resources.groups import AsyncGroupsResource
+
+        return AsyncGroupsResource(self)
+
+    @cached_property
+    def with_raw_response(self) -> AsyncOutlineWithRawResponse:
+        return AsyncOutlineWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncOutlineWithStreamedResponse:
+        return AsyncOutlineWithStreamedResponse(self)
 
     @property
     @override
@@ -387,51 +465,223 @@ class AsyncOutline(AsyncAPIClient):
 
 
 class OutlineWithRawResponse:
+    _client: Outline
+
     def __init__(self, client: Outline) -> None:
-        self.attachments = attachments.AttachmentsResourceWithRawResponse(client.attachments)
-        self.auth = auth.AuthResourceWithRawResponse(client.auth)
-        self.collections = collections.CollectionsResourceWithRawResponse(client.collections)
-        self.comments = comments.CommentsResourceWithRawResponse(client.comments)
-        self.documents = documents.DocumentsResourceWithRawResponse(client.documents)
-        self.events = events.EventsResourceWithRawResponse(client.events)
-        self.file_operations = file_operations.FileOperationsResourceWithRawResponse(client.file_operations)
-        self.groups = groups.GroupsResourceWithRawResponse(client.groups)
+        self._client = client
+
+    @cached_property
+    def attachments(self) -> attachments.AttachmentsResourceWithRawResponse:
+        from .resources.attachments import AttachmentsResourceWithRawResponse
+
+        return AttachmentsResourceWithRawResponse(self._client.attachments)
+
+    @cached_property
+    def auth(self) -> auth.AuthResourceWithRawResponse:
+        from .resources.auth import AuthResourceWithRawResponse
+
+        return AuthResourceWithRawResponse(self._client.auth)
+
+    @cached_property
+    def collections(self) -> collections.CollectionsResourceWithRawResponse:
+        from .resources.collections import CollectionsResourceWithRawResponse
+
+        return CollectionsResourceWithRawResponse(self._client.collections)
+
+    @cached_property
+    def comments(self) -> comments.CommentsResourceWithRawResponse:
+        from .resources.comments import CommentsResourceWithRawResponse
+
+        return CommentsResourceWithRawResponse(self._client.comments)
+
+    @cached_property
+    def documents(self) -> documents.DocumentsResourceWithRawResponse:
+        from .resources.documents import DocumentsResourceWithRawResponse
+
+        return DocumentsResourceWithRawResponse(self._client.documents)
+
+    @cached_property
+    def events(self) -> events.EventsResourceWithRawResponse:
+        from .resources.events import EventsResourceWithRawResponse
+
+        return EventsResourceWithRawResponse(self._client.events)
+
+    @cached_property
+    def file_operations(self) -> file_operations.FileOperationsResourceWithRawResponse:
+        from .resources.file_operations import FileOperationsResourceWithRawResponse
+
+        return FileOperationsResourceWithRawResponse(self._client.file_operations)
+
+    @cached_property
+    def groups(self) -> groups.GroupsResourceWithRawResponse:
+        from .resources.groups import GroupsResourceWithRawResponse
+
+        return GroupsResourceWithRawResponse(self._client.groups)
 
 
 class AsyncOutlineWithRawResponse:
+    _client: AsyncOutline
+
     def __init__(self, client: AsyncOutline) -> None:
-        self.attachments = attachments.AsyncAttachmentsResourceWithRawResponse(client.attachments)
-        self.auth = auth.AsyncAuthResourceWithRawResponse(client.auth)
-        self.collections = collections.AsyncCollectionsResourceWithRawResponse(client.collections)
-        self.comments = comments.AsyncCommentsResourceWithRawResponse(client.comments)
-        self.documents = documents.AsyncDocumentsResourceWithRawResponse(client.documents)
-        self.events = events.AsyncEventsResourceWithRawResponse(client.events)
-        self.file_operations = file_operations.AsyncFileOperationsResourceWithRawResponse(client.file_operations)
-        self.groups = groups.AsyncGroupsResourceWithRawResponse(client.groups)
+        self._client = client
+
+    @cached_property
+    def attachments(self) -> attachments.AsyncAttachmentsResourceWithRawResponse:
+        from .resources.attachments import AsyncAttachmentsResourceWithRawResponse
+
+        return AsyncAttachmentsResourceWithRawResponse(self._client.attachments)
+
+    @cached_property
+    def auth(self) -> auth.AsyncAuthResourceWithRawResponse:
+        from .resources.auth import AsyncAuthResourceWithRawResponse
+
+        return AsyncAuthResourceWithRawResponse(self._client.auth)
+
+    @cached_property
+    def collections(self) -> collections.AsyncCollectionsResourceWithRawResponse:
+        from .resources.collections import AsyncCollectionsResourceWithRawResponse
+
+        return AsyncCollectionsResourceWithRawResponse(self._client.collections)
+
+    @cached_property
+    def comments(self) -> comments.AsyncCommentsResourceWithRawResponse:
+        from .resources.comments import AsyncCommentsResourceWithRawResponse
+
+        return AsyncCommentsResourceWithRawResponse(self._client.comments)
+
+    @cached_property
+    def documents(self) -> documents.AsyncDocumentsResourceWithRawResponse:
+        from .resources.documents import AsyncDocumentsResourceWithRawResponse
+
+        return AsyncDocumentsResourceWithRawResponse(self._client.documents)
+
+    @cached_property
+    def events(self) -> events.AsyncEventsResourceWithRawResponse:
+        from .resources.events import AsyncEventsResourceWithRawResponse
+
+        return AsyncEventsResourceWithRawResponse(self._client.events)
+
+    @cached_property
+    def file_operations(self) -> file_operations.AsyncFileOperationsResourceWithRawResponse:
+        from .resources.file_operations import AsyncFileOperationsResourceWithRawResponse
+
+        return AsyncFileOperationsResourceWithRawResponse(self._client.file_operations)
+
+    @cached_property
+    def groups(self) -> groups.AsyncGroupsResourceWithRawResponse:
+        from .resources.groups import AsyncGroupsResourceWithRawResponse
+
+        return AsyncGroupsResourceWithRawResponse(self._client.groups)
 
 
 class OutlineWithStreamedResponse:
+    _client: Outline
+
     def __init__(self, client: Outline) -> None:
-        self.attachments = attachments.AttachmentsResourceWithStreamingResponse(client.attachments)
-        self.auth = auth.AuthResourceWithStreamingResponse(client.auth)
-        self.collections = collections.CollectionsResourceWithStreamingResponse(client.collections)
-        self.comments = comments.CommentsResourceWithStreamingResponse(client.comments)
-        self.documents = documents.DocumentsResourceWithStreamingResponse(client.documents)
-        self.events = events.EventsResourceWithStreamingResponse(client.events)
-        self.file_operations = file_operations.FileOperationsResourceWithStreamingResponse(client.file_operations)
-        self.groups = groups.GroupsResourceWithStreamingResponse(client.groups)
+        self._client = client
+
+    @cached_property
+    def attachments(self) -> attachments.AttachmentsResourceWithStreamingResponse:
+        from .resources.attachments import AttachmentsResourceWithStreamingResponse
+
+        return AttachmentsResourceWithStreamingResponse(self._client.attachments)
+
+    @cached_property
+    def auth(self) -> auth.AuthResourceWithStreamingResponse:
+        from .resources.auth import AuthResourceWithStreamingResponse
+
+        return AuthResourceWithStreamingResponse(self._client.auth)
+
+    @cached_property
+    def collections(self) -> collections.CollectionsResourceWithStreamingResponse:
+        from .resources.collections import CollectionsResourceWithStreamingResponse
+
+        return CollectionsResourceWithStreamingResponse(self._client.collections)
+
+    @cached_property
+    def comments(self) -> comments.CommentsResourceWithStreamingResponse:
+        from .resources.comments import CommentsResourceWithStreamingResponse
+
+        return CommentsResourceWithStreamingResponse(self._client.comments)
+
+    @cached_property
+    def documents(self) -> documents.DocumentsResourceWithStreamingResponse:
+        from .resources.documents import DocumentsResourceWithStreamingResponse
+
+        return DocumentsResourceWithStreamingResponse(self._client.documents)
+
+    @cached_property
+    def events(self) -> events.EventsResourceWithStreamingResponse:
+        from .resources.events import EventsResourceWithStreamingResponse
+
+        return EventsResourceWithStreamingResponse(self._client.events)
+
+    @cached_property
+    def file_operations(self) -> file_operations.FileOperationsResourceWithStreamingResponse:
+        from .resources.file_operations import FileOperationsResourceWithStreamingResponse
+
+        return FileOperationsResourceWithStreamingResponse(self._client.file_operations)
+
+    @cached_property
+    def groups(self) -> groups.GroupsResourceWithStreamingResponse:
+        from .resources.groups import GroupsResourceWithStreamingResponse
+
+        return GroupsResourceWithStreamingResponse(self._client.groups)
 
 
 class AsyncOutlineWithStreamedResponse:
+    _client: AsyncOutline
+
     def __init__(self, client: AsyncOutline) -> None:
-        self.attachments = attachments.AsyncAttachmentsResourceWithStreamingResponse(client.attachments)
-        self.auth = auth.AsyncAuthResourceWithStreamingResponse(client.auth)
-        self.collections = collections.AsyncCollectionsResourceWithStreamingResponse(client.collections)
-        self.comments = comments.AsyncCommentsResourceWithStreamingResponse(client.comments)
-        self.documents = documents.AsyncDocumentsResourceWithStreamingResponse(client.documents)
-        self.events = events.AsyncEventsResourceWithStreamingResponse(client.events)
-        self.file_operations = file_operations.AsyncFileOperationsResourceWithStreamingResponse(client.file_operations)
-        self.groups = groups.AsyncGroupsResourceWithStreamingResponse(client.groups)
+        self._client = client
+
+    @cached_property
+    def attachments(self) -> attachments.AsyncAttachmentsResourceWithStreamingResponse:
+        from .resources.attachments import AsyncAttachmentsResourceWithStreamingResponse
+
+        return AsyncAttachmentsResourceWithStreamingResponse(self._client.attachments)
+
+    @cached_property
+    def auth(self) -> auth.AsyncAuthResourceWithStreamingResponse:
+        from .resources.auth import AsyncAuthResourceWithStreamingResponse
+
+        return AsyncAuthResourceWithStreamingResponse(self._client.auth)
+
+    @cached_property
+    def collections(self) -> collections.AsyncCollectionsResourceWithStreamingResponse:
+        from .resources.collections import AsyncCollectionsResourceWithStreamingResponse
+
+        return AsyncCollectionsResourceWithStreamingResponse(self._client.collections)
+
+    @cached_property
+    def comments(self) -> comments.AsyncCommentsResourceWithStreamingResponse:
+        from .resources.comments import AsyncCommentsResourceWithStreamingResponse
+
+        return AsyncCommentsResourceWithStreamingResponse(self._client.comments)
+
+    @cached_property
+    def documents(self) -> documents.AsyncDocumentsResourceWithStreamingResponse:
+        from .resources.documents import AsyncDocumentsResourceWithStreamingResponse
+
+        return AsyncDocumentsResourceWithStreamingResponse(self._client.documents)
+
+    @cached_property
+    def events(self) -> events.AsyncEventsResourceWithStreamingResponse:
+        from .resources.events import AsyncEventsResourceWithStreamingResponse
+
+        return AsyncEventsResourceWithStreamingResponse(self._client.events)
+
+    @cached_property
+    def file_operations(self) -> file_operations.AsyncFileOperationsResourceWithStreamingResponse:
+        from .resources.file_operations import AsyncFileOperationsResourceWithStreamingResponse
+
+        return AsyncFileOperationsResourceWithStreamingResponse(self._client.file_operations)
+
+    @cached_property
+    def groups(self) -> groups.AsyncGroupsResourceWithStreamingResponse:
+        from .resources.groups import AsyncGroupsResourceWithStreamingResponse
+
+        return AsyncGroupsResourceWithStreamingResponse(self._client.groups)
 
 
 Client = Outline

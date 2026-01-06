@@ -49,6 +49,11 @@ class ArchivedBy(BaseModel):
 
 
 class Sort(BaseModel):
+    """The sort of documents in the collection.
+
+    Note that not all API responses respect this and it is left as a frontend concern to implement.
+    """
+
     direction: Optional[Literal["asc", "desc"]] = None
 
     field: Optional[str] = None
