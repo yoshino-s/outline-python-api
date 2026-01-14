@@ -2,9 +2,12 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing import Union, Iterable, Optional
+from typing_extensions import Required, Annotated, TypedDict
 
-__all__ = ["DocumentUpdateParams"]
+from .._utils import PropertyInfo
+
+__all__ = ["DocumentUpdateParams", "DataAttribute"]
 
 
 class DocumentUpdateParams(TypedDict, total=False):
@@ -16,6 +19,12 @@ class DocumentUpdateParams(TypedDict, total=False):
     If true the text field will be appended to the end of the existing document,
     rather than the default behavior of replacing it. This is potentially useful for
     things like logging into a document.
+    """
+
+    data_attributes: Annotated[Optional[Iterable[DataAttribute]], PropertyInfo(alias="dataAttributes")]
+    """Data attributes to be updated.
+
+    Attributes not included will be removed from the document.
     """
 
     done: bool
@@ -35,3 +44,14 @@ class DocumentUpdateParams(TypedDict, total=False):
 
     title: str
     """The title of the document."""
+
+
+class DataAttribute(TypedDict, total=False):
+    data_attribute_id: Required[Annotated[str, PropertyInfo(alias="dataAttributeId")]]
+    """Unique identifier for the data attribute."""
+
+    value: Required[Union[str, bool, float]]
+    """The value of the data attribute.
+
+    Can be a string, boolean, or number depending on the data attribute type.
+    """

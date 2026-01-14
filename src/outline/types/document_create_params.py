@@ -2,17 +2,21 @@
 
 from __future__ import annotations
 
+from typing import Union, Iterable
 from typing_extensions import Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
 
-__all__ = ["DocumentCreateParams"]
+__all__ = ["DocumentCreateParams", "DataAttribute"]
 
 
 class DocumentCreateParams(TypedDict, total=False):
     collection_id: Required[Annotated[str, PropertyInfo(alias="collectionId")]]
 
     title: Required[str]
+
+    data_attributes: Annotated[Iterable[DataAttribute], PropertyInfo(alias="dataAttributes")]
+    """Data attributes to be included on the document."""
 
     parent_document_id: Annotated[str, PropertyInfo(alias="parentDocumentId")]
 
@@ -29,3 +33,14 @@ class DocumentCreateParams(TypedDict, total=False):
 
     text: str
     """The body of the document in markdown"""
+
+
+class DataAttribute(TypedDict, total=False):
+    data_attribute_id: Required[Annotated[str, PropertyInfo(alias="dataAttributeId")]]
+    """Unique identifier for the data attribute."""
+
+    value: Required[Union[str, bool, float]]
+    """The value of the data attribute.
+
+    Can be a string, boolean, or number depending on the data attribute type.
+    """
