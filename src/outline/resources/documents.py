@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Iterable, Optional
 from typing_extensions import Literal
 
 import httpx
@@ -78,6 +79,7 @@ class DocumentsResource(SyncAPIResource):
         *,
         collection_id: str,
         title: str,
+        data_attributes: Iterable[document_create_params.DataAttribute] | Omit = omit,
         parent_document_id: str | Omit = omit,
         publish: bool | Omit = omit,
         template: bool | Omit = omit,
@@ -97,6 +99,8 @@ class DocumentsResource(SyncAPIResource):
         document, you should pass parentDocumentId to set the parent document.
 
         Args:
+          data_attributes: Data attributes to be included on the document.
+
           publish: Whether this document should be immediately published and made visible to other
               team members.
 
@@ -118,6 +122,7 @@ class DocumentsResource(SyncAPIResource):
                 {
                     "collection_id": collection_id,
                     "title": title,
+                    "data_attributes": data_attributes,
                     "parent_document_id": parent_document_id,
                     "publish": publish,
                     "template": template,
@@ -137,6 +142,7 @@ class DocumentsResource(SyncAPIResource):
         *,
         id: str,
         append: bool | Omit = omit,
+        data_attributes: Optional[Iterable[document_update_params.DataAttribute]] | Omit = omit,
         done: bool | Omit = omit,
         publish: bool | Omit = omit,
         text: str | Omit = omit,
@@ -157,6 +163,9 @@ class DocumentsResource(SyncAPIResource):
           append: If true the text field will be appended to the end of the existing document,
               rather than the default behavior of replacing it. This is potentially useful for
               things like logging into a document.
+
+          data_attributes: Data attributes to be updated. Attributes not included will be removed from the
+              document.
 
           done: Whether the editing session has finished, this will trigger any notifications.
               This property will soon be deprecated.
@@ -182,6 +191,7 @@ class DocumentsResource(SyncAPIResource):
                 {
                     "id": id,
                     "append": append,
+                    "data_attributes": data_attributes,
                     "done": done,
                     "publish": publish,
                     "text": text,
@@ -814,6 +824,7 @@ class AsyncDocumentsResource(AsyncAPIResource):
         *,
         collection_id: str,
         title: str,
+        data_attributes: Iterable[document_create_params.DataAttribute] | Omit = omit,
         parent_document_id: str | Omit = omit,
         publish: bool | Omit = omit,
         template: bool | Omit = omit,
@@ -833,6 +844,8 @@ class AsyncDocumentsResource(AsyncAPIResource):
         document, you should pass parentDocumentId to set the parent document.
 
         Args:
+          data_attributes: Data attributes to be included on the document.
+
           publish: Whether this document should be immediately published and made visible to other
               team members.
 
@@ -854,6 +867,7 @@ class AsyncDocumentsResource(AsyncAPIResource):
                 {
                     "collection_id": collection_id,
                     "title": title,
+                    "data_attributes": data_attributes,
                     "parent_document_id": parent_document_id,
                     "publish": publish,
                     "template": template,
@@ -873,6 +887,7 @@ class AsyncDocumentsResource(AsyncAPIResource):
         *,
         id: str,
         append: bool | Omit = omit,
+        data_attributes: Optional[Iterable[document_update_params.DataAttribute]] | Omit = omit,
         done: bool | Omit = omit,
         publish: bool | Omit = omit,
         text: str | Omit = omit,
@@ -893,6 +908,9 @@ class AsyncDocumentsResource(AsyncAPIResource):
           append: If true the text field will be appended to the end of the existing document,
               rather than the default behavior of replacing it. This is potentially useful for
               things like logging into a document.
+
+          data_attributes: Data attributes to be updated. Attributes not included will be removed from the
+              document.
 
           done: Whether the editing session has finished, this will trigger any notifications.
               This property will soon be deprecated.
@@ -918,6 +936,7 @@ class AsyncDocumentsResource(AsyncAPIResource):
                 {
                     "id": id,
                     "append": append,
+                    "data_attributes": data_attributes,
                     "done": done,
                     "publish": publish,
                     "text": text,

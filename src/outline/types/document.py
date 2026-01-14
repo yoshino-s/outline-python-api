@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -8,7 +8,7 @@ from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-__all__ = ["Document", "Collaborator", "CreatedBy", "UpdatedBy"]
+__all__ = ["Document", "Collaborator", "CreatedBy", "DataAttribute", "UpdatedBy"]
 
 
 class Collaborator(BaseModel):
@@ -85,6 +85,17 @@ class CreatedBy(BaseModel):
     role: Optional[Literal["admin", "member", "viewer", "guest"]] = None
 
 
+class DataAttribute(BaseModel):
+    data_attribute_id: Optional[str] = FieldInfo(alias="dataAttributeId", default=None)
+    """Unique identifier for the associated data attribute."""
+
+    updated_at: Optional[datetime] = FieldInfo(alias="updatedAt", default=None)
+    """The date and time that this object attribute was last changed"""
+
+    value: Union[str, bool, float, None] = None
+    """The value of the data attribute for this document."""
+
+
 class UpdatedBy(BaseModel):
     id: Optional[str] = None
     """Unique identifier for the object."""
@@ -138,6 +149,8 @@ class Document(BaseModel):
     """The date and time that this object was created"""
 
     created_by: Optional[CreatedBy] = FieldInfo(alias="createdBy", default=None)
+
+    data_attributes: Optional[List[DataAttribute]] = FieldInfo(alias="dataAttributes", default=None)
 
     deleted_at: Optional[datetime] = FieldInfo(alias="deletedAt", default=None)
     """The date and time that this object was deleted"""

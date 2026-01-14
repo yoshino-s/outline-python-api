@@ -46,6 +46,12 @@ class TestDocuments:
         document = client.documents.create(
             collection_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             title="Welcome to Acme Inc",
+            data_attributes=[
+                {
+                    "data_attribute_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "value": "In Progress",
+                }
+            ],
             parent_document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             publish=True,
             template=True,
@@ -92,6 +98,12 @@ class TestDocuments:
         document = client.documents.update(
             id="hDYep1TPAM",
             append=True,
+            data_attributes=[
+                {
+                    "data_attribute_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "value": "In Progress",
+                }
+            ],
             done=True,
             publish=True,
             text="text",
@@ -610,6 +622,12 @@ class TestAsyncDocuments:
         document = await async_client.documents.create(
             collection_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             title="Welcome to Acme Inc",
+            data_attributes=[
+                {
+                    "data_attribute_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "value": "In Progress",
+                }
+            ],
             parent_document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             publish=True,
             template=True,
@@ -656,6 +674,12 @@ class TestAsyncDocuments:
         document = await async_client.documents.update(
             id="hDYep1TPAM",
             append=True,
+            data_attributes=[
+                {
+                    "data_attribute_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "value": "In Progress",
+                }
+            ],
             done=True,
             publish=True,
             text="text",
