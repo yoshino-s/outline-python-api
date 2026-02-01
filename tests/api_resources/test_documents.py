@@ -97,14 +97,13 @@ class TestDocuments:
     def test_method_update_with_all_params(self, client: Outline) -> None:
         document = client.documents.update(
             id="hDYep1TPAM",
-            append=True,
             data_attributes=[
                 {
                     "data_attribute_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                     "value": "In Progress",
                 }
             ],
-            done=True,
+            edit_mode={},
             publish=True,
             text="text",
             title="title",
@@ -673,14 +672,13 @@ class TestAsyncDocuments:
     async def test_method_update_with_all_params(self, async_client: AsyncOutline) -> None:
         document = await async_client.documents.update(
             id="hDYep1TPAM",
-            append=True,
             data_attributes=[
                 {
                     "data_attribute_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                     "value": "In Progress",
                 }
             ],
-            done=True,
+            edit_mode={},
             publish=True,
             text="text",
             title="title",

@@ -141,9 +141,8 @@ class DocumentsResource(SyncAPIResource):
         self,
         *,
         id: str,
-        append: bool | Omit = omit,
         data_attributes: Optional[Iterable[document_update_params.DataAttribute]] | Omit = omit,
-        done: bool | Omit = omit,
+        edit_mode: object | Omit = omit,
         publish: bool | Omit = omit,
         text: str | Omit = omit,
         title: str | Omit = omit,
@@ -160,15 +159,12 @@ class DocumentsResource(SyncAPIResource):
         Args:
           id: Unique identifier for the document. Either the UUID or the urlId is acceptable.
 
-          append: If true the text field will be appended to the end of the existing document,
-              rather than the default behavior of replacing it. This is potentially useful for
-              things like logging into a document.
-
           data_attributes: Data attributes to be updated. Attributes not included will be removed from the
               document.
 
-          done: Whether the editing session has finished, this will trigger any notifications.
-              This property will soon be deprecated.
+          edit_mode: The editing mode of the request - append will add content to the end of the
+              document, prepend will add content to the start of the document, and replace
+              will overwrite the existing content.
 
           publish: Whether this document should be published and made visible to other team
               members, if a draft
@@ -190,9 +186,8 @@ class DocumentsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "id": id,
-                    "append": append,
                     "data_attributes": data_attributes,
-                    "done": done,
+                    "edit_mode": edit_mode,
                     "publish": publish,
                     "text": text,
                     "title": title,
@@ -886,9 +881,8 @@ class AsyncDocumentsResource(AsyncAPIResource):
         self,
         *,
         id: str,
-        append: bool | Omit = omit,
         data_attributes: Optional[Iterable[document_update_params.DataAttribute]] | Omit = omit,
-        done: bool | Omit = omit,
+        edit_mode: object | Omit = omit,
         publish: bool | Omit = omit,
         text: str | Omit = omit,
         title: str | Omit = omit,
@@ -905,15 +899,12 @@ class AsyncDocumentsResource(AsyncAPIResource):
         Args:
           id: Unique identifier for the document. Either the UUID or the urlId is acceptable.
 
-          append: If true the text field will be appended to the end of the existing document,
-              rather than the default behavior of replacing it. This is potentially useful for
-              things like logging into a document.
-
           data_attributes: Data attributes to be updated. Attributes not included will be removed from the
               document.
 
-          done: Whether the editing session has finished, this will trigger any notifications.
-              This property will soon be deprecated.
+          edit_mode: The editing mode of the request - append will add content to the end of the
+              document, prepend will add content to the start of the document, and replace
+              will overwrite the existing content.
 
           publish: Whether this document should be published and made visible to other team
               members, if a draft
@@ -935,9 +926,8 @@ class AsyncDocumentsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "id": id,
-                    "append": append,
                     "data_attributes": data_attributes,
-                    "done": done,
+                    "edit_mode": edit_mode,
                     "publish": publish,
                     "text": text,
                     "title": title,

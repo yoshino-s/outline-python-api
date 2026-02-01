@@ -14,23 +14,17 @@ class DocumentUpdateParams(TypedDict, total=False):
     id: Required[str]
     """Unique identifier for the document. Either the UUID or the urlId is acceptable."""
 
-    append: bool
-    """
-    If true the text field will be appended to the end of the existing document,
-    rather than the default behavior of replacing it. This is potentially useful for
-    things like logging into a document.
-    """
-
     data_attributes: Annotated[Optional[Iterable[DataAttribute]], PropertyInfo(alias="dataAttributes")]
     """Data attributes to be updated.
 
     Attributes not included will be removed from the document.
     """
 
-    done: bool
-    """Whether the editing session has finished, this will trigger any notifications.
-
-    This property will soon be deprecated.
+    edit_mode: Annotated[object, PropertyInfo(alias="editMode")]
+    """
+    The editing mode of the request - append will add content to the end of the
+    document, prepend will add content to the start of the document, and replace
+    will overwrite the existing content.
     """
 
     publish: bool
