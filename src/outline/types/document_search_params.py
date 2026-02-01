@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import List
 from typing_extensions import Literal, Annotated, TypedDict
 
 from .._utils import PropertyInfo
@@ -19,6 +20,9 @@ class DocumentSearchParams(TypedDict, total=False):
     filtered out
     """
 
+    direction: Literal["ASC", "DESC"]
+    """Specifies the sort order with respect to sort field"""
+
     document_id: Annotated[str, PropertyInfo(alias="documentId")]
     """A document to search within"""
 
@@ -28,8 +32,20 @@ class DocumentSearchParams(TypedDict, total=False):
 
     query: str
 
-    status_filter: Annotated[Literal["draft", "archived", "published"], PropertyInfo(alias="statusFilter")]
-    """Any documents that are not in the specified status will be filtered out"""
+    share_id: Annotated[str, PropertyInfo(alias="shareId")]
+    """Filter results to the collection or document referenced by the shareId"""
+
+    snippet_max_words: Annotated[float, PropertyInfo(alias="snippetMaxWords")]
+    """Maximum number of words to show in search result snippets"""
+
+    snippet_min_words: Annotated[float, PropertyInfo(alias="snippetMinWords")]
+    """Minimum number of words to show in search result snippets"""
+
+    sort: Literal["relevance", "createdAt", "updatedAt", "title"]
+    """Specifies the attributes by which search results will be sorted"""
+
+    status_filter: Annotated[List[Literal["draft", "archived", "published"]], PropertyInfo(alias="statusFilter")]
+    """Document statuses to include in results"""
 
     user_id: Annotated[str, PropertyInfo(alias="userId")]
     """

@@ -74,7 +74,8 @@ class FileOperationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FileOperationListResponse:
         """
-        List all file operations
+        List all file operations for the current workspace, filtered by type (import or
+        export).
 
         Args:
           type: The type of fileOperation
@@ -116,8 +117,10 @@ class FileOperationsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FileOperationDeleteResponse:
-        """
-        Delete a file operation
+        """Delete a file operation and its associated files.
+
+        This is useful for cleaning up
+        completed or failed import/export operations.
 
         Args:
           id: Unique identifier for the file operation.
@@ -151,7 +154,8 @@ class FileOperationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FileOperationInfoResponse:
         """
-        Retrieve a file operation
+        Retrieve the details and current status of a file operation by its unique
+        identifier. File operations represent long-running import or export tasks.
 
         Args:
           id: Unique identifier for the file operation.
@@ -247,7 +251,8 @@ class AsyncFileOperationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FileOperationListResponse:
         """
-        List all file operations
+        List all file operations for the current workspace, filtered by type (import or
+        export).
 
         Args:
           type: The type of fileOperation
@@ -289,8 +294,10 @@ class AsyncFileOperationsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FileOperationDeleteResponse:
-        """
-        Delete a file operation
+        """Delete a file operation and its associated files.
+
+        This is useful for cleaning up
+        completed or failed import/export operations.
 
         Args:
           id: Unique identifier for the file operation.
@@ -324,7 +331,8 @@ class AsyncFileOperationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FileOperationInfoResponse:
         """
-        Retrieve a file operation
+        Retrieve the details and current status of a file operation by its unique
+        identifier. File operations represent long-running import or export tasks.
 
         Args:
           id: Unique identifier for the file operation.

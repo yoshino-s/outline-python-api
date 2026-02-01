@@ -26,6 +26,7 @@ from outline.types import (
     DocumentUnpublishResponse,
     DocumentTemplatizeResponse,
 )
+from outline._utils import parse_datetime
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -35,37 +36,36 @@ class TestDocuments:
 
     @parametrize
     def test_method_create(self, client: Outline) -> None:
-        document = client.documents.create(
-            collection_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            title="Welcome to Acme Inc",
-        )
+        document = client.documents.create()
         assert_matches_type(DocumentCreateResponse, document, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Outline) -> None:
         document = client.documents.create(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             collection_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            title="Welcome to Acme Inc",
+            color="color",
+            created_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             data_attributes=[
                 {
                     "data_attribute_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                     "value": "In Progress",
                 }
             ],
+            full_width=True,
+            icon="icon",
             parent_document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             publish=True,
             template=True,
             template_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             text="text",
+            title="Welcome to Acme Inc",
         )
         assert_matches_type(DocumentCreateResponse, document, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Outline) -> None:
-        response = client.documents.with_raw_response.create(
-            collection_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            title="Welcome to Acme Inc",
-        )
+        response = client.documents.with_raw_response.create()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -74,10 +74,7 @@ class TestDocuments:
 
     @parametrize
     def test_streaming_response_create(self, client: Outline) -> None:
-        with client.documents.with_streaming_response.create(
-            collection_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            title="Welcome to Acme Inc",
-        ) as response:
+        with client.documents.with_streaming_response.create() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -97,14 +94,20 @@ class TestDocuments:
     def test_method_update_with_all_params(self, client: Outline) -> None:
         document = client.documents.update(
             id="hDYep1TPAM",
+            collection_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            color="color",
             data_attributes=[
                 {
                     "data_attribute_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                     "value": "In Progress",
                 }
             ],
-            edit_mode={},
+            edit_mode="append",
+            full_width=True,
+            icon="icon",
+            insights_enabled=True,
             publish=True,
+            template_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             text="text",
             title="title",
         )
@@ -149,6 +152,7 @@ class TestDocuments:
             offset=0,
             parent_document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             sort="updatedAt",
+            status_filter=["draft"],
             template=True,
             user_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -289,6 +293,16 @@ class TestDocuments:
         assert_matches_type(DocumentExportResponse, document, path=["response"])
 
     @parametrize
+    def test_method_export_with_all_params(self, client: Outline) -> None:
+        document = client.documents.export(
+            id="id",
+            include_child_documents=True,
+            paper_size="paperSize",
+            signed_urls=0,
+        )
+        assert_matches_type(DocumentExportResponse, document, path=["response"])
+
+    @parametrize
     def test_raw_response_export(self, client: Outline) -> None:
         response = client.documents.with_raw_response.export(
             id="id",
@@ -326,7 +340,6 @@ class TestDocuments:
             collection_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             parent_document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             publish=True,
-            template=True,
         )
         assert_matches_type(DocumentImportResponse, document, path=["response"])
 
@@ -399,6 +412,7 @@ class TestDocuments:
         document = client.documents.move(
             id="hDYep1TPAM",
             collection_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            index=0,
             parent_document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(DocumentMoveResponse, document, path=["response"])
@@ -438,6 +452,7 @@ class TestDocuments:
     def test_method_restore_with_all_params(self, client: Outline) -> None:
         document = client.documents.restore(
             id="hDYep1TPAM",
+            collection_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             revision_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(DocumentRestoreResponse, document, path=["response"])
@@ -476,11 +491,16 @@ class TestDocuments:
         document = client.documents.search(
             collection_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             date_filter="month",
+            direction="ASC",
             document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             limit=25,
             offset=0,
             query="hiring",
-            status_filter="published",
+            share_id="shareId",
+            snippet_max_words=0,
+            snippet_min_words=0,
+            sort="relevance",
+            status_filter=["draft"],
             user_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(DocumentSearchResponse, document, path=["response"])
@@ -509,6 +529,16 @@ class TestDocuments:
     def test_method_templatize(self, client: Outline) -> None:
         document = client.documents.templatize(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            publish=True,
+        )
+        assert_matches_type(DocumentTemplatizeResponse, document, path=["response"])
+
+    @parametrize
+    def test_method_templatize_with_all_params(self, client: Outline) -> None:
+        document = client.documents.templatize(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            publish=True,
+            collection_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(DocumentTemplatizeResponse, document, path=["response"])
 
@@ -516,6 +546,7 @@ class TestDocuments:
     def test_raw_response_templatize(self, client: Outline) -> None:
         response = client.documents.with_raw_response.templatize(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            publish=True,
         )
 
         assert response.is_closed is True
@@ -527,6 +558,7 @@ class TestDocuments:
     def test_streaming_response_templatize(self, client: Outline) -> None:
         with client.documents.with_streaming_response.templatize(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            publish=True,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -540,6 +572,14 @@ class TestDocuments:
     def test_method_unpublish(self, client: Outline) -> None:
         document = client.documents.unpublish(
             id="hDYep1TPAM",
+        )
+        assert_matches_type(DocumentUnpublishResponse, document, path=["response"])
+
+    @parametrize
+    def test_method_unpublish_with_all_params(self, client: Outline) -> None:
+        document = client.documents.unpublish(
+            id="hDYep1TPAM",
+            detach=True,
         )
         assert_matches_type(DocumentUnpublishResponse, document, path=["response"])
 
@@ -610,37 +650,36 @@ class TestAsyncDocuments:
 
     @parametrize
     async def test_method_create(self, async_client: AsyncOutline) -> None:
-        document = await async_client.documents.create(
-            collection_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            title="Welcome to Acme Inc",
-        )
+        document = await async_client.documents.create()
         assert_matches_type(DocumentCreateResponse, document, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncOutline) -> None:
         document = await async_client.documents.create(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             collection_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            title="Welcome to Acme Inc",
+            color="color",
+            created_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             data_attributes=[
                 {
                     "data_attribute_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                     "value": "In Progress",
                 }
             ],
+            full_width=True,
+            icon="icon",
             parent_document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             publish=True,
             template=True,
             template_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             text="text",
+            title="Welcome to Acme Inc",
         )
         assert_matches_type(DocumentCreateResponse, document, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncOutline) -> None:
-        response = await async_client.documents.with_raw_response.create(
-            collection_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            title="Welcome to Acme Inc",
-        )
+        response = await async_client.documents.with_raw_response.create()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -649,10 +688,7 @@ class TestAsyncDocuments:
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncOutline) -> None:
-        async with async_client.documents.with_streaming_response.create(
-            collection_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            title="Welcome to Acme Inc",
-        ) as response:
+        async with async_client.documents.with_streaming_response.create() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -672,14 +708,20 @@ class TestAsyncDocuments:
     async def test_method_update_with_all_params(self, async_client: AsyncOutline) -> None:
         document = await async_client.documents.update(
             id="hDYep1TPAM",
+            collection_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            color="color",
             data_attributes=[
                 {
                     "data_attribute_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                     "value": "In Progress",
                 }
             ],
-            edit_mode={},
+            edit_mode="append",
+            full_width=True,
+            icon="icon",
+            insights_enabled=True,
             publish=True,
+            template_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             text="text",
             title="title",
         )
@@ -724,6 +766,7 @@ class TestAsyncDocuments:
             offset=0,
             parent_document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             sort="updatedAt",
+            status_filter=["draft"],
             template=True,
             user_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -864,6 +907,16 @@ class TestAsyncDocuments:
         assert_matches_type(DocumentExportResponse, document, path=["response"])
 
     @parametrize
+    async def test_method_export_with_all_params(self, async_client: AsyncOutline) -> None:
+        document = await async_client.documents.export(
+            id="id",
+            include_child_documents=True,
+            paper_size="paperSize",
+            signed_urls=0,
+        )
+        assert_matches_type(DocumentExportResponse, document, path=["response"])
+
+    @parametrize
     async def test_raw_response_export(self, async_client: AsyncOutline) -> None:
         response = await async_client.documents.with_raw_response.export(
             id="id",
@@ -901,7 +954,6 @@ class TestAsyncDocuments:
             collection_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             parent_document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             publish=True,
-            template=True,
         )
         assert_matches_type(DocumentImportResponse, document, path=["response"])
 
@@ -974,6 +1026,7 @@ class TestAsyncDocuments:
         document = await async_client.documents.move(
             id="hDYep1TPAM",
             collection_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            index=0,
             parent_document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(DocumentMoveResponse, document, path=["response"])
@@ -1013,6 +1066,7 @@ class TestAsyncDocuments:
     async def test_method_restore_with_all_params(self, async_client: AsyncOutline) -> None:
         document = await async_client.documents.restore(
             id="hDYep1TPAM",
+            collection_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             revision_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(DocumentRestoreResponse, document, path=["response"])
@@ -1051,11 +1105,16 @@ class TestAsyncDocuments:
         document = await async_client.documents.search(
             collection_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             date_filter="month",
+            direction="ASC",
             document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             limit=25,
             offset=0,
             query="hiring",
-            status_filter="published",
+            share_id="shareId",
+            snippet_max_words=0,
+            snippet_min_words=0,
+            sort="relevance",
+            status_filter=["draft"],
             user_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(DocumentSearchResponse, document, path=["response"])
@@ -1084,6 +1143,16 @@ class TestAsyncDocuments:
     async def test_method_templatize(self, async_client: AsyncOutline) -> None:
         document = await async_client.documents.templatize(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            publish=True,
+        )
+        assert_matches_type(DocumentTemplatizeResponse, document, path=["response"])
+
+    @parametrize
+    async def test_method_templatize_with_all_params(self, async_client: AsyncOutline) -> None:
+        document = await async_client.documents.templatize(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            publish=True,
+            collection_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(DocumentTemplatizeResponse, document, path=["response"])
 
@@ -1091,6 +1160,7 @@ class TestAsyncDocuments:
     async def test_raw_response_templatize(self, async_client: AsyncOutline) -> None:
         response = await async_client.documents.with_raw_response.templatize(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            publish=True,
         )
 
         assert response.is_closed is True
@@ -1102,6 +1172,7 @@ class TestAsyncDocuments:
     async def test_streaming_response_templatize(self, async_client: AsyncOutline) -> None:
         async with async_client.documents.with_streaming_response.templatize(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            publish=True,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1115,6 +1186,14 @@ class TestAsyncDocuments:
     async def test_method_unpublish(self, async_client: AsyncOutline) -> None:
         document = await async_client.documents.unpublish(
             id="hDYep1TPAM",
+        )
+        assert_matches_type(DocumentUnpublishResponse, document, path=["response"])
+
+    @parametrize
+    async def test_method_unpublish_with_all_params(self, async_client: AsyncOutline) -> None:
+        document = await async_client.documents.unpublish(
+            id="hDYep1TPAM",
+            detach=True,
         )
         assert_matches_type(DocumentUnpublishResponse, document, path=["response"])
 

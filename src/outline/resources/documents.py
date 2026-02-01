@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Iterable, Optional
+from typing import List, Union, Iterable, Optional
+from datetime import datetime
 from typing_extensions import Literal
 
 import httpx
@@ -77,14 +78,19 @@ class DocumentsResource(SyncAPIResource):
     def create(
         self,
         *,
-        collection_id: str,
-        title: str,
+        id: str | Omit = omit,
+        collection_id: Optional[str] | Omit = omit,
+        color: Optional[str] | Omit = omit,
+        created_at: Union[str, datetime] | Omit = omit,
         data_attributes: Iterable[document_create_params.DataAttribute] | Omit = omit,
-        parent_document_id: str | Omit = omit,
+        full_width: bool | Omit = omit,
+        icon: str | Omit = omit,
+        parent_document_id: Optional[str] | Omit = omit,
         publish: bool | Omit = omit,
         template: bool | Omit = omit,
         template_id: str | Omit = omit,
         text: str | Omit = omit,
+        title: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -99,10 +105,26 @@ class DocumentsResource(SyncAPIResource):
         document, you should pass parentDocumentId to set the parent document.
 
         Args:
+          id: Optional identifier for the document
+
+          collection_id: Identifier for the collection. Required to publish unless parentDocumentId is
+              provided
+
+          color: Color for the document icon (hex format)
+
+          created_at: Optionally set the created date in the past
+
           data_attributes: Data attributes to be included on the document.
 
+          full_width: Whether the document should be displayed in full width
+
+          icon: Icon displayed alongside the document title
+
+          parent_document_id: Identifier for the parent document. Required to publish unless collectionId is
+              provided
+
           publish: Whether this document should be immediately published and made visible to other
-              team members.
+              workspace members.
 
           template: Whether this document should be considered to be a template.
 
@@ -120,14 +142,19 @@ class DocumentsResource(SyncAPIResource):
             "/documents.create",
             body=maybe_transform(
                 {
+                    "id": id,
                     "collection_id": collection_id,
-                    "title": title,
+                    "color": color,
+                    "created_at": created_at,
                     "data_attributes": data_attributes,
+                    "full_width": full_width,
+                    "icon": icon,
                     "parent_document_id": parent_document_id,
                     "publish": publish,
                     "template": template,
                     "template_id": template_id,
                     "text": text,
+                    "title": title,
                 },
                 document_create_params.DocumentCreateParams,
             ),
@@ -141,9 +168,15 @@ class DocumentsResource(SyncAPIResource):
         self,
         *,
         id: str,
+        collection_id: Optional[str] | Omit = omit,
+        color: Optional[str] | Omit = omit,
         data_attributes: Optional[Iterable[document_update_params.DataAttribute]] | Omit = omit,
-        edit_mode: object | Omit = omit,
+        edit_mode: Literal["append", "prepend", "replace"] | Omit = omit,
+        full_width: bool | Omit = omit,
+        icon: Optional[str] | Omit = omit,
+        insights_enabled: bool | Omit = omit,
         publish: bool | Omit = omit,
+        template_id: Optional[str] | Omit = omit,
         text: str | Omit = omit,
         title: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -159,15 +192,25 @@ class DocumentsResource(SyncAPIResource):
         Args:
           id: Unique identifier for the document. Either the UUID or the urlId is acceptable.
 
+          collection_id: Identifier for the collection to move the document to
+
+          color: Color for the document icon (hex format)
+
           data_attributes: Data attributes to be updated. Attributes not included will be removed from the
               document.
 
-          edit_mode: The editing mode of the request - append will add content to the end of the
-              document, prepend will add content to the start of the document, and replace
-              will overwrite the existing content.
+          edit_mode: The editing mode for text updates to a document.
 
-          publish: Whether this document should be published and made visible to other team
+          full_width: Whether the document should be displayed in full width
+
+          icon: Icon displayed alongside the document title
+
+          insights_enabled: Whether insights should be visible on the document
+
+          publish: Whether this document should be published and made visible to other workspace
               members, if a draft
+
+          template_id: Identifier for the template this document is based on
 
           text: The body of the document in markdown.
 
@@ -186,9 +229,15 @@ class DocumentsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "id": id,
+                    "collection_id": collection_id,
+                    "color": color,
                     "data_attributes": data_attributes,
                     "edit_mode": edit_mode,
+                    "full_width": full_width,
+                    "icon": icon,
+                    "insights_enabled": insights_enabled,
                     "publish": publish,
+                    "template_id": template_id,
                     "text": text,
                     "title": title,
                 },
@@ -210,6 +259,7 @@ class DocumentsResource(SyncAPIResource):
         offset: float | Omit = omit,
         parent_document_id: str | Omit = omit,
         sort: str | Omit = omit,
+        status_filter: List[Literal["draft", "archived", "published"]] | Omit = omit,
         template: bool | Omit = omit,
         user_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -225,6 +275,8 @@ class DocumentsResource(SyncAPIResource):
 
         Args:
           collection_id: Optionally filter to a specific collection
+
+          status_filter: Document statuses to include in results
 
           template: Optionally filter to only templates
 
@@ -247,6 +299,7 @@ class DocumentsResource(SyncAPIResource):
                     "offset": offset,
                     "parent_document_id": parent_document_id,
                     "sort": sort,
+                    "status_filter": status_filter,
                     "template": template,
                     "user_id": user_id,
                 },
@@ -395,6 +448,9 @@ class DocumentsResource(SyncAPIResource):
         self,
         *,
         id: str,
+        include_child_documents: bool | Omit = omit,
+        paper_size: str | Omit = omit,
+        signed_urls: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -402,12 +458,21 @@ class DocumentsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentExportResponse:
-        """Export a document as markdown
+        """Export a document in Markdown, HTML, or PDF format.
+
+        The response format is
+        determined by the Accept header. Optionally include child documents in the
+        export as a zip file.
 
         Args:
-          id: Unique identifier for the document.
+          id: Unique identifier for the document. Either the UUID or the urlId is acceptable.
 
-        Either the UUID or the urlId is acceptable.
+          include_child_documents: Whether to include child documents in the export. Using this option will always
+              return a zip file.
+
+          paper_size: Paper size for PDF export (e.g., "A4", "Letter")
+
+          signed_urls: How long signed URLs should remain valid for attachment links (in seconds)
 
           extra_headers: Send extra headers
 
@@ -419,7 +484,15 @@ class DocumentsResource(SyncAPIResource):
         """
         return self._post(
             "/documents.export",
-            body=maybe_transform({"id": id}, document_export_params.DocumentExportParams),
+            body=maybe_transform(
+                {
+                    "id": id,
+                    "include_child_documents": include_child_documents,
+                    "paper_size": paper_size,
+                    "signed_urls": signed_urls,
+                },
+                document_export_params.DocumentExportParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -430,10 +503,9 @@ class DocumentsResource(SyncAPIResource):
         self,
         *,
         file: object,
-        collection_id: str | Omit = omit,
-        parent_document_id: str | Omit = omit,
+        collection_id: Optional[str] | Omit = omit,
+        parent_document_id: Optional[str] | Omit = omit,
         publish: bool | Omit = omit,
-        template: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -449,6 +521,14 @@ class DocumentsResource(SyncAPIResource):
 
         Args:
           file: Plain text, markdown, docx, csv, tsv, and html format are supported.
+
+          collection_id: Identifier for the collection to import into. One of collectionId or
+              parentDocumentId is required.
+
+          parent_document_id: Identifier for the parent document to import under. One of collectionId or
+              parentDocumentId is required.
+
+          publish: Whether to publish the imported document
 
           extra_headers: Send extra headers
 
@@ -470,7 +550,6 @@ class DocumentsResource(SyncAPIResource):
                     "collection_id": collection_id,
                     "parent_document_id": parent_document_id,
                     "publish": publish,
-                    "template": template,
                 },
                 document_import_params.DocumentImportParams,
             ),
@@ -531,6 +610,7 @@ class DocumentsResource(SyncAPIResource):
         *,
         id: str,
         collection_id: str | Omit = omit,
+        index: float | Omit = omit,
         parent_document_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -547,6 +627,8 @@ class DocumentsResource(SyncAPIResource):
         Args:
           id: Unique identifier for the document. Either the UUID or the urlId is acceptable.
 
+          index: The position index in the collection structure
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -561,6 +643,7 @@ class DocumentsResource(SyncAPIResource):
                 {
                     "id": id,
                     "collection_id": collection_id,
+                    "index": index,
                     "parent_document_id": parent_document_id,
                 },
                 document_move_params.DocumentMoveParams,
@@ -575,6 +658,7 @@ class DocumentsResource(SyncAPIResource):
         self,
         *,
         id: str,
+        collection_id: str | Omit = omit,
         revision_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -591,6 +675,8 @@ class DocumentsResource(SyncAPIResource):
         Args:
           id: Unique identifier for the document. Either the UUID or the urlId is acceptable.
 
+          collection_id: Identifier for the collection to restore the document to.
+
           revision_id: Identifier for the revision to restore to.
 
           extra_headers: Send extra headers
@@ -606,6 +692,7 @@ class DocumentsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "id": id,
+                    "collection_id": collection_id,
                     "revision_id": revision_id,
                 },
                 document_restore_params.DocumentRestoreParams,
@@ -621,11 +708,16 @@ class DocumentsResource(SyncAPIResource):
         *,
         collection_id: str | Omit = omit,
         date_filter: Literal["day", "week", "month", "year"] | Omit = omit,
+        direction: Literal["ASC", "DESC"] | Omit = omit,
         document_id: str | Omit = omit,
         limit: float | Omit = omit,
         offset: float | Omit = omit,
         query: str | Omit = omit,
-        status_filter: Literal["draft", "archived", "published"] | Omit = omit,
+        share_id: str | Omit = omit,
+        snippet_max_words: float | Omit = omit,
+        snippet_min_words: float | Omit = omit,
+        sort: Literal["relevance", "createdAt", "updatedAt", "title"] | Omit = omit,
+        status_filter: List[Literal["draft", "archived", "published"]] | Omit = omit,
         user_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -634,10 +726,10 @@ class DocumentsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentSearchResponse:
-        """This methods allows you to search your teams documents with keywords.
+        """This methods allows you to search your workspace's documents with keywords.
 
-        Note that
-        search results will be restricted to those accessible by the current access
+        Note
+        that search results will be restricted to those accessible by the current access
         token.
 
         Args:
@@ -646,9 +738,19 @@ class DocumentsResource(SyncAPIResource):
           date_filter: Any documents that have not been updated within the specified period will be
               filtered out
 
+          direction: Specifies the sort order with respect to sort field
+
           document_id: A document to search within
 
-          status_filter: Any documents that are not in the specified status will be filtered out
+          share_id: Filter results to the collection or document referenced by the shareId
+
+          snippet_max_words: Maximum number of words to show in search result snippets
+
+          snippet_min_words: Minimum number of words to show in search result snippets
+
+          sort: Specifies the attributes by which search results will be sorted
+
+          status_filter: Document statuses to include in results
 
           user_id: Any documents that have not been edited by the user identifier will be filtered
               out
@@ -667,10 +769,15 @@ class DocumentsResource(SyncAPIResource):
                 {
                     "collection_id": collection_id,
                     "date_filter": date_filter,
+                    "direction": direction,
                     "document_id": document_id,
                     "limit": limit,
                     "offset": offset,
                     "query": query,
+                    "share_id": share_id,
+                    "snippet_max_words": snippet_max_words,
+                    "snippet_min_words": snippet_min_words,
+                    "sort": sort,
                     "status_filter": status_filter,
                     "user_id": user_id,
                 },
@@ -686,6 +793,8 @@ class DocumentsResource(SyncAPIResource):
         self,
         *,
         id: str,
+        publish: bool,
+        collection_id: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -698,6 +807,10 @@ class DocumentsResource(SyncAPIResource):
         basis
 
         Args:
+          publish: Whether the new template should be published
+
+          collection_id: Identifier for the collection where the template should be created
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -708,7 +821,14 @@ class DocumentsResource(SyncAPIResource):
         """
         return self._post(
             "/documents.templatize",
-            body=maybe_transform({"id": id}, document_templatize_params.DocumentTemplatizeParams),
+            body=maybe_transform(
+                {
+                    "id": id,
+                    "publish": publish,
+                    "collection_id": collection_id,
+                },
+                document_templatize_params.DocumentTemplatizeParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -719,6 +839,7 @@ class DocumentsResource(SyncAPIResource):
         self,
         *,
         id: str,
+        detach: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -733,6 +854,8 @@ class DocumentsResource(SyncAPIResource):
         Args:
           id: Unique identifier for the document. Either the UUID or the urlId is acceptable.
 
+          detach: Whether to detach the document from the collection
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -743,7 +866,13 @@ class DocumentsResource(SyncAPIResource):
         """
         return self._post(
             "/documents.unpublish",
-            body=maybe_transform({"id": id}, document_unpublish_params.DocumentUnpublishParams),
+            body=maybe_transform(
+                {
+                    "id": id,
+                    "detach": detach,
+                },
+                document_unpublish_params.DocumentUnpublishParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -817,14 +946,19 @@ class AsyncDocumentsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        collection_id: str,
-        title: str,
+        id: str | Omit = omit,
+        collection_id: Optional[str] | Omit = omit,
+        color: Optional[str] | Omit = omit,
+        created_at: Union[str, datetime] | Omit = omit,
         data_attributes: Iterable[document_create_params.DataAttribute] | Omit = omit,
-        parent_document_id: str | Omit = omit,
+        full_width: bool | Omit = omit,
+        icon: str | Omit = omit,
+        parent_document_id: Optional[str] | Omit = omit,
         publish: bool | Omit = omit,
         template: bool | Omit = omit,
         template_id: str | Omit = omit,
         text: str | Omit = omit,
+        title: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -839,10 +973,26 @@ class AsyncDocumentsResource(AsyncAPIResource):
         document, you should pass parentDocumentId to set the parent document.
 
         Args:
+          id: Optional identifier for the document
+
+          collection_id: Identifier for the collection. Required to publish unless parentDocumentId is
+              provided
+
+          color: Color for the document icon (hex format)
+
+          created_at: Optionally set the created date in the past
+
           data_attributes: Data attributes to be included on the document.
 
+          full_width: Whether the document should be displayed in full width
+
+          icon: Icon displayed alongside the document title
+
+          parent_document_id: Identifier for the parent document. Required to publish unless collectionId is
+              provided
+
           publish: Whether this document should be immediately published and made visible to other
-              team members.
+              workspace members.
 
           template: Whether this document should be considered to be a template.
 
@@ -860,14 +1010,19 @@ class AsyncDocumentsResource(AsyncAPIResource):
             "/documents.create",
             body=await async_maybe_transform(
                 {
+                    "id": id,
                     "collection_id": collection_id,
-                    "title": title,
+                    "color": color,
+                    "created_at": created_at,
                     "data_attributes": data_attributes,
+                    "full_width": full_width,
+                    "icon": icon,
                     "parent_document_id": parent_document_id,
                     "publish": publish,
                     "template": template,
                     "template_id": template_id,
                     "text": text,
+                    "title": title,
                 },
                 document_create_params.DocumentCreateParams,
             ),
@@ -881,9 +1036,15 @@ class AsyncDocumentsResource(AsyncAPIResource):
         self,
         *,
         id: str,
+        collection_id: Optional[str] | Omit = omit,
+        color: Optional[str] | Omit = omit,
         data_attributes: Optional[Iterable[document_update_params.DataAttribute]] | Omit = omit,
-        edit_mode: object | Omit = omit,
+        edit_mode: Literal["append", "prepend", "replace"] | Omit = omit,
+        full_width: bool | Omit = omit,
+        icon: Optional[str] | Omit = omit,
+        insights_enabled: bool | Omit = omit,
         publish: bool | Omit = omit,
+        template_id: Optional[str] | Omit = omit,
         text: str | Omit = omit,
         title: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -899,15 +1060,25 @@ class AsyncDocumentsResource(AsyncAPIResource):
         Args:
           id: Unique identifier for the document. Either the UUID or the urlId is acceptable.
 
+          collection_id: Identifier for the collection to move the document to
+
+          color: Color for the document icon (hex format)
+
           data_attributes: Data attributes to be updated. Attributes not included will be removed from the
               document.
 
-          edit_mode: The editing mode of the request - append will add content to the end of the
-              document, prepend will add content to the start of the document, and replace
-              will overwrite the existing content.
+          edit_mode: The editing mode for text updates to a document.
 
-          publish: Whether this document should be published and made visible to other team
+          full_width: Whether the document should be displayed in full width
+
+          icon: Icon displayed alongside the document title
+
+          insights_enabled: Whether insights should be visible on the document
+
+          publish: Whether this document should be published and made visible to other workspace
               members, if a draft
+
+          template_id: Identifier for the template this document is based on
 
           text: The body of the document in markdown.
 
@@ -926,9 +1097,15 @@ class AsyncDocumentsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "id": id,
+                    "collection_id": collection_id,
+                    "color": color,
                     "data_attributes": data_attributes,
                     "edit_mode": edit_mode,
+                    "full_width": full_width,
+                    "icon": icon,
+                    "insights_enabled": insights_enabled,
                     "publish": publish,
+                    "template_id": template_id,
                     "text": text,
                     "title": title,
                 },
@@ -950,6 +1127,7 @@ class AsyncDocumentsResource(AsyncAPIResource):
         offset: float | Omit = omit,
         parent_document_id: str | Omit = omit,
         sort: str | Omit = omit,
+        status_filter: List[Literal["draft", "archived", "published"]] | Omit = omit,
         template: bool | Omit = omit,
         user_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -965,6 +1143,8 @@ class AsyncDocumentsResource(AsyncAPIResource):
 
         Args:
           collection_id: Optionally filter to a specific collection
+
+          status_filter: Document statuses to include in results
 
           template: Optionally filter to only templates
 
@@ -987,6 +1167,7 @@ class AsyncDocumentsResource(AsyncAPIResource):
                     "offset": offset,
                     "parent_document_id": parent_document_id,
                     "sort": sort,
+                    "status_filter": status_filter,
                     "template": template,
                     "user_id": user_id,
                 },
@@ -1135,6 +1316,9 @@ class AsyncDocumentsResource(AsyncAPIResource):
         self,
         *,
         id: str,
+        include_child_documents: bool | Omit = omit,
+        paper_size: str | Omit = omit,
+        signed_urls: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1142,12 +1326,21 @@ class AsyncDocumentsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentExportResponse:
-        """Export a document as markdown
+        """Export a document in Markdown, HTML, or PDF format.
+
+        The response format is
+        determined by the Accept header. Optionally include child documents in the
+        export as a zip file.
 
         Args:
-          id: Unique identifier for the document.
+          id: Unique identifier for the document. Either the UUID or the urlId is acceptable.
 
-        Either the UUID or the urlId is acceptable.
+          include_child_documents: Whether to include child documents in the export. Using this option will always
+              return a zip file.
+
+          paper_size: Paper size for PDF export (e.g., "A4", "Letter")
+
+          signed_urls: How long signed URLs should remain valid for attachment links (in seconds)
 
           extra_headers: Send extra headers
 
@@ -1159,7 +1352,15 @@ class AsyncDocumentsResource(AsyncAPIResource):
         """
         return await self._post(
             "/documents.export",
-            body=await async_maybe_transform({"id": id}, document_export_params.DocumentExportParams),
+            body=await async_maybe_transform(
+                {
+                    "id": id,
+                    "include_child_documents": include_child_documents,
+                    "paper_size": paper_size,
+                    "signed_urls": signed_urls,
+                },
+                document_export_params.DocumentExportParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1170,10 +1371,9 @@ class AsyncDocumentsResource(AsyncAPIResource):
         self,
         *,
         file: object,
-        collection_id: str | Omit = omit,
-        parent_document_id: str | Omit = omit,
+        collection_id: Optional[str] | Omit = omit,
+        parent_document_id: Optional[str] | Omit = omit,
         publish: bool | Omit = omit,
-        template: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1189,6 +1389,14 @@ class AsyncDocumentsResource(AsyncAPIResource):
 
         Args:
           file: Plain text, markdown, docx, csv, tsv, and html format are supported.
+
+          collection_id: Identifier for the collection to import into. One of collectionId or
+              parentDocumentId is required.
+
+          parent_document_id: Identifier for the parent document to import under. One of collectionId or
+              parentDocumentId is required.
+
+          publish: Whether to publish the imported document
 
           extra_headers: Send extra headers
 
@@ -1210,7 +1418,6 @@ class AsyncDocumentsResource(AsyncAPIResource):
                     "collection_id": collection_id,
                     "parent_document_id": parent_document_id,
                     "publish": publish,
-                    "template": template,
                 },
                 document_import_params.DocumentImportParams,
             ),
@@ -1271,6 +1478,7 @@ class AsyncDocumentsResource(AsyncAPIResource):
         *,
         id: str,
         collection_id: str | Omit = omit,
+        index: float | Omit = omit,
         parent_document_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1287,6 +1495,8 @@ class AsyncDocumentsResource(AsyncAPIResource):
         Args:
           id: Unique identifier for the document. Either the UUID or the urlId is acceptable.
 
+          index: The position index in the collection structure
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1301,6 +1511,7 @@ class AsyncDocumentsResource(AsyncAPIResource):
                 {
                     "id": id,
                     "collection_id": collection_id,
+                    "index": index,
                     "parent_document_id": parent_document_id,
                 },
                 document_move_params.DocumentMoveParams,
@@ -1315,6 +1526,7 @@ class AsyncDocumentsResource(AsyncAPIResource):
         self,
         *,
         id: str,
+        collection_id: str | Omit = omit,
         revision_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1331,6 +1543,8 @@ class AsyncDocumentsResource(AsyncAPIResource):
         Args:
           id: Unique identifier for the document. Either the UUID or the urlId is acceptable.
 
+          collection_id: Identifier for the collection to restore the document to.
+
           revision_id: Identifier for the revision to restore to.
 
           extra_headers: Send extra headers
@@ -1346,6 +1560,7 @@ class AsyncDocumentsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "id": id,
+                    "collection_id": collection_id,
                     "revision_id": revision_id,
                 },
                 document_restore_params.DocumentRestoreParams,
@@ -1361,11 +1576,16 @@ class AsyncDocumentsResource(AsyncAPIResource):
         *,
         collection_id: str | Omit = omit,
         date_filter: Literal["day", "week", "month", "year"] | Omit = omit,
+        direction: Literal["ASC", "DESC"] | Omit = omit,
         document_id: str | Omit = omit,
         limit: float | Omit = omit,
         offset: float | Omit = omit,
         query: str | Omit = omit,
-        status_filter: Literal["draft", "archived", "published"] | Omit = omit,
+        share_id: str | Omit = omit,
+        snippet_max_words: float | Omit = omit,
+        snippet_min_words: float | Omit = omit,
+        sort: Literal["relevance", "createdAt", "updatedAt", "title"] | Omit = omit,
+        status_filter: List[Literal["draft", "archived", "published"]] | Omit = omit,
         user_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1374,10 +1594,10 @@ class AsyncDocumentsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentSearchResponse:
-        """This methods allows you to search your teams documents with keywords.
+        """This methods allows you to search your workspace's documents with keywords.
 
-        Note that
-        search results will be restricted to those accessible by the current access
+        Note
+        that search results will be restricted to those accessible by the current access
         token.
 
         Args:
@@ -1386,9 +1606,19 @@ class AsyncDocumentsResource(AsyncAPIResource):
           date_filter: Any documents that have not been updated within the specified period will be
               filtered out
 
+          direction: Specifies the sort order with respect to sort field
+
           document_id: A document to search within
 
-          status_filter: Any documents that are not in the specified status will be filtered out
+          share_id: Filter results to the collection or document referenced by the shareId
+
+          snippet_max_words: Maximum number of words to show in search result snippets
+
+          snippet_min_words: Minimum number of words to show in search result snippets
+
+          sort: Specifies the attributes by which search results will be sorted
+
+          status_filter: Document statuses to include in results
 
           user_id: Any documents that have not been edited by the user identifier will be filtered
               out
@@ -1407,10 +1637,15 @@ class AsyncDocumentsResource(AsyncAPIResource):
                 {
                     "collection_id": collection_id,
                     "date_filter": date_filter,
+                    "direction": direction,
                     "document_id": document_id,
                     "limit": limit,
                     "offset": offset,
                     "query": query,
+                    "share_id": share_id,
+                    "snippet_max_words": snippet_max_words,
+                    "snippet_min_words": snippet_min_words,
+                    "sort": sort,
                     "status_filter": status_filter,
                     "user_id": user_id,
                 },
@@ -1426,6 +1661,8 @@ class AsyncDocumentsResource(AsyncAPIResource):
         self,
         *,
         id: str,
+        publish: bool,
+        collection_id: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1438,6 +1675,10 @@ class AsyncDocumentsResource(AsyncAPIResource):
         basis
 
         Args:
+          publish: Whether the new template should be published
+
+          collection_id: Identifier for the collection where the template should be created
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1448,7 +1689,14 @@ class AsyncDocumentsResource(AsyncAPIResource):
         """
         return await self._post(
             "/documents.templatize",
-            body=await async_maybe_transform({"id": id}, document_templatize_params.DocumentTemplatizeParams),
+            body=await async_maybe_transform(
+                {
+                    "id": id,
+                    "publish": publish,
+                    "collection_id": collection_id,
+                },
+                document_templatize_params.DocumentTemplatizeParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1459,6 +1707,7 @@ class AsyncDocumentsResource(AsyncAPIResource):
         self,
         *,
         id: str,
+        detach: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1473,6 +1722,8 @@ class AsyncDocumentsResource(AsyncAPIResource):
         Args:
           id: Unique identifier for the document. Either the UUID or the urlId is acceptable.
 
+          detach: Whether to detach the document from the collection
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1483,7 +1734,13 @@ class AsyncDocumentsResource(AsyncAPIResource):
         """
         return await self._post(
             "/documents.unpublish",
-            body=await async_maybe_transform({"id": id}, document_unpublish_params.DocumentUnpublishParams),
+            body=await async_maybe_transform(
+                {
+                    "id": id,
+                    "detach": detach,
+                },
+                document_unpublish_params.DocumentUnpublishParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

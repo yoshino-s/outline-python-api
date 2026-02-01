@@ -15,4 +15,7 @@ class DocumentMoveParams(TypedDict, total=False):
 
     collection_id: Annotated[str, PropertyInfo(alias="collectionId")]
 
+    index: float
+    """The position index in the collection structure"""
+
     parent_document_id: Annotated[str, PropertyInfo(alias="parentDocumentId")]
