@@ -109,7 +109,8 @@ class CollectionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionCreateResponse:
         """
-        Create a collection
+        Create a new collection with the specified name, description, icon, color, and
+        permission settings. Collections are used to organize documents.
 
         Args:
           color: A hex color code for the collection icon
@@ -159,7 +160,7 @@ class CollectionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionRetrieveResponse:
         """
-        Retrieve a collection
+        Retrieve the details of a collection by its unique identifier.
 
         Args:
           id: Unique identifier for the collection.
@@ -199,7 +200,8 @@ class CollectionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionUpdateResponse:
         """
-        Update a collection
+        Update an existing collection's properties such as name, description, icon,
+        color, sharing settings, or permission level.
 
         Args:
           color: A hex color code for the collection icon
@@ -255,7 +257,7 @@ class CollectionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionListResponse:
         """
-        List all collections
+        List all collections that the authenticated user has access to.
 
         Args:
           query: If set, will filter the results by collection name.
@@ -417,7 +419,8 @@ class CollectionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionDocumentsResponse:
         """
-        Retrieve a collections document structure
+        Returns the document structure of a collection as a tree of navigation nodes,
+        representing the hierarchy of documents within the collection.
 
         Args:
           id: Unique identifier for the collection.
@@ -659,7 +662,8 @@ class AsyncCollectionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionCreateResponse:
         """
-        Create a collection
+        Create a new collection with the specified name, description, icon, color, and
+        permission settings. Collections are used to organize documents.
 
         Args:
           color: A hex color code for the collection icon
@@ -709,7 +713,7 @@ class AsyncCollectionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionRetrieveResponse:
         """
-        Retrieve a collection
+        Retrieve the details of a collection by its unique identifier.
 
         Args:
           id: Unique identifier for the collection.
@@ -749,7 +753,8 @@ class AsyncCollectionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionUpdateResponse:
         """
-        Update a collection
+        Update an existing collection's properties such as name, description, icon,
+        color, sharing settings, or permission level.
 
         Args:
           color: A hex color code for the collection icon
@@ -805,7 +810,7 @@ class AsyncCollectionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionListResponse:
         """
-        List all collections
+        List all collections that the authenticated user has access to.
 
         Args:
           query: If set, will filter the results by collection name.
@@ -967,7 +972,8 @@ class AsyncCollectionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionDocumentsResponse:
         """
-        Retrieve a collections document structure
+        Returns the document structure of a collection as a tree of navigation nodes,
+        representing the hierarchy of documents within the collection.
 
         Args:
           id: Unique identifier for the collection.

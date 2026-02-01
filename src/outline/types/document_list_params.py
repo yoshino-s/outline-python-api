@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import List
 from typing_extensions import Literal, Annotated, TypedDict
 
 from .._utils import PropertyInfo
@@ -24,6 +25,9 @@ class DocumentListParams(TypedDict, total=False):
     parent_document_id: Annotated[str, PropertyInfo(alias="parentDocumentId")]
 
     sort: str
+
+    status_filter: Annotated[List[Literal["draft", "archived", "published"]], PropertyInfo(alias="statusFilter")]
+    """Document statuses to include in results"""
 
     template: bool
     """Optionally filter to only templates"""

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Union, Iterable, Optional
-from typing_extensions import Required, Annotated, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
 
@@ -14,24 +14,38 @@ class DocumentUpdateParams(TypedDict, total=False):
     id: Required[str]
     """Unique identifier for the document. Either the UUID or the urlId is acceptable."""
 
+    collection_id: Annotated[Optional[str], PropertyInfo(alias="collectionId")]
+    """Identifier for the collection to move the document to"""
+
+    color: Optional[str]
+    """Color for the document icon (hex format)"""
+
     data_attributes: Annotated[Optional[Iterable[DataAttribute]], PropertyInfo(alias="dataAttributes")]
     """Data attributes to be updated.
 
     Attributes not included will be removed from the document.
     """
 
-    edit_mode: Annotated[object, PropertyInfo(alias="editMode")]
-    """
-    The editing mode of the request - append will add content to the end of the
-    document, prepend will add content to the start of the document, and replace
-    will overwrite the existing content.
-    """
+    edit_mode: Annotated[Literal["append", "prepend", "replace"], PropertyInfo(alias="editMode")]
+    """The editing mode for text updates to a document."""
+
+    full_width: Annotated[bool, PropertyInfo(alias="fullWidth")]
+    """Whether the document should be displayed in full width"""
+
+    icon: Optional[str]
+    """Icon displayed alongside the document title"""
+
+    insights_enabled: Annotated[bool, PropertyInfo(alias="insightsEnabled")]
+    """Whether insights should be visible on the document"""
 
     publish: bool
     """
-    Whether this document should be published and made visible to other team
+    Whether this document should be published and made visible to other workspace
     members, if a draft
     """
+
+    template_id: Annotated[Optional[str], PropertyInfo(alias="templateId")]
+    """Identifier for the template this document is based on"""
 
     text: str
     """The body of the document in markdown."""

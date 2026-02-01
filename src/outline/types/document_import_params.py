@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Optional
 from typing_extensions import Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
@@ -13,10 +14,17 @@ class DocumentImportParams(TypedDict, total=False):
     file: Required[object]
     """Plain text, markdown, docx, csv, tsv, and html format are supported."""
 
-    collection_id: Annotated[str, PropertyInfo(alias="collectionId")]
+    collection_id: Annotated[Optional[str], PropertyInfo(alias="collectionId")]
+    """Identifier for the collection to import into.
 
-    parent_document_id: Annotated[str, PropertyInfo(alias="parentDocumentId")]
+    One of collectionId or parentDocumentId is required.
+    """
+
+    parent_document_id: Annotated[Optional[str], PropertyInfo(alias="parentDocumentId")]
+    """Identifier for the parent document to import under.
+
+    One of collectionId or parentDocumentId is required.
+    """
 
     publish: bool
-
-    template: bool
+    """Whether to publish the imported document"""

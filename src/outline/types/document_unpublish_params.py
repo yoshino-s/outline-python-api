@@ -10,3 +10,6 @@ __all__ = ["DocumentUnpublishParams"]
 class DocumentUnpublishParams(TypedDict, total=False):
     id: Required[str]
     """Unique identifier for the document. Either the UUID or the urlId is acceptable."""
+
+    detach: bool
+    """Whether to detach the document from the collection"""

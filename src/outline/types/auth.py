@@ -19,12 +19,13 @@ class Team(BaseModel):
 
     avatar_url: Optional[str] = FieldInfo(alias="avatarUrl", default=None)
     """
-    The URL for the image associated with this team, it will be displayed in the
-    team switcher and in the top left of the knowledge base along with the name.
+    The URL for the image associated with this workspace, it will be displayed in
+    the workspace switcher and in the top left of the knowledge base along with the
+    name.
     """
 
     collaborative_editing: Optional[bool] = FieldInfo(alias="collaborativeEditing", default=None)
-    """Whether this team has collaborative editing in documents globally enabled."""
+    """Whether this workspace has collaborative editing in documents globally enabled."""
 
     default_collection_id: Optional[str] = FieldInfo(alias="defaultCollectionId", default=None)
     """
@@ -37,13 +38,13 @@ class Team(BaseModel):
     )
 
     document_embeds: Optional[bool] = FieldInfo(alias="documentEmbeds", default=None)
-    """Whether this team has embeds in documents globally enabled.
+    """Whether this workspace has embeds in documents globally enabled.
 
     It can be disabled to reduce potential data leakage to third parties.
     """
 
     guest_signin: Optional[bool] = FieldInfo(alias="guestSignin", default=None)
-    """Whether this team has guest signin enabled.
+    """Whether this workspace has guest signin enabled.
 
     Guests can signin with an email address and are not required to have a Google
     Workspace/Slack SSO account once invited.
@@ -51,8 +52,8 @@ class Team(BaseModel):
 
     invite_required: Optional[bool] = FieldInfo(alias="inviteRequired", default=None)
     """
-    Whether an invite is required to join this team, if false users may join with a
-    linked SSO provider.
+    Whether an invite is required to join this workspace, if false users may join
+    with a linked SSO provider.
     """
 
     member_collection_create: Optional[bool] = FieldInfo(alias="memberCollectionCreate", default=None)
@@ -63,21 +64,27 @@ class Team(BaseModel):
 
     name: Optional[str] = None
     """
-    The name of this team, it is usually auto-generated when the first SSO
+    The name of this workspace, it is usually auto-generated when the first SSO
     connection is made but can be changed if neccessary.
     """
 
     sharing: Optional[bool] = None
-    """Whether this team has share links globally enabled.
+    """Whether this workspace has share links globally enabled.
 
     If this value is false then all sharing UI and APIs are disabled.
     """
 
     subdomain: Optional[str] = None
-    """Represents the subdomain at which this team's knowledge base can be accessed."""
+    """
+    Represents the subdomain at which this workspace's knowledge base can be
+    accessed.
+    """
 
     url: Optional[str] = None
-    """The fully qualified URL at which this team's knowledge base can be accessed."""
+    """
+    The fully qualified URL at which this workspace's knowledge base can be
+    accessed.
+    """
 
 
 class User(BaseModel):

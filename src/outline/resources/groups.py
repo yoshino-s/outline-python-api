@@ -58,8 +58,10 @@ class GroupsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GroupCreateResponse:
-        """
-        Create a group
+        """Create a new group with the specified name.
+
+        Groups can be used to organize users
+        and assign collection permissions to multiple users at once.
 
         Args:
           extra_headers: Send extra headers
@@ -91,8 +93,10 @@ class GroupsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GroupUpdateResponse:
-        """
-        Update a group
+        """Update an existing group's name.
+
+        The group is identified by its unique
+        identifier.
 
         Args:
           extra_headers: Send extra headers
@@ -135,8 +139,10 @@ class GroupsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GroupListResponse:
-        """
-        List all groups
+        """List all groups in the workspace.
+
+        Groups are used to organize users and manage
+        permissions for collections.
 
         Args:
           external_id: Filter to groups matching an external ID
@@ -219,7 +225,8 @@ class GroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GroupInfoResponse:
         """
-        Retrieve a group
+        Retrieve the details of a group by its unique identifier, including its name and
+        member count.
 
         Args:
           id: Unique identifier for the group.
@@ -273,8 +280,10 @@ class AsyncGroupsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GroupCreateResponse:
-        """
-        Create a group
+        """Create a new group with the specified name.
+
+        Groups can be used to organize users
+        and assign collection permissions to multiple users at once.
 
         Args:
           extra_headers: Send extra headers
@@ -306,8 +315,10 @@ class AsyncGroupsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GroupUpdateResponse:
-        """
-        Update a group
+        """Update an existing group's name.
+
+        The group is identified by its unique
+        identifier.
 
         Args:
           extra_headers: Send extra headers
@@ -350,8 +361,10 @@ class AsyncGroupsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GroupListResponse:
-        """
-        List all groups
+        """List all groups in the workspace.
+
+        Groups are used to organize users and manage
+        permissions for collections.
 
         Args:
           external_id: Filter to groups matching an external ID
@@ -434,7 +447,8 @@ class AsyncGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GroupInfoResponse:
         """
-        Retrieve a group
+        Retrieve the details of a group by its unique identifier, including its name and
+        member count.
 
         Args:
           id: Unique identifier for the group.
