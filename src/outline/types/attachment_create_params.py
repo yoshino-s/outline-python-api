@@ -11,8 +11,10 @@ __all__ = ["AttachmentCreateParams"]
 
 class AttachmentCreateParams(TypedDict, total=False):
     content_type: Required[Annotated[str, PropertyInfo(alias="contentType")]]
+    """MIME type of the file attachment."""
 
     name: Required[str]
+    """Name of the file attachment."""
 
     size: Required[float]
     """Size of the file attachment in bytes."""

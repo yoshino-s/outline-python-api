@@ -14,3 +14,4 @@ class CollectionRemoveUserParams(TypedDict, total=False):
     """Identifier for the collection"""
 
     user_id: Required[Annotated[str, PropertyInfo(alias="userId")]]
+    """Identifier for the user to remove from the collection"""

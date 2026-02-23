@@ -27,7 +27,7 @@ class CreatedBy(BaseModel):
     email: Optional[str] = None
     """
     The email associated with this user, it is migrated from Slack or Google
-    Workspace when the SSO connection is made but can be changed if neccessary.
+    Workspace when the SSO connection is made but can be changed if necessary.
     """
 
     is_suspended: Optional[bool] = FieldInfo(alias="isSuspended", default=None)
@@ -42,7 +42,7 @@ class CreatedBy(BaseModel):
     name: Optional[str] = None
     """
     The name of this user, it is migrated from Slack or Google Workspace when the
-    SSO connection is made but can be changed if neccessary.
+    SSO connection is made but can be changed if necessary.
     """
 
     role: Optional[Literal["admin", "member", "viewer", "guest"]] = None
@@ -64,7 +64,7 @@ class UpdatedBy(BaseModel):
     email: Optional[str] = None
     """
     The email associated with this user, it is migrated from Slack or Google
-    Workspace when the SSO connection is made but can be changed if neccessary.
+    Workspace when the SSO connection is made but can be changed if necessary.
     """
 
     is_suspended: Optional[bool] = FieldInfo(alias="isSuspended", default=None)
@@ -79,7 +79,7 @@ class UpdatedBy(BaseModel):
     name: Optional[str] = None
     """
     The name of this user, it is migrated from Slack or Google Workspace when the
-    SSO connection is made but can be changed if neccessary.
+    SSO connection is made but can be changed if necessary.
     """
 
     role: Optional[Literal["admin", "member", "viewer", "guest"]] = None

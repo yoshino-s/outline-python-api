@@ -11,7 +11,9 @@ __all__ = ["CollectionAddUserParams"]
 
 class CollectionAddUserParams(TypedDict, total=False):
     id: Required[str]
+    """Identifier for the collection"""
 
     user_id: Required[Annotated[str, PropertyInfo(alias="userId")]]
+    """Identifier for the user to add to the collection"""
 
     permission: Literal["read", "read_write"]

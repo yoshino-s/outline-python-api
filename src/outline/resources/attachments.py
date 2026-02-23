@@ -62,6 +62,10 @@ class AttachmentsResource(SyncAPIResource):
         storage.
 
         Args:
+          content_type: MIME type of the file attachment.
+
+          name: Name of the file attachment.
+
           size: Size of the file attachment in bytes.
 
           document_id: Identifier for the associated document, if any.
@@ -102,7 +106,7 @@ class AttachmentsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AttachmentDeleteResponse:
-        """Deleting an attachment is permanant.
+        """Deleting an attachment is permanent.
 
         It will not delete references or links to
         the attachment that may exist in your documents.
@@ -206,6 +210,10 @@ class AsyncAttachmentsResource(AsyncAPIResource):
         storage.
 
         Args:
+          content_type: MIME type of the file attachment.
+
+          name: Name of the file attachment.
+
           size: Size of the file attachment in bytes.
 
           document_id: Identifier for the associated document, if any.
@@ -246,7 +254,7 @@ class AsyncAttachmentsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AttachmentDeleteResponse:
-        """Deleting an attachment is permanant.
+        """Deleting an attachment is permanent.
 
         It will not delete references or links to
         the attachment that may exist in your documents.
