@@ -56,7 +56,6 @@ class TestDocuments:
             icon="icon",
             parent_document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             publish=True,
-            template=True,
             template_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             text="text",
             title="Welcome to Acme Inc",
@@ -153,7 +152,6 @@ class TestDocuments:
             parent_document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             sort="updatedAt",
             status_filter=["draft"],
-            template=True,
             user_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(DocumentListResponse, document, path=["response"])
@@ -670,7 +668,6 @@ class TestAsyncDocuments:
             icon="icon",
             parent_document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             publish=True,
-            template=True,
             template_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             text="text",
             title="Welcome to Acme Inc",
@@ -767,7 +764,6 @@ class TestAsyncDocuments:
             parent_document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             sort="updatedAt",
             status_filter=["draft"],
-            template=True,
             user_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(DocumentListResponse, document, path=["response"])

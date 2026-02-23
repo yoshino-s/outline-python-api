@@ -383,6 +383,10 @@ class CollectionsResource(SyncAPIResource):
         This method allows you to add a user membership to the specified collection.
 
         Args:
+          id: Identifier for the collection
+
+          user_id: Identifier for the user to add to the collection
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -592,6 +596,8 @@ class CollectionsResource(SyncAPIResource):
 
         Args:
           id: Identifier for the collection
+
+          user_id: Identifier for the user to remove from the collection
 
           extra_headers: Send extra headers
 
@@ -936,6 +942,10 @@ class AsyncCollectionsResource(AsyncAPIResource):
         This method allows you to add a user membership to the specified collection.
 
         Args:
+          id: Identifier for the collection
+
+          user_id: Identifier for the user to add to the collection
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1145,6 +1155,8 @@ class AsyncCollectionsResource(AsyncAPIResource):
 
         Args:
           id: Identifier for the collection
+
+          user_id: Identifier for the user to remove from the collection
 
           extra_headers: Send extra headers
 

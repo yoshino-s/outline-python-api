@@ -29,7 +29,5 @@ class DocumentListParams(TypedDict, total=False):
     status_filter: Annotated[List[Literal["draft", "archived", "published"]], PropertyInfo(alias="statusFilter")]
     """Document statuses to include in results"""
 
-    template: bool
-    """Optionally filter to only templates"""
-
     user_id: Annotated[str, PropertyInfo(alias="userId")]
+    """Optionally filter to documents created by a specific user"""

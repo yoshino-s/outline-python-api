@@ -48,9 +48,6 @@ class DocumentCreateParams(TypedDict, total=False):
     workspace members.
     """
 
-    template: bool
-    """Whether this document should be considered to be a template."""
-
     template_id: Annotated[str, PropertyInfo(alias="templateId")]
 
     text: str

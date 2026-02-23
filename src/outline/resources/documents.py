@@ -87,7 +87,6 @@ class DocumentsResource(SyncAPIResource):
         icon: str | Omit = omit,
         parent_document_id: Optional[str] | Omit = omit,
         publish: bool | Omit = omit,
-        template: bool | Omit = omit,
         template_id: str | Omit = omit,
         text: str | Omit = omit,
         title: str | Omit = omit,
@@ -126,8 +125,6 @@ class DocumentsResource(SyncAPIResource):
           publish: Whether this document should be immediately published and made visible to other
               workspace members.
 
-          template: Whether this document should be considered to be a template.
-
           text: The body of the document in markdown
 
           extra_headers: Send extra headers
@@ -151,7 +148,6 @@ class DocumentsResource(SyncAPIResource):
                     "icon": icon,
                     "parent_document_id": parent_document_id,
                     "publish": publish,
-                    "template": template,
                     "template_id": template_id,
                     "text": text,
                     "title": title,
@@ -260,7 +256,6 @@ class DocumentsResource(SyncAPIResource):
         parent_document_id: str | Omit = omit,
         sort: str | Omit = omit,
         status_filter: List[Literal["draft", "archived", "published"]] | Omit = omit,
-        template: bool | Omit = omit,
         user_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -278,7 +273,7 @@ class DocumentsResource(SyncAPIResource):
 
           status_filter: Document statuses to include in results
 
-          template: Optionally filter to only templates
+          user_id: Optionally filter to documents created by a specific user
 
           extra_headers: Send extra headers
 
@@ -300,7 +295,6 @@ class DocumentsResource(SyncAPIResource):
                     "parent_document_id": parent_document_id,
                     "sort": sort,
                     "status_filter": status_filter,
-                    "template": template,
                     "user_id": user_id,
                 },
                 document_list_params.DocumentListParams,
@@ -326,7 +320,7 @@ class DocumentsResource(SyncAPIResource):
         """Deleting a document moves it to the trash.
 
         If not restored within 30 days it is
-        permenantly deleted.
+        permanently deleted.
 
         Args:
           id: Unique identifier for the document. Either the UUID or the urlId is acceptable.
@@ -803,8 +797,8 @@ class DocumentsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentTemplatizeResponse:
         """
-        This method allows you to createa new template using an existing document as the
-        basis
+        This method allows you to create a new template using an existing document as
+        the basis
 
         Args:
           publish: Whether the new template should be published
@@ -955,7 +949,6 @@ class AsyncDocumentsResource(AsyncAPIResource):
         icon: str | Omit = omit,
         parent_document_id: Optional[str] | Omit = omit,
         publish: bool | Omit = omit,
-        template: bool | Omit = omit,
         template_id: str | Omit = omit,
         text: str | Omit = omit,
         title: str | Omit = omit,
@@ -994,8 +987,6 @@ class AsyncDocumentsResource(AsyncAPIResource):
           publish: Whether this document should be immediately published and made visible to other
               workspace members.
 
-          template: Whether this document should be considered to be a template.
-
           text: The body of the document in markdown
 
           extra_headers: Send extra headers
@@ -1019,7 +1010,6 @@ class AsyncDocumentsResource(AsyncAPIResource):
                     "icon": icon,
                     "parent_document_id": parent_document_id,
                     "publish": publish,
-                    "template": template,
                     "template_id": template_id,
                     "text": text,
                     "title": title,
@@ -1128,7 +1118,6 @@ class AsyncDocumentsResource(AsyncAPIResource):
         parent_document_id: str | Omit = omit,
         sort: str | Omit = omit,
         status_filter: List[Literal["draft", "archived", "published"]] | Omit = omit,
-        template: bool | Omit = omit,
         user_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1146,7 +1135,7 @@ class AsyncDocumentsResource(AsyncAPIResource):
 
           status_filter: Document statuses to include in results
 
-          template: Optionally filter to only templates
+          user_id: Optionally filter to documents created by a specific user
 
           extra_headers: Send extra headers
 
@@ -1168,7 +1157,6 @@ class AsyncDocumentsResource(AsyncAPIResource):
                     "parent_document_id": parent_document_id,
                     "sort": sort,
                     "status_filter": status_filter,
-                    "template": template,
                     "user_id": user_id,
                 },
                 document_list_params.DocumentListParams,
@@ -1194,7 +1182,7 @@ class AsyncDocumentsResource(AsyncAPIResource):
         """Deleting a document moves it to the trash.
 
         If not restored within 30 days it is
-        permenantly deleted.
+        permanently deleted.
 
         Args:
           id: Unique identifier for the document. Either the UUID or the urlId is acceptable.
@@ -1671,8 +1659,8 @@ class AsyncDocumentsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentTemplatizeResponse:
         """
-        This method allows you to createa new template using an existing document as the
-        basis
+        This method allows you to create a new template using an existing document as
+        the basis
 
         Args:
           publish: Whether the new template should be published
