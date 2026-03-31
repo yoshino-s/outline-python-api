@@ -56,6 +56,14 @@ __all__ = ["DocumentsResource", "AsyncDocumentsResource"]
 
 
 class DocumentsResource(SyncAPIResource):
+    """`Documents` are what everything else revolves around.
+
+    A document represents
+    a single page of information and always returns the latest version of the
+    content. Documents are stored in [Markdown](https://spec.commonmark.org/)
+    formatting.
+    """
+
     @cached_property
     def with_raw_response(self) -> DocumentsResourceWithRawResponse:
         """
@@ -918,6 +926,14 @@ class DocumentsResource(SyncAPIResource):
 
 
 class AsyncDocumentsResource(AsyncAPIResource):
+    """`Documents` are what everything else revolves around.
+
+    A document represents
+    a single page of information and always returns the latest version of the
+    content. Documents are stored in [Markdown](https://spec.commonmark.org/)
+    formatting.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncDocumentsResourceWithRawResponse:
         """

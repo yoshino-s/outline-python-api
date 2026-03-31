@@ -98,7 +98,6 @@ class TestAttachments:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't properly handle redirects")
     @parametrize
     def test_method_redirect(self, client: Outline) -> None:
         attachment = client.attachments.redirect(
@@ -106,7 +105,6 @@ class TestAttachments:
         )
         assert attachment is None
 
-    @pytest.mark.skip(reason="Mock server doesn't properly handle redirects")
     @parametrize
     def test_raw_response_redirect(self, client: Outline) -> None:
         response = client.attachments.with_raw_response.redirect(
@@ -118,7 +116,6 @@ class TestAttachments:
         attachment = response.parse()
         assert attachment is None
 
-    @pytest.mark.skip(reason="Mock server doesn't properly handle redirects")
     @parametrize
     def test_streaming_response_redirect(self, client: Outline) -> None:
         with client.attachments.with_streaming_response.redirect(
@@ -216,7 +213,6 @@ class TestAsyncAttachments:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't properly handle redirects")
     @parametrize
     async def test_method_redirect(self, async_client: AsyncOutline) -> None:
         attachment = await async_client.attachments.redirect(
@@ -224,7 +220,6 @@ class TestAsyncAttachments:
         )
         assert attachment is None
 
-    @pytest.mark.skip(reason="Mock server doesn't properly handle redirects")
     @parametrize
     async def test_raw_response_redirect(self, async_client: AsyncOutline) -> None:
         response = await async_client.attachments.with_raw_response.redirect(
@@ -236,7 +231,6 @@ class TestAsyncAttachments:
         attachment = await response.parse()
         assert attachment is None
 
-    @pytest.mark.skip(reason="Mock server doesn't properly handle redirects")
     @parametrize
     async def test_streaming_response_redirect(self, async_client: AsyncOutline) -> None:
         async with async_client.attachments.with_streaming_response.redirect(

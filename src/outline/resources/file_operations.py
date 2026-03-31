@@ -39,6 +39,12 @@ __all__ = ["FileOperationsResource", "AsyncFileOperationsResource"]
 
 
 class FileOperationsResource(SyncAPIResource):
+    """
+    `FileOperations` represent background jobs for importing or exporting files.
+    You can query the file operation to find the state of progress and any
+    resulting output.
+    """
+
     @cached_property
     def with_raw_response(self) -> FileOperationsResourceWithRawResponse:
         """
@@ -216,6 +222,12 @@ class FileOperationsResource(SyncAPIResource):
 
 
 class AsyncFileOperationsResource(AsyncAPIResource):
+    """
+    `FileOperations` represent background jobs for importing or exporting files.
+    You can query the file operation to find the state of progress and any
+    resulting output.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncFileOperationsResourceWithRawResponse:
         """

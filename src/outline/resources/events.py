@@ -24,6 +24,13 @@ __all__ = ["EventsResource", "AsyncEventsResource"]
 
 
 class EventsResource(SyncAPIResource):
+    """`Events` represent an artifact of an action.
+
+    Whether it is creating a user,
+    editing a document, changing permissions, or any other action – an event
+    is created that can be used as an audit trail or activity stream.
+    """
+
     @cached_property
     def with_raw_response(self) -> EventsResourceWithRawResponse:
         """
@@ -110,6 +117,13 @@ class EventsResource(SyncAPIResource):
 
 
 class AsyncEventsResource(AsyncAPIResource):
+    """`Events` represent an artifact of an action.
+
+    Whether it is creating a user,
+    editing a document, changing permissions, or any other action – an event
+    is created that can be used as an audit trail or activity stream.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncEventsResourceWithRawResponse:
         """

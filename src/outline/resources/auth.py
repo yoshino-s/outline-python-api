@@ -21,6 +21,13 @@ __all__ = ["AuthResource", "AsyncAuthResource"]
 
 
 class AuthResource(SyncAPIResource):
+    """`Auth` represents the current API Keys authentication details.
+
+    It can be
+    used to check that a token is still valid and load the IDs for the current
+    user and workspace.
+    """
+
     @cached_property
     def with_raw_response(self) -> AuthResourceWithRawResponse:
         """
@@ -80,6 +87,13 @@ class AuthResource(SyncAPIResource):
 
 
 class AsyncAuthResource(AsyncAPIResource):
+    """`Auth` represents the current API Keys authentication details.
+
+    It can be
+    used to check that a token is still valid and load the IDs for the current
+    user and workspace.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncAuthResourceWithRawResponse:
         """

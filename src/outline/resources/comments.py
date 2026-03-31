@@ -27,6 +27,11 @@ __all__ = ["CommentsResource", "AsyncCommentsResource"]
 
 
 class CommentsResource(SyncAPIResource):
+    """
+    `Comments` represent a comment either on a selection of text in a document
+    or on the document itself.
+    """
+
     @cached_property
     def with_raw_response(self) -> CommentsResourceWithRawResponse:
         """
@@ -226,6 +231,11 @@ class CommentsResource(SyncAPIResource):
 
 
 class AsyncCommentsResource(AsyncAPIResource):
+    """
+    `Comments` represent a comment either on a selection of text in a document
+    or on the document itself.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncCommentsResourceWithRawResponse:
         """

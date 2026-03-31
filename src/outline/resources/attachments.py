@@ -23,6 +23,13 @@ __all__ = ["AttachmentsResource", "AsyncAttachmentsResource"]
 
 
 class AttachmentsResource(SyncAPIResource):
+    """`Attachments` represent a file uploaded to cloud storage.
+
+    They are created
+    before the upload happens from the client and store all the meta information
+    such as file type, size, and location.
+    """
+
     @cached_property
     def with_raw_response(self) -> AttachmentsResourceWithRawResponse:
         """
@@ -171,6 +178,13 @@ class AttachmentsResource(SyncAPIResource):
 
 
 class AsyncAttachmentsResource(AsyncAPIResource):
+    """`Attachments` represent a file uploaded to cloud storage.
+
+    They are created
+    before the upload happens from the client and store all the meta information
+    such as file type, size, and location.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncAttachmentsResourceWithRawResponse:
         """
