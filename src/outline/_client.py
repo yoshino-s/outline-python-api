@@ -101,48 +101,93 @@ class Outline(SyncAPIClient):
 
     @cached_property
     def attachments(self) -> AttachmentsResource:
+        """`Attachments` represent a file uploaded to cloud storage.
+
+        They are created
+        before the upload happens from the client and store all the meta information
+        such as file type, size, and location.
+        """
         from .resources.attachments import AttachmentsResource
 
         return AttachmentsResource(self)
 
     @cached_property
     def auth(self) -> AuthResource:
+        """`Auth` represents the current API Keys authentication details.
+
+        It can be
+        used to check that a token is still valid and load the IDs for the current
+        user and workspace.
+        """
         from .resources.auth import AuthResource
 
         return AuthResource(self)
 
     @cached_property
     def collections(self) -> CollectionsResource:
+        """
+        `Collections` represent grouping of documents in the knowledge base, they
+        offer a way to structure information in a nested hierarchy and a level
+        at which read and write permissions can be granted to individual users or
+        groups of users.
+        """
         from .resources.collections import CollectionsResource
 
         return CollectionsResource(self)
 
     @cached_property
     def comments(self) -> CommentsResource:
+        """
+        `Comments` represent a comment either on a selection of text in a document
+        or on the document itself.
+        """
         from .resources.comments import CommentsResource
 
         return CommentsResource(self)
 
     @cached_property
     def documents(self) -> DocumentsResource:
+        """`Documents` are what everything else revolves around.
+
+        A document represents
+        a single page of information and always returns the latest version of the
+        content. Documents are stored in [Markdown](https://spec.commonmark.org/)
+        formatting.
+        """
         from .resources.documents import DocumentsResource
 
         return DocumentsResource(self)
 
     @cached_property
     def events(self) -> EventsResource:
+        """`Events` represent an artifact of an action.
+
+        Whether it is creating a user,
+        editing a document, changing permissions, or any other action – an event
+        is created that can be used as an audit trail or activity stream.
+        """
         from .resources.events import EventsResource
 
         return EventsResource(self)
 
     @cached_property
     def file_operations(self) -> FileOperationsResource:
+        """
+        `FileOperations` represent background jobs for importing or exporting files.
+        You can query the file operation to find the state of progress and any
+        resulting output.
+        """
         from .resources.file_operations import FileOperationsResource
 
         return FileOperationsResource(self)
 
     @cached_property
     def groups(self) -> GroupsResource:
+        """
+        `Groups` represent a list of users that logically belong together, for
+        example there might be groups for each department in your organization.
+        Groups can be granted access to collections with read or write permissions.
+        """
         from .resources.groups import GroupsResource
 
         return GroupsResource(self)
@@ -311,48 +356,93 @@ class AsyncOutline(AsyncAPIClient):
 
     @cached_property
     def attachments(self) -> AsyncAttachmentsResource:
+        """`Attachments` represent a file uploaded to cloud storage.
+
+        They are created
+        before the upload happens from the client and store all the meta information
+        such as file type, size, and location.
+        """
         from .resources.attachments import AsyncAttachmentsResource
 
         return AsyncAttachmentsResource(self)
 
     @cached_property
     def auth(self) -> AsyncAuthResource:
+        """`Auth` represents the current API Keys authentication details.
+
+        It can be
+        used to check that a token is still valid and load the IDs for the current
+        user and workspace.
+        """
         from .resources.auth import AsyncAuthResource
 
         return AsyncAuthResource(self)
 
     @cached_property
     def collections(self) -> AsyncCollectionsResource:
+        """
+        `Collections` represent grouping of documents in the knowledge base, they
+        offer a way to structure information in a nested hierarchy and a level
+        at which read and write permissions can be granted to individual users or
+        groups of users.
+        """
         from .resources.collections import AsyncCollectionsResource
 
         return AsyncCollectionsResource(self)
 
     @cached_property
     def comments(self) -> AsyncCommentsResource:
+        """
+        `Comments` represent a comment either on a selection of text in a document
+        or on the document itself.
+        """
         from .resources.comments import AsyncCommentsResource
 
         return AsyncCommentsResource(self)
 
     @cached_property
     def documents(self) -> AsyncDocumentsResource:
+        """`Documents` are what everything else revolves around.
+
+        A document represents
+        a single page of information and always returns the latest version of the
+        content. Documents are stored in [Markdown](https://spec.commonmark.org/)
+        formatting.
+        """
         from .resources.documents import AsyncDocumentsResource
 
         return AsyncDocumentsResource(self)
 
     @cached_property
     def events(self) -> AsyncEventsResource:
+        """`Events` represent an artifact of an action.
+
+        Whether it is creating a user,
+        editing a document, changing permissions, or any other action – an event
+        is created that can be used as an audit trail or activity stream.
+        """
         from .resources.events import AsyncEventsResource
 
         return AsyncEventsResource(self)
 
     @cached_property
     def file_operations(self) -> AsyncFileOperationsResource:
+        """
+        `FileOperations` represent background jobs for importing or exporting files.
+        You can query the file operation to find the state of progress and any
+        resulting output.
+        """
         from .resources.file_operations import AsyncFileOperationsResource
 
         return AsyncFileOperationsResource(self)
 
     @cached_property
     def groups(self) -> AsyncGroupsResource:
+        """
+        `Groups` represent a list of users that logically belong together, for
+        example there might be groups for each department in your organization.
+        Groups can be granted access to collections with read or write permissions.
+        """
         from .resources.groups import AsyncGroupsResource
 
         return AsyncGroupsResource(self)
@@ -472,48 +562,93 @@ class OutlineWithRawResponse:
 
     @cached_property
     def attachments(self) -> attachments.AttachmentsResourceWithRawResponse:
+        """`Attachments` represent a file uploaded to cloud storage.
+
+        They are created
+        before the upload happens from the client and store all the meta information
+        such as file type, size, and location.
+        """
         from .resources.attachments import AttachmentsResourceWithRawResponse
 
         return AttachmentsResourceWithRawResponse(self._client.attachments)
 
     @cached_property
     def auth(self) -> auth.AuthResourceWithRawResponse:
+        """`Auth` represents the current API Keys authentication details.
+
+        It can be
+        used to check that a token is still valid and load the IDs for the current
+        user and workspace.
+        """
         from .resources.auth import AuthResourceWithRawResponse
 
         return AuthResourceWithRawResponse(self._client.auth)
 
     @cached_property
     def collections(self) -> collections.CollectionsResourceWithRawResponse:
+        """
+        `Collections` represent grouping of documents in the knowledge base, they
+        offer a way to structure information in a nested hierarchy and a level
+        at which read and write permissions can be granted to individual users or
+        groups of users.
+        """
         from .resources.collections import CollectionsResourceWithRawResponse
 
         return CollectionsResourceWithRawResponse(self._client.collections)
 
     @cached_property
     def comments(self) -> comments.CommentsResourceWithRawResponse:
+        """
+        `Comments` represent a comment either on a selection of text in a document
+        or on the document itself.
+        """
         from .resources.comments import CommentsResourceWithRawResponse
 
         return CommentsResourceWithRawResponse(self._client.comments)
 
     @cached_property
     def documents(self) -> documents.DocumentsResourceWithRawResponse:
+        """`Documents` are what everything else revolves around.
+
+        A document represents
+        a single page of information and always returns the latest version of the
+        content. Documents are stored in [Markdown](https://spec.commonmark.org/)
+        formatting.
+        """
         from .resources.documents import DocumentsResourceWithRawResponse
 
         return DocumentsResourceWithRawResponse(self._client.documents)
 
     @cached_property
     def events(self) -> events.EventsResourceWithRawResponse:
+        """`Events` represent an artifact of an action.
+
+        Whether it is creating a user,
+        editing a document, changing permissions, or any other action – an event
+        is created that can be used as an audit trail or activity stream.
+        """
         from .resources.events import EventsResourceWithRawResponse
 
         return EventsResourceWithRawResponse(self._client.events)
 
     @cached_property
     def file_operations(self) -> file_operations.FileOperationsResourceWithRawResponse:
+        """
+        `FileOperations` represent background jobs for importing or exporting files.
+        You can query the file operation to find the state of progress and any
+        resulting output.
+        """
         from .resources.file_operations import FileOperationsResourceWithRawResponse
 
         return FileOperationsResourceWithRawResponse(self._client.file_operations)
 
     @cached_property
     def groups(self) -> groups.GroupsResourceWithRawResponse:
+        """
+        `Groups` represent a list of users that logically belong together, for
+        example there might be groups for each department in your organization.
+        Groups can be granted access to collections with read or write permissions.
+        """
         from .resources.groups import GroupsResourceWithRawResponse
 
         return GroupsResourceWithRawResponse(self._client.groups)
@@ -527,48 +662,93 @@ class AsyncOutlineWithRawResponse:
 
     @cached_property
     def attachments(self) -> attachments.AsyncAttachmentsResourceWithRawResponse:
+        """`Attachments` represent a file uploaded to cloud storage.
+
+        They are created
+        before the upload happens from the client and store all the meta information
+        such as file type, size, and location.
+        """
         from .resources.attachments import AsyncAttachmentsResourceWithRawResponse
 
         return AsyncAttachmentsResourceWithRawResponse(self._client.attachments)
 
     @cached_property
     def auth(self) -> auth.AsyncAuthResourceWithRawResponse:
+        """`Auth` represents the current API Keys authentication details.
+
+        It can be
+        used to check that a token is still valid and load the IDs for the current
+        user and workspace.
+        """
         from .resources.auth import AsyncAuthResourceWithRawResponse
 
         return AsyncAuthResourceWithRawResponse(self._client.auth)
 
     @cached_property
     def collections(self) -> collections.AsyncCollectionsResourceWithRawResponse:
+        """
+        `Collections` represent grouping of documents in the knowledge base, they
+        offer a way to structure information in a nested hierarchy and a level
+        at which read and write permissions can be granted to individual users or
+        groups of users.
+        """
         from .resources.collections import AsyncCollectionsResourceWithRawResponse
 
         return AsyncCollectionsResourceWithRawResponse(self._client.collections)
 
     @cached_property
     def comments(self) -> comments.AsyncCommentsResourceWithRawResponse:
+        """
+        `Comments` represent a comment either on a selection of text in a document
+        or on the document itself.
+        """
         from .resources.comments import AsyncCommentsResourceWithRawResponse
 
         return AsyncCommentsResourceWithRawResponse(self._client.comments)
 
     @cached_property
     def documents(self) -> documents.AsyncDocumentsResourceWithRawResponse:
+        """`Documents` are what everything else revolves around.
+
+        A document represents
+        a single page of information and always returns the latest version of the
+        content. Documents are stored in [Markdown](https://spec.commonmark.org/)
+        formatting.
+        """
         from .resources.documents import AsyncDocumentsResourceWithRawResponse
 
         return AsyncDocumentsResourceWithRawResponse(self._client.documents)
 
     @cached_property
     def events(self) -> events.AsyncEventsResourceWithRawResponse:
+        """`Events` represent an artifact of an action.
+
+        Whether it is creating a user,
+        editing a document, changing permissions, or any other action – an event
+        is created that can be used as an audit trail or activity stream.
+        """
         from .resources.events import AsyncEventsResourceWithRawResponse
 
         return AsyncEventsResourceWithRawResponse(self._client.events)
 
     @cached_property
     def file_operations(self) -> file_operations.AsyncFileOperationsResourceWithRawResponse:
+        """
+        `FileOperations` represent background jobs for importing or exporting files.
+        You can query the file operation to find the state of progress and any
+        resulting output.
+        """
         from .resources.file_operations import AsyncFileOperationsResourceWithRawResponse
 
         return AsyncFileOperationsResourceWithRawResponse(self._client.file_operations)
 
     @cached_property
     def groups(self) -> groups.AsyncGroupsResourceWithRawResponse:
+        """
+        `Groups` represent a list of users that logically belong together, for
+        example there might be groups for each department in your organization.
+        Groups can be granted access to collections with read or write permissions.
+        """
         from .resources.groups import AsyncGroupsResourceWithRawResponse
 
         return AsyncGroupsResourceWithRawResponse(self._client.groups)
@@ -582,48 +762,93 @@ class OutlineWithStreamedResponse:
 
     @cached_property
     def attachments(self) -> attachments.AttachmentsResourceWithStreamingResponse:
+        """`Attachments` represent a file uploaded to cloud storage.
+
+        They are created
+        before the upload happens from the client and store all the meta information
+        such as file type, size, and location.
+        """
         from .resources.attachments import AttachmentsResourceWithStreamingResponse
 
         return AttachmentsResourceWithStreamingResponse(self._client.attachments)
 
     @cached_property
     def auth(self) -> auth.AuthResourceWithStreamingResponse:
+        """`Auth` represents the current API Keys authentication details.
+
+        It can be
+        used to check that a token is still valid and load the IDs for the current
+        user and workspace.
+        """
         from .resources.auth import AuthResourceWithStreamingResponse
 
         return AuthResourceWithStreamingResponse(self._client.auth)
 
     @cached_property
     def collections(self) -> collections.CollectionsResourceWithStreamingResponse:
+        """
+        `Collections` represent grouping of documents in the knowledge base, they
+        offer a way to structure information in a nested hierarchy and a level
+        at which read and write permissions can be granted to individual users or
+        groups of users.
+        """
         from .resources.collections import CollectionsResourceWithStreamingResponse
 
         return CollectionsResourceWithStreamingResponse(self._client.collections)
 
     @cached_property
     def comments(self) -> comments.CommentsResourceWithStreamingResponse:
+        """
+        `Comments` represent a comment either on a selection of text in a document
+        or on the document itself.
+        """
         from .resources.comments import CommentsResourceWithStreamingResponse
 
         return CommentsResourceWithStreamingResponse(self._client.comments)
 
     @cached_property
     def documents(self) -> documents.DocumentsResourceWithStreamingResponse:
+        """`Documents` are what everything else revolves around.
+
+        A document represents
+        a single page of information and always returns the latest version of the
+        content. Documents are stored in [Markdown](https://spec.commonmark.org/)
+        formatting.
+        """
         from .resources.documents import DocumentsResourceWithStreamingResponse
 
         return DocumentsResourceWithStreamingResponse(self._client.documents)
 
     @cached_property
     def events(self) -> events.EventsResourceWithStreamingResponse:
+        """`Events` represent an artifact of an action.
+
+        Whether it is creating a user,
+        editing a document, changing permissions, or any other action – an event
+        is created that can be used as an audit trail or activity stream.
+        """
         from .resources.events import EventsResourceWithStreamingResponse
 
         return EventsResourceWithStreamingResponse(self._client.events)
 
     @cached_property
     def file_operations(self) -> file_operations.FileOperationsResourceWithStreamingResponse:
+        """
+        `FileOperations` represent background jobs for importing or exporting files.
+        You can query the file operation to find the state of progress and any
+        resulting output.
+        """
         from .resources.file_operations import FileOperationsResourceWithStreamingResponse
 
         return FileOperationsResourceWithStreamingResponse(self._client.file_operations)
 
     @cached_property
     def groups(self) -> groups.GroupsResourceWithStreamingResponse:
+        """
+        `Groups` represent a list of users that logically belong together, for
+        example there might be groups for each department in your organization.
+        Groups can be granted access to collections with read or write permissions.
+        """
         from .resources.groups import GroupsResourceWithStreamingResponse
 
         return GroupsResourceWithStreamingResponse(self._client.groups)
@@ -637,48 +862,93 @@ class AsyncOutlineWithStreamedResponse:
 
     @cached_property
     def attachments(self) -> attachments.AsyncAttachmentsResourceWithStreamingResponse:
+        """`Attachments` represent a file uploaded to cloud storage.
+
+        They are created
+        before the upload happens from the client and store all the meta information
+        such as file type, size, and location.
+        """
         from .resources.attachments import AsyncAttachmentsResourceWithStreamingResponse
 
         return AsyncAttachmentsResourceWithStreamingResponse(self._client.attachments)
 
     @cached_property
     def auth(self) -> auth.AsyncAuthResourceWithStreamingResponse:
+        """`Auth` represents the current API Keys authentication details.
+
+        It can be
+        used to check that a token is still valid and load the IDs for the current
+        user and workspace.
+        """
         from .resources.auth import AsyncAuthResourceWithStreamingResponse
 
         return AsyncAuthResourceWithStreamingResponse(self._client.auth)
 
     @cached_property
     def collections(self) -> collections.AsyncCollectionsResourceWithStreamingResponse:
+        """
+        `Collections` represent grouping of documents in the knowledge base, they
+        offer a way to structure information in a nested hierarchy and a level
+        at which read and write permissions can be granted to individual users or
+        groups of users.
+        """
         from .resources.collections import AsyncCollectionsResourceWithStreamingResponse
 
         return AsyncCollectionsResourceWithStreamingResponse(self._client.collections)
 
     @cached_property
     def comments(self) -> comments.AsyncCommentsResourceWithStreamingResponse:
+        """
+        `Comments` represent a comment either on a selection of text in a document
+        or on the document itself.
+        """
         from .resources.comments import AsyncCommentsResourceWithStreamingResponse
 
         return AsyncCommentsResourceWithStreamingResponse(self._client.comments)
 
     @cached_property
     def documents(self) -> documents.AsyncDocumentsResourceWithStreamingResponse:
+        """`Documents` are what everything else revolves around.
+
+        A document represents
+        a single page of information and always returns the latest version of the
+        content. Documents are stored in [Markdown](https://spec.commonmark.org/)
+        formatting.
+        """
         from .resources.documents import AsyncDocumentsResourceWithStreamingResponse
 
         return AsyncDocumentsResourceWithStreamingResponse(self._client.documents)
 
     @cached_property
     def events(self) -> events.AsyncEventsResourceWithStreamingResponse:
+        """`Events` represent an artifact of an action.
+
+        Whether it is creating a user,
+        editing a document, changing permissions, or any other action – an event
+        is created that can be used as an audit trail or activity stream.
+        """
         from .resources.events import AsyncEventsResourceWithStreamingResponse
 
         return AsyncEventsResourceWithStreamingResponse(self._client.events)
 
     @cached_property
     def file_operations(self) -> file_operations.AsyncFileOperationsResourceWithStreamingResponse:
+        """
+        `FileOperations` represent background jobs for importing or exporting files.
+        You can query the file operation to find the state of progress and any
+        resulting output.
+        """
         from .resources.file_operations import AsyncFileOperationsResourceWithStreamingResponse
 
         return AsyncFileOperationsResourceWithStreamingResponse(self._client.file_operations)
 
     @cached_property
     def groups(self) -> groups.AsyncGroupsResourceWithStreamingResponse:
+        """
+        `Groups` represent a list of users that logically belong together, for
+        example there might be groups for each department in your organization.
+        Groups can be granted access to collections with read or write permissions.
+        """
         from .resources.groups import AsyncGroupsResourceWithStreamingResponse
 
         return AsyncGroupsResourceWithStreamingResponse(self._client.groups)

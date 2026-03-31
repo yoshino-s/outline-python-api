@@ -24,6 +24,13 @@ __all__ = ["MembershipsResource", "AsyncMembershipsResource"]
 
 
 class MembershipsResource(SyncAPIResource):
+    """
+    `Collections` represent grouping of documents in the knowledge base, they
+    offer a way to structure information in a nested hierarchy and a level
+    at which read and write permissions can be granted to individual users or
+    groups of users.
+    """
+
     @cached_property
     def with_raw_response(self) -> MembershipsResourceWithRawResponse:
         """
@@ -97,6 +104,13 @@ class MembershipsResource(SyncAPIResource):
 
 
 class AsyncMembershipsResource(AsyncAPIResource):
+    """
+    `Collections` represent grouping of documents in the knowledge base, they
+    offer a way to structure information in a nested hierarchy and a level
+    at which read and write permissions can be granted to individual users or
+    groups of users.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncMembershipsResourceWithRawResponse:
         """

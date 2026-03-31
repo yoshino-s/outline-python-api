@@ -65,12 +65,31 @@ __all__ = ["CollectionsResource", "AsyncCollectionsResource"]
 
 
 class CollectionsResource(SyncAPIResource):
+    """
+    `Collections` represent grouping of documents in the knowledge base, they
+    offer a way to structure information in a nested hierarchy and a level
+    at which read and write permissions can be granted to individual users or
+    groups of users.
+    """
+
     @cached_property
     def memberships(self) -> MembershipsResource:
+        """
+        `Collections` represent grouping of documents in the knowledge base, they
+        offer a way to structure information in a nested hierarchy and a level
+        at which read and write permissions can be granted to individual users or
+        groups of users.
+        """
         return MembershipsResource(self._client)
 
     @cached_property
     def group_memberships(self) -> GroupMembershipsResource:
+        """
+        `Collections` represent grouping of documents in the knowledge base, they
+        offer a way to structure information in a nested hierarchy and a level
+        at which read and write permissions can be granted to individual users or
+        groups of users.
+        """
         return GroupMembershipsResource(self._client)
 
     @cached_property
@@ -624,12 +643,31 @@ class CollectionsResource(SyncAPIResource):
 
 
 class AsyncCollectionsResource(AsyncAPIResource):
+    """
+    `Collections` represent grouping of documents in the knowledge base, they
+    offer a way to structure information in a nested hierarchy and a level
+    at which read and write permissions can be granted to individual users or
+    groups of users.
+    """
+
     @cached_property
     def memberships(self) -> AsyncMembershipsResource:
+        """
+        `Collections` represent grouping of documents in the knowledge base, they
+        offer a way to structure information in a nested hierarchy and a level
+        at which read and write permissions can be granted to individual users or
+        groups of users.
+        """
         return AsyncMembershipsResource(self._client)
 
     @cached_property
     def group_memberships(self) -> AsyncGroupMembershipsResource:
+        """
+        `Collections` represent grouping of documents in the knowledge base, they
+        offer a way to structure information in a nested hierarchy and a level
+        at which read and write permissions can be granted to individual users or
+        groups of users.
+        """
         return AsyncGroupMembershipsResource(self._client)
 
     @cached_property
@@ -1225,10 +1263,22 @@ class CollectionsResourceWithRawResponse:
 
     @cached_property
     def memberships(self) -> MembershipsResourceWithRawResponse:
+        """
+        `Collections` represent grouping of documents in the knowledge base, they
+        offer a way to structure information in a nested hierarchy and a level
+        at which read and write permissions can be granted to individual users or
+        groups of users.
+        """
         return MembershipsResourceWithRawResponse(self._collections.memberships)
 
     @cached_property
     def group_memberships(self) -> GroupMembershipsResourceWithRawResponse:
+        """
+        `Collections` represent grouping of documents in the knowledge base, they
+        offer a way to structure information in a nested hierarchy and a level
+        at which read and write permissions can be granted to individual users or
+        groups of users.
+        """
         return GroupMembershipsResourceWithRawResponse(self._collections.group_memberships)
 
 
@@ -1275,10 +1325,22 @@ class AsyncCollectionsResourceWithRawResponse:
 
     @cached_property
     def memberships(self) -> AsyncMembershipsResourceWithRawResponse:
+        """
+        `Collections` represent grouping of documents in the knowledge base, they
+        offer a way to structure information in a nested hierarchy and a level
+        at which read and write permissions can be granted to individual users or
+        groups of users.
+        """
         return AsyncMembershipsResourceWithRawResponse(self._collections.memberships)
 
     @cached_property
     def group_memberships(self) -> AsyncGroupMembershipsResourceWithRawResponse:
+        """
+        `Collections` represent grouping of documents in the knowledge base, they
+        offer a way to structure information in a nested hierarchy and a level
+        at which read and write permissions can be granted to individual users or
+        groups of users.
+        """
         return AsyncGroupMembershipsResourceWithRawResponse(self._collections.group_memberships)
 
 
@@ -1325,10 +1387,22 @@ class CollectionsResourceWithStreamingResponse:
 
     @cached_property
     def memberships(self) -> MembershipsResourceWithStreamingResponse:
+        """
+        `Collections` represent grouping of documents in the knowledge base, they
+        offer a way to structure information in a nested hierarchy and a level
+        at which read and write permissions can be granted to individual users or
+        groups of users.
+        """
         return MembershipsResourceWithStreamingResponse(self._collections.memberships)
 
     @cached_property
     def group_memberships(self) -> GroupMembershipsResourceWithStreamingResponse:
+        """
+        `Collections` represent grouping of documents in the knowledge base, they
+        offer a way to structure information in a nested hierarchy and a level
+        at which read and write permissions can be granted to individual users or
+        groups of users.
+        """
         return GroupMembershipsResourceWithStreamingResponse(self._collections.group_memberships)
 
 
@@ -1375,8 +1449,20 @@ class AsyncCollectionsResourceWithStreamingResponse:
 
     @cached_property
     def memberships(self) -> AsyncMembershipsResourceWithStreamingResponse:
+        """
+        `Collections` represent grouping of documents in the knowledge base, they
+        offer a way to structure information in a nested hierarchy and a level
+        at which read and write permissions can be granted to individual users or
+        groups of users.
+        """
         return AsyncMembershipsResourceWithStreamingResponse(self._collections.memberships)
 
     @cached_property
     def group_memberships(self) -> AsyncGroupMembershipsResourceWithStreamingResponse:
+        """
+        `Collections` represent grouping of documents in the knowledge base, they
+        offer a way to structure information in a nested hierarchy and a level
+        at which read and write permissions can be granted to individual users or
+        groups of users.
+        """
         return AsyncGroupMembershipsResourceWithStreamingResponse(self._collections.group_memberships)

@@ -28,6 +28,12 @@ __all__ = ["GroupsResource", "AsyncGroupsResource"]
 
 
 class GroupsResource(SyncAPIResource):
+    """
+    `Groups` represent a list of users that logically belong together, for
+    example there might be groups for each department in your organization.
+    Groups can be granted access to collections with read or write permissions.
+    """
+
     @cached_property
     def with_raw_response(self) -> GroupsResourceWithRawResponse:
         """
@@ -250,6 +256,12 @@ class GroupsResource(SyncAPIResource):
 
 
 class AsyncGroupsResource(AsyncAPIResource):
+    """
+    `Groups` represent a list of users that logically belong together, for
+    example there might be groups for each department in your organization.
+    Groups can be granted access to collections with read or write permissions.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncGroupsResourceWithRawResponse:
         """
