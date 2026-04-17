@@ -26,8 +26,19 @@ class DocumentUpdateParams(TypedDict, total=False):
     Attributes not included will be removed from the document.
     """
 
-    edit_mode: Annotated[Literal["append", "prepend", "replace"], PropertyInfo(alias="editMode")]
-    """The editing mode for text updates to a document."""
+    edit_mode: Annotated[Literal["append", "prepend", "replace", "patch"], PropertyInfo(alias="editMode")]
+    """The editing mode for text updates to a document.
+
+    When set to `patch`, the `findText` parameter is required and the existing
+    occurrence of `findText` will be replaced with the value of `text`.
+    """
+
+    find_text: Annotated[str, PropertyInfo(alias="findText")]
+    """The text to find within the document when using `patch` editMode.
+
+    This text will be replaced with the value of `text`. Required when `editMode` is
+    `patch`.
+    """
 
     full_width: Annotated[bool, PropertyInfo(alias="fullWidth")]
     """Whether the document should be displayed in full width"""
