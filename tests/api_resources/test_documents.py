@@ -102,6 +102,7 @@ class TestDocuments:
                 }
             ],
             edit_mode="append",
+            find_text="findText",
             full_width=True,
             icon="icon",
             insights_enabled=True,
@@ -714,6 +715,7 @@ class TestAsyncDocuments:
                 }
             ],
             edit_mode="append",
+            find_text="findText",
             full_width=True,
             icon="icon",
             insights_enabled=True,

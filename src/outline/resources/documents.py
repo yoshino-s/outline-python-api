@@ -175,7 +175,8 @@ class DocumentsResource(SyncAPIResource):
         collection_id: Optional[str] | Omit = omit,
         color: Optional[str] | Omit = omit,
         data_attributes: Optional[Iterable[document_update_params.DataAttribute]] | Omit = omit,
-        edit_mode: Literal["append", "prepend", "replace"] | Omit = omit,
+        edit_mode: Literal["append", "prepend", "replace", "patch"] | Omit = omit,
+        find_text: str | Omit = omit,
         full_width: bool | Omit = omit,
         icon: Optional[str] | Omit = omit,
         insights_enabled: bool | Omit = omit,
@@ -203,7 +204,12 @@ class DocumentsResource(SyncAPIResource):
           data_attributes: Data attributes to be updated. Attributes not included will be removed from the
               document.
 
-          edit_mode: The editing mode for text updates to a document.
+          edit_mode: The editing mode for text updates to a document. When set to `patch`, the
+              `findText` parameter is required and the existing occurrence of `findText` will
+              be replaced with the value of `text`.
+
+          find_text: The text to find within the document when using `patch` editMode. This text will
+              be replaced with the value of `text`. Required when `editMode` is `patch`.
 
           full_width: Whether the document should be displayed in full width
 
@@ -237,6 +243,7 @@ class DocumentsResource(SyncAPIResource):
                     "color": color,
                     "data_attributes": data_attributes,
                     "edit_mode": edit_mode,
+                    "find_text": find_text,
                     "full_width": full_width,
                     "icon": icon,
                     "insights_enabled": insights_enabled,
@@ -1045,7 +1052,8 @@ class AsyncDocumentsResource(AsyncAPIResource):
         collection_id: Optional[str] | Omit = omit,
         color: Optional[str] | Omit = omit,
         data_attributes: Optional[Iterable[document_update_params.DataAttribute]] | Omit = omit,
-        edit_mode: Literal["append", "prepend", "replace"] | Omit = omit,
+        edit_mode: Literal["append", "prepend", "replace", "patch"] | Omit = omit,
+        find_text: str | Omit = omit,
         full_width: bool | Omit = omit,
         icon: Optional[str] | Omit = omit,
         insights_enabled: bool | Omit = omit,
@@ -1073,7 +1081,12 @@ class AsyncDocumentsResource(AsyncAPIResource):
           data_attributes: Data attributes to be updated. Attributes not included will be removed from the
               document.
 
-          edit_mode: The editing mode for text updates to a document.
+          edit_mode: The editing mode for text updates to a document. When set to `patch`, the
+              `findText` parameter is required and the existing occurrence of `findText` will
+              be replaced with the value of `text`.
+
+          find_text: The text to find within the document when using `patch` editMode. This text will
+              be replaced with the value of `text`. Required when `editMode` is `patch`.
 
           full_width: Whether the document should be displayed in full width
 
@@ -1107,6 +1120,7 @@ class AsyncDocumentsResource(AsyncAPIResource):
                     "color": color,
                     "data_attributes": data_attributes,
                     "edit_mode": edit_mode,
+                    "find_text": find_text,
                     "full_width": full_width,
                     "icon": icon,
                     "insights_enabled": insights_enabled,
