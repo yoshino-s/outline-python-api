@@ -16,7 +16,7 @@ class AttachmentCreateParams(TypedDict, total=False):
     name: Required[str]
     """Name of the file attachment."""
 
-    size: Required[float]
+    size: Required[int]
     """Size of the file attachment in bytes."""
 
     document_id: Annotated[str, PropertyInfo(alias="documentId")]
