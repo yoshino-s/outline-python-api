@@ -56,6 +56,9 @@ class CommentsResource(SyncAPIResource):
         *,
         document_id: str,
         id: str | Omit = omit,
+        anchor_prefix: str | Omit = omit,
+        anchor_suffix: str | Omit = omit,
+        anchor_text: str | Omit = omit,
         data: object | Omit = omit,
         parent_comment_id: str | Omit = omit,
         text: str | Omit = omit,
@@ -68,8 +71,20 @@ class CommentsResource(SyncAPIResource):
     ) -> CommentCreateResponse:
         """
         Add a comment or reply to a document, either `data` or `text` is required.
+        Provide `anchorText` to create an inline comment attached to a specific text
+        range in the document.
 
         Args:
+          anchor_prefix: Text immediately preceding `anchorText`, used to disambiguate between multiple
+              occurrences. Requires `anchorText`.
+
+          anchor_suffix: Text immediately following `anchorText`, used to disambiguate between multiple
+              occurrences. Requires `anchorText`.
+
+          anchor_text: Plain text substring to anchor the comment to as an inline comment. The first
+              occurrence in the document's plain text is used unless disambiguated by
+              `anchorPrefix` and/or `anchorSuffix`.
+
           data: The body of the comment.
 
           text: The body of the comment in markdown.
@@ -88,6 +103,9 @@ class CommentsResource(SyncAPIResource):
                 {
                     "document_id": document_id,
                     "id": id,
+                    "anchor_prefix": anchor_prefix,
+                    "anchor_suffix": anchor_suffix,
+                    "anchor_text": anchor_text,
                     "data": data,
                     "parent_comment_id": parent_comment_id,
                     "text": text,
@@ -260,6 +278,9 @@ class AsyncCommentsResource(AsyncAPIResource):
         *,
         document_id: str,
         id: str | Omit = omit,
+        anchor_prefix: str | Omit = omit,
+        anchor_suffix: str | Omit = omit,
+        anchor_text: str | Omit = omit,
         data: object | Omit = omit,
         parent_comment_id: str | Omit = omit,
         text: str | Omit = omit,
@@ -272,8 +293,20 @@ class AsyncCommentsResource(AsyncAPIResource):
     ) -> CommentCreateResponse:
         """
         Add a comment or reply to a document, either `data` or `text` is required.
+        Provide `anchorText` to create an inline comment attached to a specific text
+        range in the document.
 
         Args:
+          anchor_prefix: Text immediately preceding `anchorText`, used to disambiguate between multiple
+              occurrences. Requires `anchorText`.
+
+          anchor_suffix: Text immediately following `anchorText`, used to disambiguate between multiple
+              occurrences. Requires `anchorText`.
+
+          anchor_text: Plain text substring to anchor the comment to as an inline comment. The first
+              occurrence in the document's plain text is used unless disambiguated by
+              `anchorPrefix` and/or `anchorSuffix`.
+
           data: The body of the comment.
 
           text: The body of the comment in markdown.
@@ -292,6 +325,9 @@ class AsyncCommentsResource(AsyncAPIResource):
                 {
                     "document_id": document_id,
                     "id": id,
+                    "anchor_prefix": anchor_prefix,
+                    "anchor_suffix": anchor_suffix,
+                    "anchor_text": anchor_text,
                     "data": data,
                     "parent_comment_id": parent_comment_id,
                     "text": text,

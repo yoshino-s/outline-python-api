@@ -34,6 +34,9 @@ class TestComments:
         comment = client.comments.create(
             document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            anchor_prefix="anchorPrefix",
+            anchor_suffix="anchorSuffix",
+            anchor_text="anchorText",
             data={},
             parent_comment_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             text="Sounds great",
@@ -185,6 +188,9 @@ class TestAsyncComments:
         comment = await async_client.comments.create(
             document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            anchor_prefix="anchorPrefix",
+            anchor_suffix="anchorSuffix",
+            anchor_text="anchorText",
             data={},
             parent_comment_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             text="Sounds great",
