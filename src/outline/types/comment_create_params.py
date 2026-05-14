@@ -14,6 +14,25 @@ class CommentCreateParams(TypedDict, total=False):
 
     id: str
 
+    anchor_prefix: Annotated[str, PropertyInfo(alias="anchorPrefix")]
+    """
+    Text immediately preceding `anchorText`, used to disambiguate between multiple
+    occurrences. Requires `anchorText`.
+    """
+
+    anchor_suffix: Annotated[str, PropertyInfo(alias="anchorSuffix")]
+    """
+    Text immediately following `anchorText`, used to disambiguate between multiple
+    occurrences. Requires `anchorText`.
+    """
+
+    anchor_text: Annotated[str, PropertyInfo(alias="anchorText")]
+    """Plain text substring to anchor the comment to as an inline comment.
+
+    The first occurrence in the document's plain text is used unless disambiguated
+    by `anchorPrefix` and/or `anchorSuffix`.
+    """
+
     data: object
     """The body of the comment."""
 
