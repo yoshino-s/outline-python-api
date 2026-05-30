@@ -16,9 +16,21 @@ class DataMembership(BaseModel):
     """Unique identifier for the object."""
 
     collection_id: Optional[str] = FieldInfo(alias="collectionId", default=None)
-    """Identifier for the associated collection."""
+    """Identifier for the associated collection, if any."""
+
+    created_by_id: Optional[str] = FieldInfo(alias="createdById", default=None)
+    """Identifier for the user who created this membership."""
+
+    document_id: Optional[str] = FieldInfo(alias="documentId", default=None)
+    """Identifier for the associated document, if any."""
+
+    index: Optional[str] = None
+    """The position of the collection in the user's sidebar."""
 
     permission: Optional[Literal["read", "read_write"]] = None
+
+    source_id: Optional[str] = FieldInfo(alias="sourceId", default=None)
+    """Identifier for the membership this one was inherited from, if any."""
 
     user_id: Optional[str] = FieldInfo(alias="userId", default=None)
     """Identifier for the associated user."""
@@ -34,8 +46,14 @@ class DataUser(BaseModel):
     application UI and email notifications.
     """
 
+    color: Optional[str] = None
+    """A color representing the user, used in the UI for avatars without an image."""
+
     created_at: Optional[datetime] = FieldInfo(alias="createdAt", default=None)
     """The date and time that this user first signed in or was invited as a guest."""
+
+    deleted_at: Optional[datetime] = FieldInfo(alias="deletedAt", default=None)
+    """The date and time that this user was deleted, if applicable."""
 
     email: Optional[str] = None
     """
@@ -59,6 +77,12 @@ class DataUser(BaseModel):
     """
 
     role: Optional[Literal["admin", "member", "viewer", "guest"]] = None
+
+    timezone: Optional[str] = None
+    """The timezone this user has registered."""
+
+    updated_at: Optional[datetime] = FieldInfo(alias="updatedAt", default=None)
+    """The date and time that this user was last updated."""
 
 
 class Data(BaseModel):

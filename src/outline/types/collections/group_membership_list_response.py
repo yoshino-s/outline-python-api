@@ -17,12 +17,18 @@ class DataCollectionGroupMembership(BaseModel):
     """Unique identifier for the object."""
 
     collection_id: Optional[str] = FieldInfo(alias="collectionId", default=None)
-    """Identifier for the associated collection."""
+    """Identifier for the associated collection, if any."""
+
+    document_id: Optional[str] = FieldInfo(alias="documentId", default=None)
+    """Identifier for the associated document, if any."""
 
     group_id: Optional[str] = FieldInfo(alias="groupId", default=None)
     """Identifier for the associated group."""
 
     permission: Optional[Literal["read", "read_write"]] = None
+
+    source_id: Optional[str] = FieldInfo(alias="sourceId", default=None)
+    """Identifier for the membership this one was inherited from, if any."""
 
 
 class Data(BaseModel):

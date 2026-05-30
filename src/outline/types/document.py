@@ -8,44 +8,7 @@ from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-__all__ = ["Document", "Collaborator", "CreatedBy", "DataAttribute", "UpdatedBy"]
-
-
-class Collaborator(BaseModel):
-    id: Optional[str] = None
-    """Unique identifier for the object."""
-
-    avatar_url: Optional[str] = FieldInfo(alias="avatarUrl", default=None)
-    """
-    The URL for the image associated with this user, it will be displayed in the
-    application UI and email notifications.
-    """
-
-    created_at: Optional[datetime] = FieldInfo(alias="createdAt", default=None)
-    """The date and time that this user first signed in or was invited as a guest."""
-
-    email: Optional[str] = None
-    """
-    The email associated with this user, it is migrated from Slack or Google
-    Workspace when the SSO connection is made but can be changed if necessary.
-    """
-
-    is_suspended: Optional[bool] = FieldInfo(alias="isSuspended", default=None)
-    """Whether this user has been suspended."""
-
-    last_active_at: Optional[datetime] = FieldInfo(alias="lastActiveAt", default=None)
-    """
-    The last time this user made an API request, this value is updated at most every
-    5 minutes.
-    """
-
-    name: Optional[str] = None
-    """
-    The name of this user, it is migrated from Slack or Google Workspace when the
-    SSO connection is made but can be changed if necessary.
-    """
-
-    role: Optional[Literal["admin", "member", "viewer", "guest"]] = None
+__all__ = ["Document", "CreatedBy", "DataAttribute", "Tasks", "UpdatedBy"]
 
 
 class CreatedBy(BaseModel):
@@ -58,8 +21,14 @@ class CreatedBy(BaseModel):
     application UI and email notifications.
     """
 
+    color: Optional[str] = None
+    """A color representing the user, used in the UI for avatars without an image."""
+
     created_at: Optional[datetime] = FieldInfo(alias="createdAt", default=None)
     """The date and time that this user first signed in or was invited as a guest."""
+
+    deleted_at: Optional[datetime] = FieldInfo(alias="deletedAt", default=None)
+    """The date and time that this user was deleted, if applicable."""
 
     email: Optional[str] = None
     """
@@ -83,6 +52,12 @@ class CreatedBy(BaseModel):
     """
 
     role: Optional[Literal["admin", "member", "viewer", "guest"]] = None
+
+    timezone: Optional[str] = None
+    """The timezone this user has registered."""
+
+    updated_at: Optional[datetime] = FieldInfo(alias="updatedAt", default=None)
+    """The date and time that this user was last updated."""
 
 
 class DataAttribute(BaseModel):
@@ -96,6 +71,14 @@ class DataAttribute(BaseModel):
     """The value of the data attribute for this document."""
 
 
+class Tasks(BaseModel):
+    """Task completion counts for the document."""
+
+    completed: Optional[float] = None
+
+    total: Optional[float] = None
+
+
 class UpdatedBy(BaseModel):
     id: Optional[str] = None
     """Unique identifier for the object."""
@@ -106,8 +89,14 @@ class UpdatedBy(BaseModel):
     application UI and email notifications.
     """
 
+    color: Optional[str] = None
+    """A color representing the user, used in the UI for avatars without an image."""
+
     created_at: Optional[datetime] = FieldInfo(alias="createdAt", default=None)
     """The date and time that this user first signed in or was invited as a guest."""
+
+    deleted_at: Optional[datetime] = FieldInfo(alias="deletedAt", default=None)
+    """The date and time that this user was deleted, if applicable."""
 
     email: Optional[str] = None
     """
@@ -132,6 +121,12 @@ class UpdatedBy(BaseModel):
 
     role: Optional[Literal["admin", "member", "viewer", "guest"]] = None
 
+    timezone: Optional[str] = None
+    """The timezone this user has registered."""
+
+    updated_at: Optional[datetime] = FieldInfo(alias="updatedAt", default=None)
+    """The date and time that this user was last updated."""
+
 
 class Document(BaseModel):
     id: Optional[str] = None
@@ -140,32 +135,39 @@ class Document(BaseModel):
     archived_at: Optional[datetime] = FieldInfo(alias="archivedAt", default=None)
     """The date and time that this object was archived"""
 
-    collaborators: Optional[List[Collaborator]] = None
+    collaborator_ids: Optional[List[str]] = FieldInfo(alias="collaboratorIds", default=None)
+    """Identifiers of users who have edited the document."""
 
     collection_id: Optional[str] = FieldInfo(alias="collectionId", default=None)
     """Identifier for the associated collection."""
+
+    color: Optional[str] = None
+    """The color of the document icon in hex format."""
 
     created_at: Optional[datetime] = FieldInfo(alias="createdAt", default=None)
     """The date and time that this object was created"""
 
     created_by: Optional[CreatedBy] = FieldInfo(alias="createdBy", default=None)
 
+    data: Optional[object] = None
+    """
+    The body of the document as a Prosemirror document, returned in place of text
+    when requested.
+    """
+
     data_attributes: Optional[List[DataAttribute]] = FieldInfo(alias="dataAttributes", default=None)
 
     deleted_at: Optional[datetime] = FieldInfo(alias="deletedAt", default=None)
     """The date and time that this object was deleted"""
 
-    emoji: Optional[str] = None
-    """An emoji associated with the document."""
-
     full_width: Optional[bool] = FieldInfo(alias="fullWidth", default=None)
     """Whether this document should be displayed in a full-width view."""
 
+    icon: Optional[str] = None
+    """An emoji or icon associated with the document."""
+
     parent_document_id: Optional[str] = FieldInfo(alias="parentDocumentId", default=None)
     """Identifier for the document this is a child of, if any."""
-
-    pinned: Optional[bool] = None
-    """Whether this document is pinned in the collection"""
 
     published_at: Optional[datetime] = FieldInfo(alias="publishedAt", default=None)
     """The date and time that this object was published"""
@@ -175,6 +177,9 @@ class Document(BaseModel):
     A number that is auto incrementing with every revision of the document that is
     saved
     """
+
+    tasks: Optional[Tasks] = None
+    """Task completion counts for the document."""
 
     template_id: Optional[str] = FieldInfo(alias="templateId", default=None)
     """Unique identifier for the template this document was created from, if any"""
@@ -189,6 +194,9 @@ class Document(BaseModel):
     """The date and time that this object was last changed"""
 
     updated_by: Optional[UpdatedBy] = FieldInfo(alias="updatedBy", default=None)
+
+    url: Optional[str] = None
+    """A URL path to access the document."""
 
     url_id: Optional[str] = FieldInfo(alias="urlId", default=None)
     """
