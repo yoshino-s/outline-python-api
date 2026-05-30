@@ -7,7 +7,6 @@ from typing_extensions import Literal
 from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
-from .collection import Collection
 
 __all__ = ["FileOperation", "User"]
 
@@ -53,18 +52,46 @@ class FileOperation(BaseModel):
     id: Optional[str] = None
     """Unique identifier for the object."""
 
-    collection: Optional[Collection] = None
+    collection_id: Optional[str] = FieldInfo(alias="collectionId", default=None)
+    """
+    Identifier for the associated collection, if the file operation is scoped to a
+    single collection.
+    """
 
     created_at: Optional[datetime] = FieldInfo(alias="createdAt", default=None)
     """The date and time that this object was created"""
 
-    size: Optional[float] = None
-    """The size of the resulting file in bytes"""
+    document_id: Optional[str] = FieldInfo(alias="documentId", default=None)
+    """
+    Identifier for the associated document, if the file operation is scoped to a
+    single document.
+    """
+
+    error: Optional[str] = None
+    """An error message if the file operation failed."""
+
+    format: Optional[str] = None
+    """The file format of the resulting file."""
+
+    name: Optional[str] = None
+    """
+    The name of the file operation, derived from the collection name, document
+    title, or file name.
+    """
+
+    size: Optional[str] = None
+    """The size of the resulting file in bytes.
+
+    Returned as a string as the value may exceed the safe integer range.
+    """
 
     state: Optional[Literal["creating", "uploading", "complete", "error", "expired"]] = None
     """The state of the file operation."""
 
     type: Optional[Literal["import", "export"]] = None
     """The type of file operation."""
+
+    updated_at: Optional[datetime] = FieldInfo(alias="updatedAt", default=None)
+    """The date and time that this object was last changed"""
 
     user: Optional[User] = None
