@@ -22,8 +22,14 @@ class DataActor(BaseModel):
     application UI and email notifications.
     """
 
+    color: Optional[str] = None
+    """A color representing the user, used in the UI for avatars without an image."""
+
     created_at: Optional[datetime] = FieldInfo(alias="createdAt", default=None)
     """The date and time that this user first signed in or was invited as a guest."""
+
+    deleted_at: Optional[datetime] = FieldInfo(alias="deletedAt", default=None)
+    """The date and time that this user was deleted, if applicable."""
 
     email: Optional[str] = None
     """
@@ -48,6 +54,12 @@ class DataActor(BaseModel):
 
     role: Optional[Literal["admin", "member", "viewer", "guest"]] = None
 
+    timezone: Optional[str] = None
+    """The timezone this user has registered."""
+
+    updated_at: Optional[datetime] = FieldInfo(alias="updatedAt", default=None)
+    """The date and time that this user was last updated."""
+
 
 class Data(BaseModel):
     id: Optional[str] = None
@@ -60,6 +72,12 @@ class Data(BaseModel):
 
     actor_ip_address: Optional[str] = FieldInfo(alias="actorIpAddress", default=None)
     """The ip address the action was performed from.
+
+    This field is only returned when the `auditLog` boolean is true.
+    """
+
+    changes: Optional[object] = None
+    """The set of changes made by this event.
 
     This field is only returned when the `auditLog` boolean is true.
     """
@@ -83,6 +101,9 @@ class Data(BaseModel):
     """
 
     name: Optional[str] = None
+
+    user_id: Optional[str] = FieldInfo(alias="userId", default=None)
+    """Identifier for the user associated with the event, if any."""
 
 
 class EventCreateResponse(BaseModel):

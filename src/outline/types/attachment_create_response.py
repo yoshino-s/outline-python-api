@@ -17,9 +17,16 @@ class DataAttachment(BaseModel):
 
     name: Optional[str] = None
 
-    size: Optional[float] = None
+    size: Optional[str] = None
+    """The size of the attachment in bytes.
+
+    Returned as a string as the value may exceed the safe integer range.
+    """
 
     url: Optional[str] = None
+
+    user_id: Optional[str] = FieldInfo(alias="userId", default=None)
+    """Identifier for the user that created the attachment."""
 
 
 class Data(BaseModel):

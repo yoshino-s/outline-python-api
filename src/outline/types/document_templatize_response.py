@@ -21,8 +21,14 @@ class DataCreatedBy(BaseModel):
     application UI and email notifications.
     """
 
+    color: Optional[str] = None
+    """A color representing the user, used in the UI for avatars without an image."""
+
     created_at: Optional[datetime] = FieldInfo(alias="createdAt", default=None)
     """The date and time that this user first signed in or was invited as a guest."""
+
+    deleted_at: Optional[datetime] = FieldInfo(alias="deletedAt", default=None)
+    """The date and time that this user was deleted, if applicable."""
 
     email: Optional[str] = None
     """
@@ -46,6 +52,12 @@ class DataCreatedBy(BaseModel):
     """
 
     role: Optional[Literal["admin", "member", "viewer", "guest"]] = None
+
+    timezone: Optional[str] = None
+    """The timezone this user has registered."""
+
+    updated_at: Optional[datetime] = FieldInfo(alias="updatedAt", default=None)
+    """The date and time that this user was last updated."""
 
 
 class DataUpdatedBy(BaseModel):
@@ -58,8 +70,14 @@ class DataUpdatedBy(BaseModel):
     application UI and email notifications.
     """
 
+    color: Optional[str] = None
+    """A color representing the user, used in the UI for avatars without an image."""
+
     created_at: Optional[datetime] = FieldInfo(alias="createdAt", default=None)
     """The date and time that this user first signed in or was invited as a guest."""
+
+    deleted_at: Optional[datetime] = FieldInfo(alias="deletedAt", default=None)
+    """The date and time that this user was deleted, if applicable."""
 
     email: Optional[str] = None
     """
@@ -83,6 +101,12 @@ class DataUpdatedBy(BaseModel):
     """
 
     role: Optional[Literal["admin", "member", "viewer", "guest"]] = None
+
+    timezone: Optional[str] = None
+    """The timezone this user has registered."""
+
+    updated_at: Optional[datetime] = FieldInfo(alias="updatedAt", default=None)
+    """The date and time that this user was last updated."""
 
 
 class Data(BaseModel):

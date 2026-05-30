@@ -17,6 +17,18 @@ class Group(BaseModel):
     created_at: Optional[datetime] = FieldInfo(alias="createdAt", default=None)
     """The date and time that this object was created"""
 
+    description: Optional[str] = None
+    """A short description of this group."""
+
+    disable_mentions: Optional[bool] = FieldInfo(alias="disableMentions", default=None)
+    """Whether mentioning this group is disabled."""
+
+    external_group: Optional[object] = FieldInfo(alias="externalGroup", default=None)
+    """Details of the linked external group, if any."""
+
+    external_id: Optional[str] = FieldInfo(alias="externalId", default=None)
+    """An identifier for this group in an external system, if linked."""
+
     member_count: Optional[float] = FieldInfo(alias="memberCount", default=None)
     """The number of users that are members of the group"""
 

@@ -8,7 +8,7 @@ from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-__all__ = ["Collection", "ArchivedBy", "Sort"]
+__all__ = ["Collection", "ArchivedBy", "Sort", "SourceMetadata"]
 
 
 class ArchivedBy(BaseModel):
@@ -21,8 +21,14 @@ class ArchivedBy(BaseModel):
     application UI and email notifications.
     """
 
+    color: Optional[str] = None
+    """A color representing the user, used in the UI for avatars without an image."""
+
     created_at: Optional[datetime] = FieldInfo(alias="createdAt", default=None)
     """The date and time that this user first signed in or was invited as a guest."""
+
+    deleted_at: Optional[datetime] = FieldInfo(alias="deletedAt", default=None)
+    """The date and time that this user was deleted, if applicable."""
 
     email: Optional[str] = None
     """
@@ -47,6 +53,12 @@ class ArchivedBy(BaseModel):
 
     role: Optional[Literal["admin", "member", "viewer", "guest"]] = None
 
+    timezone: Optional[str] = None
+    """The timezone this user has registered."""
+
+    updated_at: Optional[datetime] = FieldInfo(alias="updatedAt", default=None)
+    """The date and time that this user was last updated."""
+
 
 class Sort(BaseModel):
     """The sort of documents in the collection.
@@ -57,6 +69,16 @@ class Sort(BaseModel):
     direction: Optional[Literal["asc", "desc"]] = None
 
     field: Optional[str] = None
+
+
+class SourceMetadata(BaseModel):
+    """Metadata about the external source this collection was imported from, if any."""
+
+    created_by_name: Optional[str] = FieldInfo(alias="createdByName", default=None)
+
+    external_id: Optional[str] = FieldInfo(alias="externalId", default=None)
+
+    external_name: Optional[str] = FieldInfo(alias="externalName", default=None)
 
 
 class Collection(BaseModel):
@@ -74,8 +96,14 @@ class Collection(BaseModel):
     identifiable in the UI. It should be in HEX format including the #
     """
 
+    commenting: Optional[bool] = None
+    """Whether commenting is enabled in this collection"""
+
     created_at: Optional[datetime] = FieldInfo(alias="createdAt", default=None)
     """The date and time that this object was created"""
+
+    data: Optional[object] = None
+    """The collection description as rich-text JSON, when available."""
 
     deleted_at: Optional[datetime] = FieldInfo(alias="deletedAt", default=None)
     """The date and time that this object was deleted"""
@@ -104,8 +132,16 @@ class Collection(BaseModel):
     concern to implement.
     """
 
+    source_metadata: Optional[SourceMetadata] = FieldInfo(alias="sourceMetadata", default=None)
+    """Metadata about the external source this collection was imported from, if any."""
+
+    template_management: Optional[Literal["read", "read_write"]] = FieldInfo(alias="templateManagement", default=None)
+
     updated_at: Optional[datetime] = FieldInfo(alias="updatedAt", default=None)
     """The date and time that this object was last changed"""
+
+    url: Optional[str] = None
+    """The relative URL path at which the collection can be accessed."""
 
     url_id: Optional[str] = FieldInfo(alias="urlId", default=None)
     """

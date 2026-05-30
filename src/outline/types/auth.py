@@ -24,9 +24,6 @@ class Team(BaseModel):
     name.
     """
 
-    collaborative_editing: Optional[bool] = FieldInfo(alias="collaborativeEditing", default=None)
-    """Whether this workspace has collaborative editing in documents globally enabled."""
-
     default_collection_id: Optional[str] = FieldInfo(alias="defaultCollectionId", default=None)
     """
     If set then the referenced collection is where users will be redirected to after
@@ -37,11 +34,17 @@ class Team(BaseModel):
         alias="defaultUserRole", default=None
     )
 
+    description: Optional[str] = None
+    """A short description of this workspace."""
+
     document_embeds: Optional[bool] = FieldInfo(alias="documentEmbeds", default=None)
     """Whether this workspace has embeds in documents globally enabled.
 
     It can be disabled to reduce potential data leakage to third parties.
     """
+
+    domain: Optional[str] = None
+    """The custom domain configured for this workspace, if any."""
 
     guest_signin: Optional[bool] = FieldInfo(alias="guestSignin", default=None)
     """Whether this workspace has guest signin enabled.
@@ -49,6 +52,9 @@ class Team(BaseModel):
     Guests can signin with an email address and are not required to have a Google
     Workspace/Slack SSO account once invited.
     """
+
+    guidance_mcp: Optional[str] = FieldInfo(alias="guidanceMCP", default=None)
+    """Guidance text provided to MCP integrations."""
 
     invite_required: Optional[bool] = FieldInfo(alias="inviteRequired", default=None)
     """
@@ -62,11 +68,23 @@ class Team(BaseModel):
     If false then only admins can create collections.
     """
 
+    member_team_create: Optional[bool] = FieldInfo(alias="memberTeamCreate", default=None)
+    """Whether members are allowed to create new groups.
+
+    If false then only admins can create groups.
+    """
+
     name: Optional[str] = None
     """
     The name of this workspace, it is usually auto-generated when the first SSO
     connection is made but can be changed if necessary.
     """
+
+    passkeys_enabled: Optional[bool] = FieldInfo(alias="passkeysEnabled", default=None)
+    """Whether passkey authentication is enabled for this workspace."""
+
+    preferences: Optional[object] = None
+    """Workspace-level preference flags."""
 
     sharing: Optional[bool] = None
     """Whether this workspace has share links globally enabled.
@@ -97,8 +115,14 @@ class User(BaseModel):
     application UI and email notifications.
     """
 
+    color: Optional[str] = None
+    """A color representing the user, used in the UI for avatars without an image."""
+
     created_at: Optional[datetime] = FieldInfo(alias="createdAt", default=None)
     """The date and time that this user first signed in or was invited as a guest."""
+
+    deleted_at: Optional[datetime] = FieldInfo(alias="deletedAt", default=None)
+    """The date and time that this user was deleted, if applicable."""
 
     email: Optional[str] = None
     """
@@ -122,6 +146,12 @@ class User(BaseModel):
     """
 
     role: Optional[Literal["admin", "member", "viewer", "guest"]] = None
+
+    timezone: Optional[str] = None
+    """The timezone this user has registered."""
+
+    updated_at: Optional[datetime] = FieldInfo(alias="updatedAt", default=None)
+    """The date and time that this user was last updated."""
 
 
 class Auth(BaseModel):
