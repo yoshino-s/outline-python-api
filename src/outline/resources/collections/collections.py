@@ -116,6 +116,7 @@ class CollectionsResource(SyncAPIResource):
         *,
         name: str,
         color: str | Omit = omit,
+        data: object | Omit = omit,
         description: str | Omit = omit,
         icon: str | Omit = omit,
         permission: Literal["read", "read_write"] | Omit = omit,
@@ -134,7 +135,11 @@ class CollectionsResource(SyncAPIResource):
         Args:
           color: A hex color code for the collection icon
 
-          description: A brief description of the collection, markdown supported.
+          data: The collection description as a rich-text ProseMirror JSON document. Only one of
+              `description` or `data` may be provided.
+
+          description: A brief description of the collection, markdown supported. Only one of
+              `description` or `data` may be provided.
 
           icon: A string that represents an icon in the outline-icons package or an emoji
 
@@ -154,6 +159,7 @@ class CollectionsResource(SyncAPIResource):
                 {
                     "name": name,
                     "color": color,
+                    "data": data,
                     "description": description,
                     "icon": icon,
                     "permission": permission,
@@ -206,6 +212,7 @@ class CollectionsResource(SyncAPIResource):
         *,
         id: str,
         color: str | Omit = omit,
+        data: object | Omit = omit,
         description: str | Omit = omit,
         icon: str | Omit = omit,
         name: str | Omit = omit,
@@ -225,7 +232,11 @@ class CollectionsResource(SyncAPIResource):
         Args:
           color: A hex color code for the collection icon
 
-          description: A brief description of the collection, markdown supported.
+          data: The collection description as a rich-text ProseMirror JSON document. Only one of
+              `description` or `data` may be provided.
+
+          description: A brief description of the collection, markdown supported. Only one of
+              `description` or `data` may be provided.
 
           icon: A string that represents an icon in the outline-icons package or an emoji
 
@@ -245,6 +256,7 @@ class CollectionsResource(SyncAPIResource):
                 {
                     "id": id,
                     "color": color,
+                    "data": data,
                     "description": description,
                     "icon": icon,
                     "name": name,
@@ -694,6 +706,7 @@ class AsyncCollectionsResource(AsyncAPIResource):
         *,
         name: str,
         color: str | Omit = omit,
+        data: object | Omit = omit,
         description: str | Omit = omit,
         icon: str | Omit = omit,
         permission: Literal["read", "read_write"] | Omit = omit,
@@ -712,7 +725,11 @@ class AsyncCollectionsResource(AsyncAPIResource):
         Args:
           color: A hex color code for the collection icon
 
-          description: A brief description of the collection, markdown supported.
+          data: The collection description as a rich-text ProseMirror JSON document. Only one of
+              `description` or `data` may be provided.
+
+          description: A brief description of the collection, markdown supported. Only one of
+              `description` or `data` may be provided.
 
           icon: A string that represents an icon in the outline-icons package or an emoji
 
@@ -732,6 +749,7 @@ class AsyncCollectionsResource(AsyncAPIResource):
                 {
                     "name": name,
                     "color": color,
+                    "data": data,
                     "description": description,
                     "icon": icon,
                     "permission": permission,
@@ -784,6 +802,7 @@ class AsyncCollectionsResource(AsyncAPIResource):
         *,
         id: str,
         color: str | Omit = omit,
+        data: object | Omit = omit,
         description: str | Omit = omit,
         icon: str | Omit = omit,
         name: str | Omit = omit,
@@ -803,7 +822,11 @@ class AsyncCollectionsResource(AsyncAPIResource):
         Args:
           color: A hex color code for the collection icon
 
-          description: A brief description of the collection, markdown supported.
+          data: The collection description as a rich-text ProseMirror JSON document. Only one of
+              `description` or `data` may be provided.
+
+          description: A brief description of the collection, markdown supported. Only one of
+              `description` or `data` may be provided.
 
           icon: A string that represents an icon in the outline-icons package or an emoji
 
@@ -823,6 +846,7 @@ class AsyncCollectionsResource(AsyncAPIResource):
                 {
                     "id": id,
                     "color": color,
+                    "data": data,
                     "description": description,
                     "icon": icon,
                     "name": name,

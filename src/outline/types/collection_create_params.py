@@ -13,8 +13,17 @@ class CollectionCreateParams(TypedDict, total=False):
     color: str
     """A hex color code for the collection icon"""
 
+    data: object
+    """The collection description as a rich-text ProseMirror JSON document.
+
+    Only one of `description` or `data` may be provided.
+    """
+
     description: str
-    """A brief description of the collection, markdown supported."""
+    """A brief description of the collection, markdown supported.
+
+    Only one of `description` or `data` may be provided.
+    """
 
     icon: str
     """A string that represents an icon in the outline-icons package or an emoji"""
