@@ -42,6 +42,7 @@ class TestCollections:
         collection = client.collections.create(
             name="Human Resources",
             color="#123123",
+            data={},
             description="HR documentation is confidential and should be handled with care.",
             icon="icon",
             permission="read",
@@ -116,6 +117,7 @@ class TestCollections:
         collection = client.collections.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             color="#123123",
+            data={},
             description="HR documentation is confidential and should be handled with care.",
             icon="icon",
             name="Human Resources",
@@ -492,6 +494,7 @@ class TestAsyncCollections:
         collection = await async_client.collections.create(
             name="Human Resources",
             color="#123123",
+            data={},
             description="HR documentation is confidential and should be handled with care.",
             icon="icon",
             permission="read",
@@ -566,6 +569,7 @@ class TestAsyncCollections:
         collection = await async_client.collections.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             color="#123123",
+            data={},
             description="HR documentation is confidential and should be handled with care.",
             icon="icon",
             name="Human Resources",
