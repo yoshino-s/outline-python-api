@@ -529,7 +529,8 @@ class DocumentsResource(SyncAPIResource):
         document.
 
         Args:
-          file: Plain text, markdown, docx, csv, tsv, and html format are supported.
+          file: Plain text, markdown, docx, csv, tsv, html, mhtml (or mht) web pages, and eml
+              email messages are supported.
 
           collection_id: Identifier for the collection to import into. One of collectionId or
               parentDocumentId is required.
@@ -1406,7 +1407,8 @@ class AsyncDocumentsResource(AsyncAPIResource):
         document.
 
         Args:
-          file: Plain text, markdown, docx, csv, tsv, and html format are supported.
+          file: Plain text, markdown, docx, csv, tsv, html, mhtml (or mht) web pages, and eml
+              email messages are supported.
 
           collection_id: Identifier for the collection to import into. One of collectionId or
               parentDocumentId is required.
