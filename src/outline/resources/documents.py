@@ -467,11 +467,12 @@ class DocumentsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentExportResponse:
-        """Export a document in Markdown, HTML, or PDF format.
+        """Export a document in Markdown, HTML, PDF, or TextBundle format.
 
-        The response format is
-        determined by the Accept header. Optionally include child documents in the
-        export as a zip file.
+        The response
+        format is determined by the Accept header (`text/markdown`, `text/html`,
+        `application/pdf`, or `application/x-textbundle`). Optionally include child
+        documents in the export as a zip file.
 
         Args:
           id: Unique identifier for the document. Either the UUID or the urlId is acceptable.
@@ -1345,11 +1346,12 @@ class AsyncDocumentsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentExportResponse:
-        """Export a document in Markdown, HTML, or PDF format.
+        """Export a document in Markdown, HTML, PDF, or TextBundle format.
 
-        The response format is
-        determined by the Accept header. Optionally include child documents in the
-        export as a zip file.
+        The response
+        format is determined by the Accept header (`text/markdown`, `text/html`,
+        `application/pdf`, or `application/x-textbundle`). Optionally include child
+        documents in the export as a zip file.
 
         Args:
           id: Unique identifier for the document. Either the UUID or the urlId is acceptable.
