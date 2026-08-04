@@ -76,6 +76,9 @@ class Data(BaseModel):
     This field is only returned when the `auditLog` boolean is true.
     """
 
+    auth_type: Optional[Literal["api", "app", "mcp", "oauth"]] = FieldInfo(alias="authType", default=None)
+    """The authentication method used to perform the action."""
+
     changes: Optional[object] = None
     """The set of changes made by this event.
 

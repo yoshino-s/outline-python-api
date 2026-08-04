@@ -13,8 +13,8 @@ __all__ = ["DocumentImportParams"]
 class DocumentImportParams(TypedDict, total=False):
     file: Required[object]
     """
-    Plain text, markdown, docx, csv, tsv, html, mhtml (or mht) web pages, and eml
-    email messages are supported.
+    Plain text, markdown, docx, csv, tsv, html, mhtml (or mht) web pages, eml email
+    messages, and textbundle/textpack bundles are supported.
     """
 
     collection_id: Annotated[Optional[str], PropertyInfo(alias="collectionId")]
