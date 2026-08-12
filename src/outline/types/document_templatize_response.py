@@ -36,6 +36,12 @@ class DataCreatedBy(BaseModel):
     Workspace when the SSO connection is made but can be changed if necessary.
     """
 
+    invited_by: Optional[object] = FieldInfo(alias="invitedBy", default=None)
+    """The user that invited this user, if they were invited.
+
+    Only included in responses to admin users.
+    """
+
     is_suspended: Optional[bool] = FieldInfo(alias="isSuspended", default=None)
     """Whether this user has been suspended."""
 
@@ -83,6 +89,12 @@ class DataUpdatedBy(BaseModel):
     """
     The email associated with this user, it is migrated from Slack or Google
     Workspace when the SSO connection is made but can be changed if necessary.
+    """
+
+    invited_by: Optional[object] = FieldInfo(alias="invitedBy", default=None)
+    """The user that invited this user, if they were invited.
+
+    Only included in responses to admin users.
     """
 
     is_suspended: Optional[bool] = FieldInfo(alias="isSuspended", default=None)
