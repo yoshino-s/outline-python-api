@@ -49,6 +49,14 @@ class DocumentUpdateParams(TypedDict, total=False):
     insights_enabled: Annotated[bool, PropertyInfo(alias="insightsEnabled")]
     """Whether insights should be visible on the document"""
 
+    last_revision: Annotated[int, PropertyInfo(alias="lastRevision")]
+    """
+    If set, the update is rejected with a 409 response when the document's current
+    revision number does not match this value. Use this for optimistic concurrency
+    control to avoid overwriting changes made since the client last loaded the
+    document.
+    """
+
     publish: bool
     """
     Whether this document should be published and made visible to other workspace

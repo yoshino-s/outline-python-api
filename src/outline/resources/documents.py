@@ -180,6 +180,7 @@ class DocumentsResource(SyncAPIResource):
         full_width: bool | Omit = omit,
         icon: Optional[str] | Omit = omit,
         insights_enabled: bool | Omit = omit,
+        last_revision: int | Omit = omit,
         publish: bool | Omit = omit,
         template_id: Optional[str] | Omit = omit,
         text: str | Omit = omit,
@@ -217,6 +218,11 @@ class DocumentsResource(SyncAPIResource):
 
           insights_enabled: Whether insights should be visible on the document
 
+          last_revision: If set, the update is rejected with a 409 response when the document's current
+              revision number does not match this value. Use this for optimistic concurrency
+              control to avoid overwriting changes made since the client last loaded the
+              document.
+
           publish: Whether this document should be published and made visible to other workspace
               members, if a draft
 
@@ -247,6 +253,7 @@ class DocumentsResource(SyncAPIResource):
                     "full_width": full_width,
                     "icon": icon,
                     "insights_enabled": insights_enabled,
+                    "last_revision": last_revision,
                     "publish": publish,
                     "template_id": template_id,
                     "text": text,
@@ -1059,6 +1066,7 @@ class AsyncDocumentsResource(AsyncAPIResource):
         full_width: bool | Omit = omit,
         icon: Optional[str] | Omit = omit,
         insights_enabled: bool | Omit = omit,
+        last_revision: int | Omit = omit,
         publish: bool | Omit = omit,
         template_id: Optional[str] | Omit = omit,
         text: str | Omit = omit,
@@ -1096,6 +1104,11 @@ class AsyncDocumentsResource(AsyncAPIResource):
 
           insights_enabled: Whether insights should be visible on the document
 
+          last_revision: If set, the update is rejected with a 409 response when the document's current
+              revision number does not match this value. Use this for optimistic concurrency
+              control to avoid overwriting changes made since the client last loaded the
+              document.
+
           publish: Whether this document should be published and made visible to other workspace
               members, if a draft
 
@@ -1126,6 +1139,7 @@ class AsyncDocumentsResource(AsyncAPIResource):
                     "full_width": full_width,
                     "icon": icon,
                     "insights_enabled": insights_enabled,
+                    "last_revision": last_revision,
                     "publish": publish,
                     "template_id": template_id,
                     "text": text,
