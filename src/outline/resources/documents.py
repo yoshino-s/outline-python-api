@@ -273,6 +273,7 @@ class DocumentsResource(SyncAPIResource):
         backlink_document_id: str | Omit = omit,
         collection_id: str | Omit = omit,
         direction: Literal["ASC", "DESC"] | Omit = omit,
+        filters: Iterable[document_list_params.Filter] | Omit = omit,
         limit: float | Omit = omit,
         offset: float | Omit = omit,
         parent_document_id: str | Omit = omit,
@@ -291,11 +292,21 @@ class DocumentsResource(SyncAPIResource):
         the current user.
 
         Args:
-          collection_id: Optionally filter to a specific collection
+          collection_id: Optionally filter to a specific collection. Deprecated – prefer the `filters`
+              parameter.
 
-          status_filter: Document statuses to include in results
+          filters: Structured filter expression, evaluated as an AND of top-level entries. Cannot
+              be combined with the deprecated `collectionId`, `userId`, `parentDocumentId` or
+              `statusFilter` parameters.
 
-          user_id: Optionally filter to documents created by a specific user
+          parent_document_id: Optionally filter to child documents of a specific parent. Deprecated – prefer
+              the `filters` parameter.
+
+          status_filter: Document statuses to include in results. Deprecated – prefer the `filters`
+              parameter.
+
+          user_id: Optionally filter to documents created by a specific user. Deprecated – prefer
+              the `filters` parameter.
 
           extra_headers: Send extra headers
 
@@ -312,6 +323,7 @@ class DocumentsResource(SyncAPIResource):
                     "backlink_document_id": backlink_document_id,
                     "collection_id": collection_id,
                     "direction": direction,
+                    "filters": filters,
                     "limit": limit,
                     "offset": offset,
                     "parent_document_id": parent_document_id,
@@ -728,6 +740,7 @@ class DocumentsResource(SyncAPIResource):
         date_filter: Literal["day", "week", "month", "year"] | Omit = omit,
         direction: Literal["ASC", "DESC"] | Omit = omit,
         document_id: str | Omit = omit,
+        filters: Iterable[document_search_params.Filter] | Omit = omit,
         limit: float | Omit = omit,
         offset: float | Omit = omit,
         query: str | Omit = omit,
@@ -751,14 +764,19 @@ class DocumentsResource(SyncAPIResource):
         token.
 
         Args:
-          collection_id: A collection to search within
+          collection_id: A collection to search within. Deprecated – prefer the `filters` parameter.
 
           date_filter: Any documents that have not been updated within the specified period will be
-              filtered out
+              filtered out. Deprecated – prefer the `filters` parameter with a date field and
+              an ISO 8601 duration value.
 
           direction: Specifies the sort order with respect to sort field
 
-          document_id: A document to search within
+          document_id: A document to search within. Deprecated – prefer the `filters` parameter.
+
+          filters: Structured filter expression, evaluated as an AND of top-level entries. Cannot
+              be combined with the deprecated `collectionId`, `userId`, `documentId`,
+              `dateFilter` or `statusFilter` parameters.
 
           share_id: Filter results to the collection or document referenced by the shareId
 
@@ -768,10 +786,11 @@ class DocumentsResource(SyncAPIResource):
 
           sort: Specifies the attributes by which search results will be sorted
 
-          status_filter: Document statuses to include in results
+          status_filter: Document statuses to include in results. Deprecated – prefer the `filters`
+              parameter.
 
           user_id: Any documents that have not been edited by the user identifier will be filtered
-              out
+              out. Deprecated – prefer the `filters` parameter.
 
           extra_headers: Send extra headers
 
@@ -789,6 +808,7 @@ class DocumentsResource(SyncAPIResource):
                     "date_filter": date_filter,
                     "direction": direction,
                     "document_id": document_id,
+                    "filters": filters,
                     "limit": limit,
                     "offset": offset,
                     "query": query,
@@ -1159,6 +1179,7 @@ class AsyncDocumentsResource(AsyncAPIResource):
         backlink_document_id: str | Omit = omit,
         collection_id: str | Omit = omit,
         direction: Literal["ASC", "DESC"] | Omit = omit,
+        filters: Iterable[document_list_params.Filter] | Omit = omit,
         limit: float | Omit = omit,
         offset: float | Omit = omit,
         parent_document_id: str | Omit = omit,
@@ -1177,11 +1198,21 @@ class AsyncDocumentsResource(AsyncAPIResource):
         the current user.
 
         Args:
-          collection_id: Optionally filter to a specific collection
+          collection_id: Optionally filter to a specific collection. Deprecated – prefer the `filters`
+              parameter.
 
-          status_filter: Document statuses to include in results
+          filters: Structured filter expression, evaluated as an AND of top-level entries. Cannot
+              be combined with the deprecated `collectionId`, `userId`, `parentDocumentId` or
+              `statusFilter` parameters.
 
-          user_id: Optionally filter to documents created by a specific user
+          parent_document_id: Optionally filter to child documents of a specific parent. Deprecated – prefer
+              the `filters` parameter.
+
+          status_filter: Document statuses to include in results. Deprecated – prefer the `filters`
+              parameter.
+
+          user_id: Optionally filter to documents created by a specific user. Deprecated – prefer
+              the `filters` parameter.
 
           extra_headers: Send extra headers
 
@@ -1198,6 +1229,7 @@ class AsyncDocumentsResource(AsyncAPIResource):
                     "backlink_document_id": backlink_document_id,
                     "collection_id": collection_id,
                     "direction": direction,
+                    "filters": filters,
                     "limit": limit,
                     "offset": offset,
                     "parent_document_id": parent_document_id,
@@ -1614,6 +1646,7 @@ class AsyncDocumentsResource(AsyncAPIResource):
         date_filter: Literal["day", "week", "month", "year"] | Omit = omit,
         direction: Literal["ASC", "DESC"] | Omit = omit,
         document_id: str | Omit = omit,
+        filters: Iterable[document_search_params.Filter] | Omit = omit,
         limit: float | Omit = omit,
         offset: float | Omit = omit,
         query: str | Omit = omit,
@@ -1637,14 +1670,19 @@ class AsyncDocumentsResource(AsyncAPIResource):
         token.
 
         Args:
-          collection_id: A collection to search within
+          collection_id: A collection to search within. Deprecated – prefer the `filters` parameter.
 
           date_filter: Any documents that have not been updated within the specified period will be
-              filtered out
+              filtered out. Deprecated – prefer the `filters` parameter with a date field and
+              an ISO 8601 duration value.
 
           direction: Specifies the sort order with respect to sort field
 
-          document_id: A document to search within
+          document_id: A document to search within. Deprecated – prefer the `filters` parameter.
+
+          filters: Structured filter expression, evaluated as an AND of top-level entries. Cannot
+              be combined with the deprecated `collectionId`, `userId`, `documentId`,
+              `dateFilter` or `statusFilter` parameters.
 
           share_id: Filter results to the collection or document referenced by the shareId
 
@@ -1654,10 +1692,11 @@ class AsyncDocumentsResource(AsyncAPIResource):
 
           sort: Specifies the attributes by which search results will be sorted
 
-          status_filter: Document statuses to include in results
+          status_filter: Document statuses to include in results. Deprecated – prefer the `filters`
+              parameter.
 
           user_id: Any documents that have not been edited by the user identifier will be filtered
-              out
+              out. Deprecated – prefer the `filters` parameter.
 
           extra_headers: Send extra headers
 
@@ -1675,6 +1714,7 @@ class AsyncDocumentsResource(AsyncAPIResource):
                     "date_filter": date_filter,
                     "direction": direction,
                     "document_id": document_id,
+                    "filters": filters,
                     "limit": limit,
                     "offset": offset,
                     "query": query,

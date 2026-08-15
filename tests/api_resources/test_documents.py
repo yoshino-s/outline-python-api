@@ -149,6 +149,13 @@ class TestDocuments:
             backlink_document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             collection_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             direction="DESC",
+            filters=[
+                {
+                    "field": "createdAt",
+                    "operator": "eq",
+                    "value": {},
+                }
+            ],
             limit=25,
             offset=0,
             parent_document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -493,6 +500,13 @@ class TestDocuments:
             date_filter="month",
             direction="ASC",
             document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            filters=[
+                {
+                    "field": "createdAt",
+                    "operator": "eq",
+                    "value": {},
+                }
+            ],
             limit=25,
             offset=0,
             query="hiring",
@@ -763,6 +777,13 @@ class TestAsyncDocuments:
             backlink_document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             collection_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             direction="DESC",
+            filters=[
+                {
+                    "field": "createdAt",
+                    "operator": "eq",
+                    "value": {},
+                }
+            ],
             limit=25,
             offset=0,
             parent_document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -1107,6 +1128,13 @@ class TestAsyncDocuments:
             date_filter="month",
             direction="ASC",
             document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            filters=[
+                {
+                    "field": "createdAt",
+                    "operator": "eq",
+                    "value": {},
+                }
+            ],
             limit=25,
             offset=0,
             query="hiring",
