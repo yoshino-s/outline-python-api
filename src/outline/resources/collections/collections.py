@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List
+from typing import List, Iterable
 from typing_extensions import Literal
 
 import httpx
@@ -275,6 +275,7 @@ class CollectionsResource(SyncAPIResource):
         self,
         *,
         direction: Literal["ASC", "DESC"] | Omit = omit,
+        filters: Iterable[collection_list_params.Filter] | Omit = omit,
         limit: float | Omit = omit,
         offset: float | Omit = omit,
         query: str | Omit = omit,
@@ -291,9 +292,14 @@ class CollectionsResource(SyncAPIResource):
         List all collections that the authenticated user has access to.
 
         Args:
-          query: If set, will filter the results by collection name.
+          filters: Structured filter expression, evaluated as an AND of top-level entries. Cannot
+              be combined with the deprecated `query` or `statusFilter` parameters.
 
-          status_filter: An optional array of statuses to filter by.
+          query: If set, will filter the results by collection name. Deprecated – prefer the
+              `filters` parameter.
+
+          status_filter: An optional array of statuses to filter by. Deprecated – prefer the `filters`
+              parameter.
 
           extra_headers: Send extra headers
 
@@ -308,6 +314,7 @@ class CollectionsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "direction": direction,
+                    "filters": filters,
                     "limit": limit,
                     "offset": offset,
                     "query": query,
@@ -865,6 +872,7 @@ class AsyncCollectionsResource(AsyncAPIResource):
         self,
         *,
         direction: Literal["ASC", "DESC"] | Omit = omit,
+        filters: Iterable[collection_list_params.Filter] | Omit = omit,
         limit: float | Omit = omit,
         offset: float | Omit = omit,
         query: str | Omit = omit,
@@ -881,9 +889,14 @@ class AsyncCollectionsResource(AsyncAPIResource):
         List all collections that the authenticated user has access to.
 
         Args:
-          query: If set, will filter the results by collection name.
+          filters: Structured filter expression, evaluated as an AND of top-level entries. Cannot
+              be combined with the deprecated `query` or `statusFilter` parameters.
 
-          status_filter: An optional array of statuses to filter by.
+          query: If set, will filter the results by collection name. Deprecated – prefer the
+              `filters` parameter.
+
+          status_filter: An optional array of statuses to filter by. Deprecated – prefer the `filters`
+              parameter.
 
           extra_headers: Send extra headers
 
@@ -898,6 +911,7 @@ class AsyncCollectionsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "direction": direction,
+                    "filters": filters,
                     "limit": limit,
                     "offset": offset,
                     "query": query,

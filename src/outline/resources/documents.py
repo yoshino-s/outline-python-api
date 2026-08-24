@@ -94,6 +94,7 @@ class DocumentsResource(SyncAPIResource):
         full_width: bool | Omit = omit,
         icon: str | Omit = omit,
         parent_document_id: Optional[str] | Omit = omit,
+        preferences: Optional[document_create_params.Preferences] | Omit = omit,
         publish: bool | Omit = omit,
         template_id: str | Omit = omit,
         text: str | Omit = omit,
@@ -130,6 +131,10 @@ class DocumentsResource(SyncAPIResource):
           parent_document_id: Identifier for the parent document. Required to publish unless collectionId is
               provided
 
+          preferences: Document-level display preferences. Only the fields supplied are updated;
+              existing values for other preferences are preserved. Pass `null` to clear all
+              preferences.
+
           publish: Whether this document should be immediately published and made visible to other
               workspace members.
 
@@ -155,6 +160,7 @@ class DocumentsResource(SyncAPIResource):
                     "full_width": full_width,
                     "icon": icon,
                     "parent_document_id": parent_document_id,
+                    "preferences": preferences,
                     "publish": publish,
                     "template_id": template_id,
                     "text": text,
@@ -181,6 +187,7 @@ class DocumentsResource(SyncAPIResource):
         icon: Optional[str] | Omit = omit,
         insights_enabled: bool | Omit = omit,
         last_revision: int | Omit = omit,
+        preferences: Optional[document_update_params.Preferences] | Omit = omit,
         publish: bool | Omit = omit,
         template_id: Optional[str] | Omit = omit,
         text: str | Omit = omit,
@@ -223,6 +230,10 @@ class DocumentsResource(SyncAPIResource):
               control to avoid overwriting changes made since the client last loaded the
               document.
 
+          preferences: Document-level display preferences. Only the fields supplied are updated;
+              existing values for other preferences are preserved. Pass `null` to clear all
+              preferences.
+
           publish: Whether this document should be published and made visible to other workspace
               members, if a draft
 
@@ -254,6 +265,7 @@ class DocumentsResource(SyncAPIResource):
                     "icon": icon,
                     "insights_enabled": insights_enabled,
                     "last_revision": last_revision,
+                    "preferences": preferences,
                     "publish": publish,
                     "template_id": template_id,
                     "text": text,
@@ -1000,6 +1012,7 @@ class AsyncDocumentsResource(AsyncAPIResource):
         full_width: bool | Omit = omit,
         icon: str | Omit = omit,
         parent_document_id: Optional[str] | Omit = omit,
+        preferences: Optional[document_create_params.Preferences] | Omit = omit,
         publish: bool | Omit = omit,
         template_id: str | Omit = omit,
         text: str | Omit = omit,
@@ -1036,6 +1049,10 @@ class AsyncDocumentsResource(AsyncAPIResource):
           parent_document_id: Identifier for the parent document. Required to publish unless collectionId is
               provided
 
+          preferences: Document-level display preferences. Only the fields supplied are updated;
+              existing values for other preferences are preserved. Pass `null` to clear all
+              preferences.
+
           publish: Whether this document should be immediately published and made visible to other
               workspace members.
 
@@ -1061,6 +1078,7 @@ class AsyncDocumentsResource(AsyncAPIResource):
                     "full_width": full_width,
                     "icon": icon,
                     "parent_document_id": parent_document_id,
+                    "preferences": preferences,
                     "publish": publish,
                     "template_id": template_id,
                     "text": text,
@@ -1087,6 +1105,7 @@ class AsyncDocumentsResource(AsyncAPIResource):
         icon: Optional[str] | Omit = omit,
         insights_enabled: bool | Omit = omit,
         last_revision: int | Omit = omit,
+        preferences: Optional[document_update_params.Preferences] | Omit = omit,
         publish: bool | Omit = omit,
         template_id: Optional[str] | Omit = omit,
         text: str | Omit = omit,
@@ -1129,6 +1148,10 @@ class AsyncDocumentsResource(AsyncAPIResource):
               control to avoid overwriting changes made since the client last loaded the
               document.
 
+          preferences: Document-level display preferences. Only the fields supplied are updated;
+              existing values for other preferences are preserved. Pass `null` to clear all
+              preferences.
+
           publish: Whether this document should be published and made visible to other workspace
               members, if a draft
 
@@ -1160,6 +1183,7 @@ class AsyncDocumentsResource(AsyncAPIResource):
                     "icon": icon,
                     "insights_enabled": insights_enabled,
                     "last_revision": last_revision,
+                    "preferences": preferences,
                     "publish": publish,
                     "template_id": template_id,
                     "text": text,
