@@ -4,11 +4,11 @@ from __future__ import annotations
 
 from typing import Union, Iterable, Optional
 from datetime import datetime
-from typing_extensions import Required, Annotated, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
 
-__all__ = ["DocumentCreateParams", "DataAttribute"]
+__all__ = ["DocumentCreateParams", "DataAttribute", "Preferences"]
 
 
 class DocumentCreateParams(TypedDict, total=False):
@@ -42,6 +42,13 @@ class DocumentCreateParams(TypedDict, total=False):
     Required to publish unless collectionId is provided
     """
 
+    preferences: Optional[Preferences]
+    """Document-level display preferences.
+
+    Only the fields supplied are updated; existing values for other preferences are
+    preserved. Pass `null` to clear all preferences.
+    """
+
     publish: bool
     """
     Whether this document should be immediately published and made visible to other
@@ -65,3 +72,15 @@ class DataAttribute(TypedDict, total=False):
 
     Can be a string, boolean, or number depending on the data attribute type.
     """
+
+
+class Preferences(TypedDict, total=False):
+    """Document-level display preferences.
+
+    Only the fields supplied are updated; existing values for other preferences are preserved. Pass `null` to clear all preferences.
+    """
+
+    heading_prefix: Annotated[
+        Literal["none", "numeric", "alphanumeric", "outline"], PropertyInfo(alias="headingPrefix")
+    ]
+    """Numbering style applied to the document's headings when rendered."""

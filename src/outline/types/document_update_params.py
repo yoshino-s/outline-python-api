@@ -7,7 +7,7 @@ from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
 
-__all__ = ["DocumentUpdateParams", "DataAttribute"]
+__all__ = ["DocumentUpdateParams", "DataAttribute", "Preferences"]
 
 
 class DocumentUpdateParams(TypedDict, total=False):
@@ -57,6 +57,13 @@ class DocumentUpdateParams(TypedDict, total=False):
     document.
     """
 
+    preferences: Optional[Preferences]
+    """Document-level display preferences.
+
+    Only the fields supplied are updated; existing values for other preferences are
+    preserved. Pass `null` to clear all preferences.
+    """
+
     publish: bool
     """
     Whether this document should be published and made visible to other workspace
@@ -82,3 +89,15 @@ class DataAttribute(TypedDict, total=False):
 
     Can be a string, boolean, or number depending on the data attribute type.
     """
+
+
+class Preferences(TypedDict, total=False):
+    """Document-level display preferences.
+
+    Only the fields supplied are updated; existing values for other preferences are preserved. Pass `null` to clear all preferences.
+    """
+
+    heading_prefix: Annotated[
+        Literal["none", "numeric", "alphanumeric", "outline"], PropertyInfo(alias="headingPrefix")
+    ]
+    """Numbering style applied to the document's headings when rendered."""
