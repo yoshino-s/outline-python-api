@@ -10,7 +10,7 @@ __all__ = ["CollectionExportAllParams"]
 
 
 class CollectionExportAllParams(TypedDict, total=False):
-    format: Literal["outline-markdown", "json", "html"]
+    format: Literal["outline-markdown", "json", "html", "okf"]
 
     include_attachments: Annotated[bool, PropertyInfo(alias="includeAttachments")]
     """Whether to include attachments in the export."""
