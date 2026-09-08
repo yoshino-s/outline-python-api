@@ -10,4 +10,4 @@ __all__ = ["CollectionExportParams"]
 class CollectionExportParams(TypedDict, total=False):
     id: Required[str]
 
-    format: Literal["outline-markdown", "json", "html"]
+    format: Literal["outline-markdown", "json", "html", "okf"]

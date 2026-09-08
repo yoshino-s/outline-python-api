@@ -488,7 +488,7 @@ class CollectionsResource(SyncAPIResource):
         self,
         *,
         id: str,
-        format: Literal["outline-markdown", "json", "html"] | Omit = omit,
+        format: Literal["outline-markdown", "json", "html", "okf"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -529,7 +529,7 @@ class CollectionsResource(SyncAPIResource):
     def export_all(
         self,
         *,
-        format: Literal["outline-markdown", "json", "html"] | Omit = omit,
+        format: Literal["outline-markdown", "json", "html", "okf"] | Omit = omit,
         include_attachments: bool | Omit = omit,
         include_private: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1085,7 +1085,7 @@ class AsyncCollectionsResource(AsyncAPIResource):
         self,
         *,
         id: str,
-        format: Literal["outline-markdown", "json", "html"] | Omit = omit,
+        format: Literal["outline-markdown", "json", "html", "okf"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1126,7 +1126,7 @@ class AsyncCollectionsResource(AsyncAPIResource):
     async def export_all(
         self,
         *,
-        format: Literal["outline-markdown", "json", "html"] | Omit = omit,
+        format: Literal["outline-markdown", "json", "html", "okf"] | Omit = omit,
         include_attachments: bool | Omit = omit,
         include_private: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
